@@ -18,8 +18,8 @@
                                 <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </BreezeNavLink>
-                                <BreezeNavLink :href="route('participation.create')" :active="route().current('participation.create')">
-                                    Anmelden
+                                <BreezeNavLink :href="route('participation.index')" :active="route().current('participation.index')">
+                                    Teilnehmen
                                 </BreezeNavLink>
                             </div>
                         </div>

@@ -4,14 +4,9 @@ namespace App\Http\Controllers\Participation;
 
 use App\Http\Controllers\Controller;
 use App\Models\Participant;
-use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rules;
-use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
+use PDF;
 
 class ParticipationController extends Controller
 {
@@ -21,7 +16,7 @@ class ParticipationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
      */
-    public function list(Request $request)
+    public function index(Request $request)
     {
         return Inertia::render('Participation/ListParticipations', [
             'participations' => $request->user()->participations()->get()
@@ -65,15 +60,15 @@ class ParticipationController extends Controller
     }
 
     /**
-     * Show finish form.
+     * Show details.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
      */
-    public function finish(Request $request)
+    public function show(Request $request, Participant $participation)
     {
-        return Inertia::render('Participation/FinishParticipation', [
-
+        return Inertia::render('Participation/Show', [
+            'participation' => $participation
         ]);
     }
 
@@ -85,31 +80,21 @@ class ParticipationController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function send(Request $request)
+    public function send(Request $request, Participant $participation)
     {
-        $data = $request->validate([
-            'participation_id' => ['required', 'exists:participants,id'],
-        ]);
+        $participation->apply();
+        $participation->save();
 
-        /** @var Participant $participant */
-        $participant = Participant::findOrFail($data['participation_id']);
-
-        $participant->apply();
-        $participant->save();
-
-        return redirect()->route('participation.print');
+        return redirect()->route('participation.show', $participation->id);
     }
 
-    /**
-     * Show finish form.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Inertia\Response
-     */
-    public function print(Request $request)
-    {
-        return Inertia::render('Participation/Print', [
+    // Generate PDF
+    public function createPDF(Request $request, Participant $participation) {
+        // share data to view
+        view()->share('participation',$participation);
+        $pdf = PDF::loadView('participation_pdf', $participation);
 
-        ]);
+        // download PDF file with download method
+        return $pdf->download('anmeldung.pdf');
     }
 }
