@@ -26,6 +26,11 @@
                                 Verbindlich anmelden
                             </BreezeButton>
                         </form>
+                        <a :href="route('participation.edit', { id: participation.id })" class="ml-4" v-if="!participation.applied_at">
+                            <BreezeButton type="button">
+                                Bearbeiten
+                            </BreezeButton>
+                        </a>
                     </div>
                 </div>
             </div>

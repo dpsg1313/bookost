@@ -8,13 +8,33 @@ module.exports = {
         './resources/js/**/*.vue',
     ],
 
+    safelist: [
+        {
+            pattern: /^(bg|text|border)-status-(done|open)-(light|dark)$/,
+        }
+    ],
+
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                status: {
+                    done: {
+                        dark: "#006000",
+                        light: "#4eff4e",
+                    },
+                    open: {
+                        dark: "#850000",
+                        light: "#ff4545",
+                    },
+                },
+            },
         },
     },
 
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require("@tailwindcss/forms"),
+    ],
 };

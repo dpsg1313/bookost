@@ -12,7 +12,11 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        You're logged in!
+                        <a :href="route('participation.create')" class="ml-4" >
+                            <BreezeButton type="button">
+                                Anmelden
+                            </BreezeButton>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -22,11 +26,13 @@
 
 <script>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
+import BreezeButton from '@/Components/Button.vue'
 import { Head } from '@inertiajs/inertia-vue3';
 
 export default {
     components: {
         BreezeAuthenticatedLayout,
+        BreezeButton,
         Head,
     },
 }
