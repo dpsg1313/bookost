@@ -11,6 +11,5 @@ Route::prefix('participation')->middleware(['auth', 'verified'])->name('particip
     Route::get('/{participation}/show', [ParticipationController::class, 'show'])->name('show');
     Route::get('/{participation}/edit', [ParticipationController::class, 'edit'])->name('edit');
     Route::post('/{participation}/update', [ParticipationController::class, 'update'])->name('update');
-    Route::post('/{participation}/send', [ParticipationController::class, 'send'])->name('send');
     Route::get('/{participation}/pdf', [ParticipationController::class, 'createPDF'])->name('pdf');
 });

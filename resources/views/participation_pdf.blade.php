@@ -14,7 +14,9 @@
 <div class="container mt-5">
     <h2 class="text-center mb-3">Anmeldung zum Bezirkslager 2022</h2>
 
-    // TODO: Lagerdaten
+    <div>
+        // TODO: Lagerdaten
+    </div>
 
     <h3>Basisdaten</h3>
     <table class="table table-bordered mb-5">
@@ -113,7 +115,9 @@
         </tbody>
     </table>
 
-    //TODO: Foto Einverständnis
+    <div>
+        //TODO: Foto Einverständnis
+    </div>
 
     <span>Unterschrift Teilnehmer*in</span>
     <hr>

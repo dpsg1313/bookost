@@ -65,7 +65,7 @@
 
                             <div class="mt-2">
                                 <BreezeLabel for="prevention" value="Ich habe eine Präventionsschulung (Modul 2d + 2e) besucht" />
-                                <BreezeInput id="prevention" type="checkbox" class="mt-1 block" v-model="form.prevention" />
+                                <BreezeCheckbox id="prevention" class="mt-1 block" v-model:checked="form.prevention" />
                             </div>
                         </div>
 
