@@ -21269,18 +21269,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var _Components_Button_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/Button.vue */ "./resources/js/Components/Button.vue");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Head,
-    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link
+    BreezeButton: _Components_Button_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
+    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link
   },
   props: {
     canLogin: Boolean,
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String
+  },
+  computed: {
+    loginRoute: function loginRoute() {
+      if (this.$page.props.auth.user) {
+        return this.route('dashboard');
+      } else {
+        return this.route('register');
+      }
+    }
   }
 });
 
@@ -24032,9 +24044,26 @@ var _hoisted_6 = {
   "class": "max-w-6xl mx-auto sm:px-6 lg:px-8"
 };
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center pt-8 sm:justify-start sm:pt-0\" data-v-317d1a6e><img src=\"/images/München-Ost_Logo2_noBackground.png\" alt=\"Logo\" data-v-317d1a6e></div><div class=\"mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0\" data-v-317d1a6e><h1 class=\"ml-4 text-2xl font-bold text-gray-900 dark:text-white\" data-v-317d1a6e>Bezirkslager 2022</h1></div><div class=\"bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg\" data-v-317d1a6e><span data-v-317d1a6e>// Info Text hier...</span></div><div class=\"mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0\" data-v-317d1a6e><h1 class=\"ml-4 text-2xl font-bold text-gray-900 dark:text-white\" data-v-317d1a6e>Anmeldung zum Bezirkslager</h1></div><div class=\"bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg\" data-v-317d1a6e><div class=\"grid grid-cols-1 md:grid-cols-2\" data-v-317d1a6e><div class=\"p-6\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path d=\"M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Eltern</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die ihre Kinder anmelden möchten...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... können alle Kinder über ein einziges Benutzerkonto anmelden. Bitte registrieren Sie sich mit Ihrem Namen und Ihrer Email-Adresse. Anschließend füllen sie für jedes Kind einzeln die Anmeldung aus. Die Anmeldungen werden in einer Liste angezeigt und können vor dem Absenden beliebig oft bearbeitet werden. Nach dem Absenden erhalten Sie die Unterlagen zum Ausdrucken und unterschreiben. Außerdem können Sie jederzeit den Status der Anmeldung einsehen. </div></div></div><div class=\"p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path fill-rule=\"evenodd\" d=\"M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z\" clip-rule=\"evenodd\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Jugendliche</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die sich selbst anmelden möchten...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... registrieren sich und füllen anschließend die Anmeldung aus. <br data-v-317d1a6e>Nachdem du deine Anmeldung abgeschickt hast, bekommst du ein PDF. Das druckst du aus, unterschreibst es bzw. lässt es deine Eltern unterschreiben und gibst es bei deinen Leitern ab. <br data-v-317d1a6e>Ganz einfach, das schaffst du locker! </div></div></div><div class=\"p-6 border-t border-gray-200 dark:border-gray-700\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path d=\"M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Leiter*innen</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die sich anmelden möchten...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... registrieren sich, füllen anschließend die Anmeldung aus und achten dabei darauf, bei Stufe &#39;Leiter*innen&#39; auszuwählen. <br data-v-317d1a6e>Ich weiß, das ist echt schwierig, aber Baden Powell sagt: &quot;Hat man den Willen zu etwas, gelingt es auch, gleich, was einem im Wege steht.&quot; </div></div></div><div class=\"p-6 border-t border-gray-200 dark:border-gray-700 md:border-l\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path d=\"M10 12a2 2 0 100-4 2 2 0 000 4z\" data-v-317d1a6e></path><path fill-rule=\"evenodd\" d=\"M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z\" clip-rule=\"evenodd\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Verantwortliche</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die Zugriff auf die Daten ihres Stammes benötigen...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... registrieren sich ebenfalls, auch wenn sie nicht mit aufs Lager fahren möchten. <br data-v-317d1a6e>Danach müsst ihr leider noch ein wenig warten. Die Anzeige der Anmeldedaten für Verantwortliche befindet sich derzeit noch in Entwicklung. </div></div></div></div></div><div class=\"mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0\" data-v-317d1a6e><h1 class=\"ml-4 text-2xl font-bold text-gray-900 dark:text-white\" data-v-317d1a6e>Trailer zum Bezirkslager</h1></div>", 6);
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center pt-8 sm:justify-start sm:pt-0\" data-v-317d1a6e><img src=\"/images/München-Ost_Logo2_noBackground.png\" alt=\"Logo\" data-v-317d1a6e></div><div class=\"mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0\" data-v-317d1a6e><h1 class=\"ml-4 text-2xl font-bold text-gray-900 dark:text-white\" data-v-317d1a6e>Bezirkslager 2022</h1></div><div class=\"bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg\" data-v-317d1a6e><span data-v-317d1a6e>// Info Text hier...</span></div><div class=\"mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0\" data-v-317d1a6e><h1 class=\"ml-4 text-2xl font-bold text-gray-900 dark:text-white\" data-v-317d1a6e>Anmeldung zum Bezirkslager</h1></div><div class=\"bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg\" data-v-317d1a6e><div class=\"grid grid-cols-1 md:grid-cols-2\" data-v-317d1a6e><div class=\"p-6\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path d=\"M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Eltern</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die ihre Kinder anmelden möchten...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... können alle Kinder über ein einziges Benutzerkonto anmelden. Bitte registrieren Sie sich mit Ihrem Namen und Ihrer Email-Adresse. Anschließend füllen sie für jedes Kind einzeln die Anmeldung aus. Die Anmeldungen werden in einer Liste angezeigt und können vor dem Absenden beliebig oft bearbeitet werden. Nach dem Absenden erhalten Sie die Unterlagen zum Ausdrucken und unterschreiben. Außerdem können Sie jederzeit den Status der Anmeldung einsehen. </div></div></div><div class=\"p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path fill-rule=\"evenodd\" d=\"M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z\" clip-rule=\"evenodd\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Jugendliche</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die sich selbst anmelden möchten...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... registrieren sich und füllen anschließend die Anmeldung aus. <br data-v-317d1a6e>Nachdem du deine Anmeldung abgeschickt hast, bekommst du ein PDF. Das druckst du aus, unterschreibst es bzw. lässt es deine Eltern unterschreiben und gibst es bei deinen Leitern ab. <br data-v-317d1a6e>Ganz einfach, das schaffst du locker! </div></div></div><div class=\"p-6 border-t border-gray-200 dark:border-gray-700\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path d=\"M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Leiter*innen</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die sich anmelden möchten...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... registrieren sich, füllen anschließend die Anmeldung aus und achten dabei darauf, bei Stufe &#39;Leiter*innen&#39; auszuwählen. <br data-v-317d1a6e>Ich weiß, das ist echt schwierig, aber Baden Powell sagt: &quot;Hat man den Willen zu etwas, gelingt es auch, gleich, was einem im Wege steht.&quot; </div></div></div><div class=\"p-6 border-t border-gray-200 dark:border-gray-700 md:border-l\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path d=\"M10 12a2 2 0 100-4 2 2 0 000 4z\" data-v-317d1a6e></path><path fill-rule=\"evenodd\" d=\"M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z\" clip-rule=\"evenodd\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Verantwortliche</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die Zugriff auf die Daten ihres Stammes benötigen...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... registrieren sich ebenfalls, auch wenn sie nicht mit aufs Lager fahren möchten. <br data-v-317d1a6e>Danach müsst ihr leider noch ein wenig warten. Die Anzeige der Anmeldedaten für Verantwortliche befindet sich derzeit noch in Entwicklung. </div></div></div></div></div>", 5);
 
-var _hoisted_13 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_12 = {
+  "class": "mt-8 flex justify-center bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg p-6"
+};
+var _hoisted_13 = ["href"];
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Zur Anmeldung ");
+
+var _hoisted_15 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+    "class": "ml-4 text-2xl font-bold text-gray-900 dark:text-white"
+  }, "Trailer zum Bezirkslager")], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("video", {
@@ -24055,11 +24084,11 @@ var _hoisted_13 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_14 = {
+var _hoisted_17 = {
   "class": "flex justify-center mt-4 sm:items-center sm:justify-between"
 };
 
-var _hoisted_15 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_18 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "text-center text-sm text-gray-500 sm:text-left"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -24075,7 +24104,7 @@ var _hoisted_15 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_16 = {
+var _hoisted_19 = {
   key: 0,
   "class": "ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0"
 };
@@ -24083,6 +24112,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
+
+  var _component_BreezeButton = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeButton");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Anmeldung - DPSG München-Ost"
@@ -24128,7 +24159,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */
-  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, _ctx.laravelEnvironment !== 'production' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, " Laravel v" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.laravelVersion) + " (PHP v" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.phpVersion) + ") ", 1
+  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: $options.loginRoute
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+    type: "button",
+    "class": "text-xl"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_14];
+    }),
+    _: 1
+    /* STABLE */
+
+  })], 8
+  /* PROPS */
+  , _hoisted_13)]), _hoisted_15, _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, _ctx.laravelEnvironment !== 'production' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, " Laravel v" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.laravelVersion) + " (PHP v" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.phpVersion) + ") ", 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])], 64
   /* STABLE_FRAGMENT */

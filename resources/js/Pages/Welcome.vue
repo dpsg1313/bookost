@@ -104,6 +104,14 @@
                 </div>
             </div>
 
+            <div class="mt-8 flex justify-center bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg p-6">
+                <a :href="loginRoute" >
+                    <BreezeButton type="button" class="text-xl" >
+                        Zur Anmeldung
+                    </BreezeButton>
+                </a>
+            </div>
+
             <div class="mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0">
                 <h1 class="ml-4 text-2xl font-bold text-gray-900 dark:text-white">Trailer zum Bezirkslager</h1>
             </div>
@@ -201,12 +209,14 @@
 </style>
 
 <script>
+import BreezeButton from '@/Components/Button.vue'
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
 export default {
     components: {
-      Head,
-      Link,
+        BreezeButton,
+        Head,
+        Link,
     },
     props: {
         canLogin: Boolean,
@@ -214,5 +224,15 @@ export default {
         laravelVersion: String,
         phpVersion: String,
     },
+
+    computed: {
+        loginRoute(){
+            if(this.$page.props.auth.user){
+                return this.route('dashboard')
+            }else{
+                return this.route('register')
+            }
+        }
+    }
 }
 </script>
