@@ -36,7 +36,7 @@ class CreateParticipantsTable extends Migration
             $table->timestamp('signed_at')->nullable();
             $table->timestamp('paid_at')->nullable();
 
-            $table->integer('user_id');
+            $table->bigInteger('user_id');
 
             $table->foreign('user_id')->references('id')->on('users');
         });
