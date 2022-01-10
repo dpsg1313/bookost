@@ -127,9 +127,51 @@ return [
     'uploaded'             => ':attribute konnte nicht hochgeladen werden.',
     'url'                  => ':attribute muss eine URL sein.',
     'uuid'                 => ':attribute muss ein UUID sein.',
-    'custom'               => [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Validation Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify custom validation messages for attributes using the
+    | convention "attribute.rule" to name the lines. This makes it quick to
+    | specify a specific custom language line for a given attribute rule.
+    |
+    */
+
+    'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Validation Attributes
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines are used to swap our attribute placeholder
+    | with something more reader friendly such as "E-Mail Address" instead
+    | of "email". This simply helps us make our message more expressive.
+    |
+    */
+
+    'attributes' => [
+        'firstname' => 'Vorname',
+        'lastname' => 'Nachname',
+        'birthday' => 'Geburtstag',
+        'gender' => 'Geschlecht',
+        'stamm' => 'Stamm',
+        'stufe' => 'Stufe',
+        'role' => 'Rolle/Aufgabe',
+        'prevention' => 'Präventionsschulung',
+        'mail' => 'Email-Adresse',
+        'insurance_person' => 'Versicherungsnehmer',
+        'insurance' => 'Versicherung',
+        'vaccination_info_confirmed' => 'Impfbestätigung',
+        'food' => 'Ernährung',
+        'parent_phone' => 'Eltern Telefon',
+        'parent_mobile' => 'Eltern Handy',
+        'parent_address' => 'Eltern Anschrift',
     ],
 ];
