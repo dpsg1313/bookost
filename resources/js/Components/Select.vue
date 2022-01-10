@@ -14,7 +14,7 @@
 export default {
     props: [
         'modelValue',
-        'options'
+        'options',
     ],
 
     emits: ['update:modelValue'],

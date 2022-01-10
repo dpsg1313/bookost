@@ -4,7 +4,7 @@
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Neue Anmeldung
+                Anmeldung bearbeiten
             </h2>
         </template>
 
@@ -13,7 +13,7 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <BreezeValidationErrors class="mb-4" />
 
-                    <form @submit.prevent="submit">
+                    <form action="#" @submit.prevent="">
                         <div class="p-6 bg-white border-b border-gray-200">
                             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                                 Basisdaten
@@ -30,7 +30,7 @@
 
                             <div class="mt-2">
                                 <BreezeLabel for="birthday" value="Geburtstag" />
-                                <BreezeInput id="birthday" type="text" class="mt-1 block w-full" v-model="form.birthday" required />
+                                <BreezeInput id="birthday" type="date" class="mt-1 block w-full" v-model="form.birthday" required />
                             </div>
 
                             <div class="mt-2">
@@ -65,7 +65,7 @@
 
                             <div class="mt-2">
                                 <BreezeLabel for="prevention" value="Ich habe eine Präventionsschulung (Modul 2d + 2e) besucht" />
-                                <BreezeCheckbox id="prevention" class="mt-1" v-model="form.prevention" />
+                                <BreezeInput id="prevention" type="checkbox" class="mt-1 block" v-model="form.prevention" />
                             </div>
                         </div>
 
@@ -75,7 +75,7 @@
                             </h2>
                             <div class="mt-2">
                                 <BreezeLabel for="mail" value="Bitte schickt wichtige Infos zum Lager an folgende Email-Adresse:" />
-                                <BreezeInput id="mail" type="text" class="mt-1 block w-full" v-model="form.mail" required />
+                                <BreezeInput id="mail" type="email" class="mt-1 block w-full" v-model="form.mail" required />
                             </div>
                         </div>
 
@@ -101,7 +101,7 @@
                             <p>// Empfehlung Tetanus, Zecken!</p>
                             <p>// Corona Impfung ggf. erforderlich zur Teilnahme, je nach Regelung im Sommer.</p>
                             <BreezeLabel for="vaccination_info_confirmed" value="Ich habe die obenstehenden Hinweise zum Thema Impfung gelesen und verstanden" />
-                            <BreezeCheckbox id="vaccination_info_confirmed" class="mt-1" v-model="form.vaccination_info_confirmed" />
+                            <BreezeCheckbox id="vaccination_info_confirmed" class="mt-1 block" v-model:checked="form.vaccination_info_confirmed" />
                         </div>
 
                         <div class="p-6 bg-white border-b border-gray-200">
@@ -119,12 +119,12 @@
                             </h2>
                             <div class="mt-2">
                                 <BreezeLabel for="parent_phone" value="Telefon" />
-                                <BreezeInput id="parent_phone" type="text" class="mt-1 block w-full" v-model="form.parent_phone" required autofocus />
+                                <BreezeInput id="parent_phone" type="tel" class="mt-1 block w-full" v-model="form.parent_phone" required autofocus />
                             </div>
 
                             <div class="mt-2">
                                 <BreezeLabel for="parent_mobile" value="Handy" />
-                                <BreezeInput id="parent_mobile" type="text" class="mt-1 block w-full" v-model="form.parent_mobile" required />
+                                <BreezeInput id="parent_mobile" type="tel" class="mt-1 block w-full" v-model="form.parent_mobile" required />
                             </div>
 
                             <div class="mt-2">
@@ -134,9 +134,12 @@
                         </div>
 
 
-                        <div class="flex items-center justify-end mt-4">
-                            <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                Weiter
+                        <div class="flex items-center justify-end mt-4 p-6">
+                            <BreezeButton class="ml-4" @click="save" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                Speichern und später fortsetzen
+                            </BreezeButton>
+                            <BreezeButton class="ml-4" @click="apply" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                Verbindlich anmelden
                             </BreezeButton>
                         </div>
                     </form>
@@ -192,15 +195,16 @@ export default {
                 stamm: this.participation.stamm,
                 stufe: this.participation.stufe,
                 role: this.participation.role,
-                prevention: this.participation.prevention,
+                prevention: !!this.participation.prevention,
                 mail: this.participation.mail,
                 insurance_person: this.participation.insurance_person,
                 insurance: this.participation.insurance,
-                vaccination_info_confirmed: this.participation.vaccination_info_confirmed,
+                vaccination_info_confirmed: !!this.participation.vaccination_info_confirmed,
                 food: this.participation.food,
                 parent_phone: this.participation.parent_phone,
                 parent_mobile: this.participation.parent_mobile,
                 parent_address: this.participation.parent_address,
+                apply: false,
             }),
             staemme: {
                 131302: 'Ottobrunn',
@@ -245,8 +249,15 @@ export default {
     },
 
     methods: {
-        submit() {
+        save() {
+            this.form.apply = false
             this.form.post(this.route('participation.update', this.participation.id), {})
+        },
+        apply() {
+            if(confirm('Sicher anmelden?')) {
+                this.form.apply = true
+                this.form.post(this.route('participation.update', this.participation.id), {})
+            }
         }
     }
 }

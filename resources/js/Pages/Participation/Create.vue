@@ -65,7 +65,7 @@
 
                             <div class="mt-2">
                                 <BreezeLabel for="prevention" value="Ich habe eine Präventionsschulung (Modul 2d + 2e) besucht" />
-                                <BreezeCheckbox id="prevention" class="mt-1" v-model="form.prevention" />
+                                <BreezeInput id="prevention" type="checkbox" class="mt-1 block" v-model="form.prevention" />
                             </div>
                         </div>
 
@@ -101,7 +101,7 @@
                             <p>// Empfehlung Tetanus, Zecken!</p>
                             <p>// Corona Impfung ggf. erforderlich zur Teilnahme, je nach Regelung im Sommer.</p>
                             <BreezeLabel for="vaccination_info_confirmed" value="Ich habe die obenstehenden Hinweise zum Thema Impfung gelesen und verstanden" />
-                            <BreezeCheckbox id="vaccination_info_confirmed" class="mt-1" v-model="form.vaccination_info_confirmed" />
+                            <BreezeInput id="vaccination_info_confirmed" type="checkbox" class="mt-1 block" v-model="form.vaccination_info_confirmed" />
                         </div>
 
                         <div class="p-6 bg-white border-b border-gray-200">
@@ -153,7 +153,6 @@ import BreezeButton from '@/Components/Button.vue'
 import BreezeInput from '@/Components/Input.vue'
 import BreezeSelect from '@/Components/Select.vue'
 import BreezeRadio from '@/Components/Radio.vue'
-import BreezeCheckbox from '@/Components/Checkbox.vue'
 import BreezeDropdown from '@/Components/Dropdown.vue'
 import BreezeDropdownLink from '@/Components/DropdownLink.vue'
 import BreezeLabel from '@/Components/Label.vue'
@@ -167,7 +166,6 @@ export default {
         BreezeInput,
         BreezeSelect,
         BreezeRadio,
-        BreezeCheckbox,
         BreezeLabel,
         BreezeDropdown,
         BreezeDropdownLink,
@@ -196,6 +194,7 @@ export default {
                 parent_phone: '',
                 parent_mobile: '',
                 parent_address: '',
+                apply: false,
             }),
             staemme: {
                 131302: 'Ottobrunn',
@@ -240,8 +239,15 @@ export default {
     },
 
     methods: {
-        submit() {
-            this.form.post(this.route('participation.store'), {})
+        save() {
+            this.form.apply = false
+            this.form.post(this.route('participation.store', this.participation.id), {})
+        },
+        apply() {
+            if(confirm('Sicher anmelden?')) {
+                this.form.apply = true
+                this.form.post(this.route('participation.store', this.participation.id), {})
+            }
         }
     }
 }

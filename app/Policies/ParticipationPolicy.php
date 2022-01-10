@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\Models\Participant;
-use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -20,7 +19,7 @@ class ParticipationPolicy
      */
     public function edit(User $user, Participant $participation): bool
     {
-        if($participation->user()->id == $user->id) {
+        if($participation->user->id == $user->id) {
             return true;
         }
         return false;

@@ -15,7 +15,7 @@
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')" v-if="false">
                                     Dashboard
                                 </BreezeNavLink>
                                 <BreezeNavLink :href="route('participation.index')" :active="route().current('participation.index')">
@@ -64,8 +64,11 @@
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')" v-if="false">
                             Dashboard
+                        </BreezeResponsiveNavLink>
+                        <BreezeResponsiveNavLink :href="route('participation.index')" :active="route().current('participation.index')">
+                            Teilnehmen
                         </BreezeResponsiveNavLink>
                     </div>
 

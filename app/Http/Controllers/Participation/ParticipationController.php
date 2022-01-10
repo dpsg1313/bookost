@@ -54,7 +54,7 @@ class ParticipationController extends Controller
             'gender' => ['required', Rule::in(['m', 'w', 'd'])],
             'stamm' => ['required', Rule::in(['131302', '131304', '131305', '131306', '131307', '131308', '131309', '131312'])],
             'stufe' => ['required', Rule::in(['woes', 'jupfis', 'pfadis', 'rover', 'leiter'])],
-            'role' => ['required_if:stufe,leiter', Rule::in(['woeleiter', 'jupfileiter', 'pfadileiter', 'roverleiter', 'kitchen', 'cafe', 'bildung', 'dunno'])],
+            'role' => ['required_if:stufe,leiter', 'exclude_unless:stufe,leiter', Rule::in(['woeleiter', 'jupfileiter', 'pfadileiter', 'roverleiter', 'kitchen', 'cafe', 'bildung', 'dunno'])],
             'prevention' => 'boolean',
             'mail' => 'required|email',
             'insurance_person' => 'required',
@@ -64,10 +64,17 @@ class ParticipationController extends Controller
             'parent_phone' => 'required',
             'parent_mobile' => 'required',
             'parent_address' => 'required',
+            'apply' => 'boolean',
         ]);
 
         $data['user_id'] = $request->user()->id;
-        $participant = Participant::create($data);
+        $participation = Participant::create($data);
+
+        if($data['apply']){
+            $participation->apply();
+            $participation->save();
+            return redirect()->route('participation.show', $participation->id);
+        }
 
         return redirect()->route('participation.index');
     }
@@ -115,7 +122,7 @@ class ParticipationController extends Controller
             'gender' => ['required', Rule::in(['m', 'w', 'd'])],
             'stamm' => ['required', Rule::in(['131302', '131304', '131305', '131306', '131307', '131308', '131309', '131312'])],
             'stufe' => ['required', Rule::in(['woes', 'jupfis', 'pfadis', 'rover', 'leiter'])],
-            'role' => ['required_if:stufe,leiter', Rule::in(['woeleiter', 'jupfileiter', 'pfadileiter', 'roverleiter', 'kitchen', 'cafe', 'bildung', 'dunno'])],
+            'role' => ['required_if:stufe,leiter', 'exclude_unless:stufe,leiter', Rule::in(['woeleiter', 'jupfileiter', 'pfadileiter', 'roverleiter', 'kitchen', 'cafe', 'bildung', 'dunno'])],
             'prevention' => 'boolean',
             'mail' => 'required|email',
             'insurance_person' => 'required',
@@ -125,6 +132,7 @@ class ParticipationController extends Controller
             'parent_phone' => 'required',
             'parent_mobile' => 'required',
             'parent_address' => 'required',
+            'apply' => 'boolean',
         ]);
 
         abort_unless($request->user()->can('edit', $participation), 403, 'Access denied.');
@@ -135,8 +143,12 @@ class ParticipationController extends Controller
         $participation->gender = $data['gender'];
         $participation->stamm = $data['stamm'];
         $participation->stufe = $data['stufe'];
-        $participation->role = $data['role'];
-        $participation->prevention = $data['prevention'];
+        if(array_key_exists('role', $data)){
+            $participation->role = $data['role'];
+        }
+        if(array_key_exists('prevention', $data)){
+            $participation->prevention = $data['prevention'];
+        }
         $participation->mail = $data['mail'];
         $participation->insurance_person = $data['insurance_person'];
         $participation->insurance = $data['insurance'];
@@ -148,23 +160,13 @@ class ParticipationController extends Controller
 
         $participation->save();
 
+        if($data['apply']){
+            $participation->apply();
+            $participation->save();
+            return redirect()->route('participation.show', $participation->id);
+        }
+
         return redirect()->route('participation.index');
-    }
-
-    /**
-     * Send participation.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function send(Request $request, Participant $participation)
-    {
-        $participation->apply();
-        $participation->save();
-
-        return redirect()->route('participation.show', $participation->id);
     }
 
     // Generate PDF
