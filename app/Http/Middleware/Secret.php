@@ -19,7 +19,7 @@ class Secret extends Middleware
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        if(App::environment('local') || ($request->has('secret') && $request->secret == config('app.pdf_secret')))
+        if(App::environment('local') || ($request->secret == config('app.pdf_secret')))
         {
             return $next($request);
         }
