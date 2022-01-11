@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use PDF;
+use Ramsey\Uuid\Uuid;
+use Storage;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class ParticipationController extends Controller
 {
@@ -169,13 +173,62 @@ class ParticipationController extends Controller
         return redirect()->route('participation.index');
     }
 
+    /**
+     * Print a participation.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function print(Request $request, Participant $participation)
+    {
+        return view('participation_pdf', ['participation' => $participation]);
+    }
+
     // Generate PDF
     public function createPDF(Request $request, Participant $participation) {
+        $result = $this->chromePDF($request, $participation);
+
+        if($result !== false) {
+            return $result;
+        }
+
         // share data to view
         view()->share('participation',$participation);
         $pdf = PDF::loadView('participation_pdf', $participation);
 
         // download PDF file with download method
         return $pdf->download('anmeldung.pdf');
+    }
+
+    private function chromePDF(Request $request, Participant $participation){
+        $file = 'generated_pdfs/' . Uuid::uuid4() . '.pdf';
+        $process = new Process(
+            [
+                '/usr/bin/google-chrome-stable',
+                '--headless',
+                '--disable-gpu',
+                '--disable-software-rasterizer',
+                '--disable-dev-shm-usage',
+                '--run-all-compositor-stages-before-draw',
+                '--no-margins',
+                '--no-sandbox',
+                '--print-to-pdf-no-header',
+                '--print-to-pdf='. Storage::path($file),
+                route('participation.print', [
+                    'participation' => $participation->id,
+                    'secret' => config('app.pdf_secret')
+                ]),
+            ], null, null, null, null
+        );
+
+        try
+        {
+            $process->mustRun();
+            return \Storage::download($file, 'Anmeldung_Bezirkslager.pdf');
+        }
+        catch (ProcessFailedException $exception)
+        {
+            return false;
+        }
     }
 }

@@ -12,13 +12,17 @@
 
 <body>
 <div class="container mt-5">
-    <h2 class="text-center mb-3">Anmeldung zum Bezirkslager 2022</h2>
+    <h2 class="text-center mb-3 text-2xl font-bold">Anmeldung zum Bezirkslager 2022</h2>
 
-    <div>
-        // TODO: Lagerdaten
-    </div>
+    <table class="table table-bordered mb-5">
+        <tbody>
+        <tr>
+            <td>// TODO: Lagerdaten</td>
+        </tr>
+        </tbody>
+    </table>
 
-    <h3>Basisdaten</h3>
+    <h3 class="ml-2 text-lg font-semibold">Basisdaten</h3>
     <table class="table table-bordered mb-5">
         <tbody>
             <tr>
@@ -33,7 +37,7 @@
         </tbody>
     </table>
 
-    <h3>Gruppe</h3>
+    <h3 class="ml-2 text-lg font-semibold">Gruppe</h3>
     <table class="table table-bordered mb-5">
         <tbody>
             <tr>
@@ -46,7 +50,7 @@
     </table>
 
     @if($participation->stufe == 'leiter')
-    <h3>Für Leitende</h3>
+    <h3 class="ml-2 text-lg font-semibold">Für Leitende</h3>
     <table class="table table-bordered mb-5">
         <tbody>
             <tr>
@@ -59,7 +63,7 @@
     </table>
     @endif
 
-    <h3>Email</h3>
+    <h3 class="ml-2 text-lg font-semibold">Email</h3>
     <table class="table table-bordered mb-5">
         <tbody>
             <tr>
@@ -68,7 +72,7 @@
         </tbody>
     </table>
 
-    <h3>Krankenversicherung</h3>
+    <h3 class="ml-2 text-lg font-semibold">Krankenversicherung</h3>
     <table class="table table-bordered mb-5">
         <tbody>
             <tr>
@@ -80,18 +84,22 @@
         </tbody>
     </table>
 
-    <h3>Impfungen</h3>
-    <p>// Empfehlung Tetanus, Zecken!</p>
-    <p>// Corona Impfung ggf. erforderlich zur Teilnahme, je nach Regelung im Sommer.</p>
+    <h3 class="ml-2 text-lg font-semibold">Impfungen</h3>
     <table class="table table-bordered mb-5">
         <tbody>
+            <tr>
+                <td colspan="2">// Empfehlung Tetanus, Zecken!</td>
+            </tr>
+            <tr>
+                <td colspan="2">// Corona Impfung ggf. erforderlich zur Teilnahme, je nach Regelung im Sommer.</td>
+            </tr>
             <tr>
                 <td><label for="vaccination_info_confirmed">Ich habe die obenstehenden Hinweise zum Thema Impfung gelesen und verstanden</label></td><td><input type="checkbox" id="vaccination_info_confirmed" checked="{{ $participation->vaccination_info_confirmed }}" /></td>
             </tr>
         </tbody>
     </table>
 
-    <h3>Ernährung</h3>
+    <h3 class="ml-2 text-lg font-semibold">Ernährung</h3>
     <table class="table table-bordered mb-5">
         <tbody>
             <tr>
@@ -100,7 +108,7 @@
         </tbody>
     </table>
 
-    <h3>Kontaktdaten der Erziehungsberechtigten</h3>
+    <h3 class="ml-2 text-lg font-semibold">Kontaktdaten der Erziehungsberechtigten</h3>
     <table class="table table-bordered mb-5">
         <tbody>
             <tr>
@@ -115,14 +123,30 @@
         </tbody>
     </table>
 
-    <div>
-        //TODO: Foto Einverständnis
-    </div>
+    <table class="table table-bordered mb-5">
+        <tbody>
+        <tr>
+            <td>//TODO: Foto Einverständnis</td>
+        </tr>
+        </tbody>
+    </table>
 
     <span>Unterschrift Teilnehmer*in</span>
-    <hr>
+    <table class="table table-bordered mb-2">
+        <tbody>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        </tbody>
+    </table>
     <span>Unterschrift Erziehungsberechtigte*r</span>
-    <hr>
+    <table class="table table-bordered mb-2">
+        <tbody>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 </body>
