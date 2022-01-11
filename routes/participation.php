@@ -12,5 +12,9 @@ Route::prefix('participation')->middleware(['auth', 'verified'])->name('particip
     Route::get('/{participation}/edit', [ParticipationController::class, 'edit'])->name('edit');
     Route::post('/{participation}/update', [ParticipationController::class, 'update'])->name('update');
     Route::get('/{participation}/pdf', [ParticipationController::class, 'createPDF'])->name('pdf');
-    Route::get('/{participation}/print/{secret}', [ParticipationController::class, 'print'])->middleware('secret')->name('print');
+
+    Route::get('/{participation}/print/{secret}', [ParticipationController::class, 'print'])
+        ->withoutMiddleware(['auth', 'verified'])
+        ->middleware('secret')
+        ->name('print');
 });
