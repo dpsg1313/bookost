@@ -298,7 +298,8 @@ class ParticipationController extends Controller
     }
 
     private function chromePDF(Request $request, Participation $participation){
-        $file = 'generated_pdfs/' . Uuid::uuid4() . '.pdf';
+        Storage::makeDirectory('generated_pdfs');
+        $file = 'generated_pdfs' . DIRECTORY_SEPARATOR . Uuid::uuid4() . '.pdf';
         $process = new Process(
             [
                 '/usr/bin/google-chrome-stable',
