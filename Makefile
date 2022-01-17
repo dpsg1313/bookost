@@ -13,8 +13,6 @@ install_dependencies:# install dependencies
 	$(artisan) migrate
 
 live_upgrade:
-    rm public/css/app.css
-    rm public/js/app.js
     git pull origin master
     php -d open_basedir= /usr/local/bin/composer install
     yarn install --dev
