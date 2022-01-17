@@ -66,7 +66,19 @@
                 <table class="table table-bordered mb-5">
                     <tbody>
                     <tr>
-                        <td>// TODO: Lagerdaten</td>
+                        <td>Zeitraum</td>
+                        <td>28. August bis 4. September 2022</td>
+                    </tr>
+                    <tr>
+                        <td>Ort</td>
+                        <td>
+                            Zeltplatz Bucher Berg<br>
+                            in Breitenbrunn (Oberpfalz)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Teilnehmendenbeitrag</td>
+                        <td>{{ $beitrag }}€</td>
                     </tr>
                     </tbody>
                 </table>
@@ -79,7 +91,7 @@
                             <td>Name</td><td>{{ $firstname }} {{ $lastname }}</td>
                         </tr>
                         <tr>
-                            <td>Geburtstag</td><td>{{ $birthday }}</td>
+                            <td>Geburtstag</td><td>{{ $birthday->format('d.m.Y') }}</td>
                         </tr>
                         <tr>
                             <td>Geschlecht</td><td>{{ $gender }}</td>
@@ -148,10 +160,10 @@
                     <table class="table table-bordered mb-5">
                         <tbody>
                         <tr>
-                            <td colspan="2">// Empfehlung Tetanus, Zecken!</td>
+                            <td colspan="2">Wir empfehlen die Impfung gegen Tetanus (Wundstarrkrampf) sowie Zecken (FSME) für alle Teilnehmenden des Zeltlagers. Bitte überprüft euren Impfschutz rechtzeitig und sprecht ggf. mit eurem Hausarzt.</td>
                         </tr>
                         <tr>
-                            <td colspan="2">// Corona Impfung ggf. erforderlich zur Teilnahme, je nach Regelung im Sommer.</td>
+                            <td colspan="2">Zur Teilnahme am Zeltlager ist möglicherweise der Nachweis einer Corona-Impfung erforderlich. Welche Regelungen im Sommer 2022 gelten, können wir zum jetzigen Zeitpunkt noch nicht abschätzen.</td>
                         </tr>
                         <tr>
                             <td><label for="vaccination_info_confirmed">Ich habe die obenstehenden Hinweise zum Thema Impfung gelesen und verstanden</label></td><td><input type="checkbox" id="vaccination_info_confirmed" checked="{{ $vaccination_info_confirmed }}" /></td>
@@ -226,8 +238,8 @@
                 </div>
 
                 <div class="break-inside-avoid">
-                    <h3 class="ml-2 text-lg font-semibold break-after-avoid-page">Unterschrift Teilnehmer*in</h3>
-                    <table class="table table-bordered mb-2 break-before-avoid">
+                    <h3 class="ml-2 text-lg font-semibold">Unterschrift Teilnehmer*in</h3>
+                    <table class="table table-bordered mb-2">
                         <tbody>
                         <tr>
                             <td class="content-end"><span class="text-xs text-gray-300">Ort, Datum</span></td>
@@ -235,13 +247,10 @@
                         </tr>
                         </tbody>
                     </table>
-                </div>
 
-
-                @if(!$isOver18)
-                    <div class="break-inside-avoid">
-                        <h3 class="ml-2 text-lg font-semibold break-after-avoid-page">Unterschrift Erziehungsberechtigte*r</h3>
-                        <table class="table table-bordered mb-2 break-before-avoid">
+                    @if(!$isOver18)
+                        <h3 class="ml-2 text-lg font-semibold">Unterschrift Erziehungsberechtigte*r</h3>
+                        <table class="table table-bordered mb-2">
                             <tbody>
                             <tr>
                                 <td class="content-end"><span class="text-xs text-gray-300">Ort, Datum</span></td>
@@ -249,8 +258,9 @@
                             </tr>
                             </tbody>
                         </table>
-                    </div>
-                @endif
+                    @endif
+                </div>
+
             </div>
         </td>
     </tr>

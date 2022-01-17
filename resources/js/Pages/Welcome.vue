@@ -25,8 +25,30 @@
             <div class="mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0">
                 <h1 class="ml-4 text-2xl font-bold text-gray-900 dark:text-white">Bezirkslager 2022</h1>
             </div>
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                <span>// Info Text hier...</span>
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg p-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 justify-items-stretch justify-around">
+                    <div class="p-6 md:border-r border-gray-200 dark:border-gray-700 text-center">
+                        <h2 class="text-lg font-bold text-gray-900 dark:text-white">Termin</h2>
+                        <ul class="">
+                            <li>von 28. August</li>
+                            <li>bis 4. September</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 md:border-r md:border-l border-gray-200 dark:border-gray-700 text-center">
+                        <h2 class="text-lg font-bold text-gray-900 dark:text-white">Kosten</h2>
+                        <ul class="">
+                            <li>100€ für Kinder/Jugendliche</li>
+                            <li>50€ für Leiter*innen</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 md:border-l border-gray-200 dark:border-gray-700 text-center">
+                            <h2 class="text-lg font-bold text-gray-900 dark:text-white">Ort</h2>
+                            <div>
+                                Zeltplatz Bucher Berg<br>
+                                in Breitenbrunn (Oberpfalz)
+                            </div>
+                    </div>
+                </div>
             </div>
 
             <div class="mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0">

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Participation;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ParticipationPrint;
-use App\Http\Resources\ParticipationPrintResource;
 use App\Models\Participation;
 use DateInterval;
 use DateTime;
@@ -278,7 +276,8 @@ class ParticipationController extends Controller
             'parent_mobile' => $participation->parent_mobile,
             'parent_address' => $participation->parent_address,
             'foto_consent_confirmed' => $participation->foto_consent_confirmed,
-            'isOver18' => $isOver18
+            'isOver18' => $isOver18,
+            'beitrag' => $participation->role == 'leiter' ? 50 : 100
         ]);
     }
 

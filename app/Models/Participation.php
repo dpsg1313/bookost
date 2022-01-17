@@ -9,6 +9,18 @@ class Participation extends Model
 {
     protected $guarded = ['id'];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'birthday' => 'date',
+        'prevention' => 'boolean',
+        'vaccination_info_confirmed' => 'boolean',
+        'foto_consent_confirmed' => 'boolean',
+    ];
+
     public function apply() {
         $this->applied_at = now();
     }

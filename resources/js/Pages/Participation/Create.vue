@@ -98,8 +98,8 @@
                             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                                 Impfungen
                             </h2>
-                            <p>// Empfehlung Tetanus, Zecken!</p>
-                            <p>// Corona Impfung ggf. erforderlich zur Teilnahme, je nach Regelung im Sommer.</p>
+                            <p>Wir empfehlen die Impfung gegen Tetanus (Wundstarrkrampf) sowie Zecken (FSME) für alle Teilnehmenden des Zeltlagers. Bitte überprüft euren Impfschutz rechtzeitig und sprecht ggf. mit eurem Hausarzt.</p>
+                            <p>Zur Teilnahme am Zeltlager ist möglicherweise der Nachweis einer Corona-Impfung erforderlich. Welche Regelungen im Sommer 2022 gelten, können wir zum jetzigen Zeitpunkt noch nicht abschätzen.</p>
                             <BreezeLabel for="vaccination_info_confirmed" value="Ich habe die obenstehenden Hinweise zum Thema Impfung gelesen und verstanden" />
                             <BreezeCheckbox id="vaccination_info_confirmed" class="mt-1 block" v-model:checked="form.vaccination_info_confirmed" />
                         </div>
