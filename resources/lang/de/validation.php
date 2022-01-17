@@ -170,8 +170,10 @@ return [
         'insurance' => 'Versicherung',
         'vaccination_info_confirmed' => 'Impfbestätigung',
         'food' => 'Ernährung',
+        'allergies' => 'Allergien',
         'parent_phone' => 'Eltern Telefon',
         'parent_mobile' => 'Eltern Handy',
         'parent_address' => 'Eltern Anschrift',
+        'foto_consent_confirmed' => 'Foto-Einverständnis',
     ],
 ];

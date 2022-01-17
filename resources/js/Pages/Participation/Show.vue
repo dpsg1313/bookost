@@ -20,10 +20,10 @@
                         </div>
                         <ol class="list-decimal ml-4 mt-2">
                             <li>Anmeldung herunterladen und ausdrucken.</li>
-                            <li v-if="isOver18">Anmeldung unterschreiben.</li>
+                            <li v-if="isOver18 || participation.mode === 'parent'">Anmeldung unterschreiben.</li>
                             <li v-else>Von deinen Eltern unterschreiben lassen.</li>
-                            <li v-if="isOver18">Anmeldung bis spätestens ??? bei deinen Leiter*innen abgeben.</li>
-                            <li v-else>Anmeldung bis spätestens ??? beim Stamm abgeben.</li>
+                            <li v-if="participation.mode === 'parent' || participation.stufe === 'leiter'">Anmeldung bis spätestens ??? beim Stamm abgeben.</li>
+                            <li v-else>Anmeldung bis spätestens ??? bei deinen Leiter*innen (oder beim Stammesvorstand) abgeben.</li>
                             <li>Teilnahmebeitrag überweisen bis spätestens ???.</li>
                         </ol>
                         <div class="flex items-center">
@@ -65,8 +65,8 @@ export default {
 
     computed: {
         isOver18() {
-            let b = this.participation.birthday
-            return new Date(b.year + 18, b.month, b.day) <= new Date();
+            let b = new Date(this.participation.birthday)
+            return new Date(b.getFullYear() + 18, b.getMonth(), b.getDate()) <= new Date();
         }
     }
 }

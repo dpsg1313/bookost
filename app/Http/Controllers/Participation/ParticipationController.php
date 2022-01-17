@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Participation;
 
 use App\Http\Controllers\Controller;
-use App\Models\Participant;
+use App\Http\Resources\ParticipationPrint;
+use App\Http\Resources\ParticipationPrintResource;
+use App\Models\Participation;
+use DateInterval;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
@@ -15,6 +19,50 @@ use Symfony\Component\Process\Process;
 
 class ParticipationController extends Controller
 {
+    private static $Tribes = [
+        131302 => 'Ottobrunn',
+        131304 => 'Camilo Torres (Hohenbrunn)',
+        131305 => 'Galileo Galilei (Messestadt Riem)',
+        131306 => 'Unterhaching 1',
+        131307 => 'Columbus (Neukeferloh)',
+        131308 => 'Condor (Waldtrudering)',
+        131309 => 'Arche Noah (Putzbrunn)',
+        131312 => 'St. Michael Perlach'
+    ];
+
+    private static $Genders = [
+        'm' => 'männlich',
+        'w' => 'weiblich',
+        'd' => 'divers',
+    ];
+
+    private static $Stufen = [
+        'woes' => 'Wölflinge',
+        'jupfis' => 'Jupfis',
+        'pfadis' => 'Pfadis',
+        'rover' => 'Rover',
+        'leiter' => 'Leiter*innen / Staff'
+    ];
+
+    private static $Foods = [
+        'vegetarian' => 'vegetarisch',
+        'meet' => 'esse auch Fleisch',
+        'vegan' => 'vegan',
+        'gluten_free' => 'glutenfrei',
+        'lactose_free' => 'laktosefrei',
+    ];
+
+    private static $Roles = [
+        'woeleiter' => 'Wö-Leiter*in',
+        'jupfileiter' => 'Jupfi-Leiter*in',
+        'pfadileiter' => 'Pfadi-Leiter*in',
+        'roverleiter' => 'Rover-Leiter*in',
+        'kitchen' => 'Küche',
+        'cafe' => 'Café',
+        'bildung' => 'Bildungscafé',
+        'dunno' => 'Weiß ich noch nicht',
+    ];
+
     /**
      * Display list of participations.
      *
@@ -34,10 +82,11 @@ class ParticipationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
      */
-    public function create(Request $request)
+    public function create(Request $request, string $mode = 'normal')
     {
         return Inertia::render('Participation/Create', [
-
+            'prefill_email' => $request->user()->email,
+            'mode' => $mode,
         ]);
     }
 
@@ -51,6 +100,12 @@ class ParticipationController extends Controller
      */
     public function store(Request $request)
     {
+        $requiredIfUnder18 = Rule::requiredIf(function () use ($request) {
+            $bday = new DateTime($request->birthday);
+            $bday->add(new DateInterval("P18Y")); //adds time interval of 18 years to bday
+            return $bday >= new DateTime();
+        });
+
         $data = $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
@@ -65,14 +120,17 @@ class ParticipationController extends Controller
             'insurance' => 'required',
             'vaccination_info_confirmed' => 'required|boolean',
             'food' => ['required', Rule::in(['vegetarian', 'meet', 'vegan', 'gluten_free', 'lactose_free'])],
-            'parent_phone' => 'required',
-            'parent_mobile' => 'required',
-            'parent_address' => 'required',
+            'allergies' => 'nullable|string',
+            'parent_phone' => [$requiredIfUnder18],
+            'parent_mobile' => [$requiredIfUnder18],
+            'parent_address' => [$requiredIfUnder18],
+            'foto_consent_confirmed' => 'required|boolean',
+            'mode' => ['string', Rule::in(['parent', 'normal'])],
             'apply' => 'boolean',
         ]);
 
         $data['user_id'] = $request->user()->id;
-        $participation = Participant::create($data);
+        $participation = Participation::create($data);
 
         if($data['apply']){
             $participation->apply();
@@ -89,7 +147,7 @@ class ParticipationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
      */
-    public function show(Request $request, Participant $participation)
+    public function show(Request $request, Participation $participation)
     {
         return Inertia::render('Participation/Show', [
             'participation' => $participation
@@ -102,7 +160,7 @@ class ParticipationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
      */
-    public function edit(Request $request, Participant $participation)
+    public function edit(Request $request, Participation $participation)
     {
         return Inertia::render('Participation/Edit', [
             'participation' => $participation
@@ -117,8 +175,14 @@ class ParticipationController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, Participant $participation)
+    public function update(Request $request, Participation $participation)
     {
+        $requiredIfUnder18 = Rule::requiredIf(function () use ($request) {
+            $bday = new DateTime($request->birthday);
+            $bday->add(new DateInterval("P18Y")); //adds time interval of 18 years to bday
+            return $bday >= new DateTime();
+        });
+
         $data = $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
@@ -133,9 +197,11 @@ class ParticipationController extends Controller
             'insurance' => 'required',
             'vaccination_info_confirmed' => 'required|boolean',
             'food' => ['required', Rule::in(['vegetarian', 'meet', 'vegan', 'gluten_free', 'lactose_free'])],
-            'parent_phone' => 'required',
-            'parent_mobile' => 'required',
-            'parent_address' => 'required',
+            'allergies' => 'nullable|string',
+            'parent_phone' => [$requiredIfUnder18],
+            'parent_mobile' => [$requiredIfUnder18],
+            'parent_address' => [$requiredIfUnder18],
+            'foto_consent_confirmed' => 'required|boolean',
             'apply' => 'boolean',
         ]);
 
@@ -158,9 +224,17 @@ class ParticipationController extends Controller
         $participation->insurance = $data['insurance'];
         $participation->vaccination_info_confirmed = $data['vaccination_info_confirmed'];
         $participation->food = $data['food'];
-        $participation->parent_phone = $data['parent_phone'];
-        $participation->parent_mobile = $data['parent_mobile'];
-        $participation->parent_address = $data['parent_address'];
+        $participation->allergies = $data['allergies'];
+        if(array_key_exists('parent_phone', $data)){
+            $participation->parent_phone = $data['parent_phone'];
+        }
+        if(array_key_exists('parent_mobile', $data)){
+            $participation->parent_mobile = $data['parent_mobile'];
+        }
+        if(array_key_exists('parent_address', $data)){
+            $participation->parent_address = $data['parent_address'];
+        }
+        $participation->foto_consent_confirmed = $data['foto_consent_confirmed'];
 
         $participation->save();
 
@@ -179,13 +253,37 @@ class ParticipationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function print(Request $request, Participant $participation)
+    public function print(Request $request, Participation $participation)
     {
-        return view('participation_pdf', ['participation' => $participation]);
+        $bday = new DateTime($participation->birthday);
+        $bday->add(new DateInterval("P18Y")); //adds time interval of 18 years to bday
+        $isOver18 = $bday < new DateTime();
+
+        return view('participation_pdf', [
+            'firstname' => $participation->firstname,
+            'lastname' => $participation->lastname,
+            'birthday' => $participation->birthday,
+            'gender' => self::$Genders[$participation->gender],
+            'stamm' => self::$Tribes[$participation->stamm],
+            'stufe' => self::$Stufen[$participation->stufe],
+            'role' => $participation->role ? self::$Roles[$participation->role] : null,
+            'prevention' => $participation->prevention,
+            'mail' => $participation->mail,
+            'insurance_person' => $participation->insurance_person,
+            'insurance' => $participation->insurance,
+            'vaccination_info_confirmed' => $participation->vaccination_info_confirmed,
+            'food' => self::$Foods[$participation->food],
+            'allergies' => $participation->allergies,
+            'parent_phone' => $participation->parent_phone,
+            'parent_mobile' => $participation->parent_mobile,
+            'parent_address' => $participation->parent_address,
+            'foto_consent_confirmed' => $participation->foto_consent_confirmed,
+            'isOver18' => $isOver18
+        ]);
     }
 
     // Generate PDF
-    public function createPDF(Request $request, Participant $participation) {
+    public function createPDF(Request $request, Participation $participation) {
         $result = $this->chromePDF($request, $participation);
 
         if($result !== false) {
@@ -200,7 +298,7 @@ class ParticipationController extends Controller
         return $pdf->download('anmeldung.pdf');
     }
 
-    private function chromePDF(Request $request, Participant $participation){
+    private function chromePDF(Request $request, Participation $participation){
         $file = 'generated_pdfs/' . Uuid::uuid4() . '.pdf';
         $process = new Process(
             [

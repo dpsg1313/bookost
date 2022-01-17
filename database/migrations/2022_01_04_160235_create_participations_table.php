@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParticipantsTable extends Migration
+class CreateParticipationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateParticipantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('participants', function (Blueprint $table) {
+        Schema::create('participations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('firstname');
@@ -29,12 +29,15 @@ class CreateParticipantsTable extends Migration
             $table->string('insurance');
             $table->boolean('vaccination_info_confirmed');
             $table->string('food');
-            $table->string('parent_phone');
-            $table->string('parent_mobile');
-            $table->string('parent_address');
+            $table->string('allergies')->nullable();
+            $table->string('parent_phone')->nullable();
+            $table->string('parent_mobile')->nullable();
+            $table->string('parent_address')->nullable();
+            $table->boolean('foto_consent_confirmed');
             $table->timestamp('applied_at')->nullable();
             $table->timestamp('signed_at')->nullable();
             $table->timestamp('paid_at')->nullable();
+            $table->string('mode');
 
             $table->unsignedBigInteger('user_id');
 
@@ -49,6 +52,6 @@ class CreateParticipantsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('participants');
+        Schema::dropIfExists('participations');
     }
 }

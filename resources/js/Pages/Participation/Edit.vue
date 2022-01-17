@@ -16,7 +16,7 @@
                     <form action="#" @submit.prevent="">
                         <div class="p-6 bg-white border-b border-gray-200">
                             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                                Basisdaten
+                                Teilnehmer*in
                             </h2>
                             <div class="mt-2">
                                 <BreezeLabel for="firstname" value="Vorname" />
@@ -111,9 +111,13 @@
                             <div class="mt-2">
                                 <BreezeRadio id="food" class="mt-1 block w-full" :options="foods" v-model="form.food" required />
                             </div>
+                            <div class="mt-2">
+                                <BreezeLabel for="allergies" value="Allergien oder Unverträglichkeiten" />
+                                <BreezeInput id="allergies" type="text" class="mt-1 block w-full" v-model="form.allergies" />
+                            </div>
                         </div>
 
-                        <div class="p-6 bg-white border-b border-gray-200">
+                        <div class="p-6 bg-white border-b border-gray-200" v-if="!isOver18">
                             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                                 Kontaktdaten der Erziehungsberechtigten
                             </h2>
@@ -133,6 +137,35 @@
                             </div>
                         </div>
 
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                                Vereinbarung über die Nutzung von Fotografien und Filmen
+                            </h2>
+                            <div class="mt-2">
+                                Zwischen dem Bezirk München-Ost der Deutschen Pfadfinderschaft Sankt Georg (DPSG) und o.g. Person (bzw. deren Erziehungsberechtigten) wird folgende Nutzungsvereinbarung für Fotografien und Videos getroffen:
+                                <ol class="pl-8 list-decimal">
+                                    <li>Es wird zugestimmt, dass von der o.g. Person Aufnahmen erstellt und dem Bezirk München-Ost unentgeltlich zum Zwecke der Berichterstattung in Medien, zur Werbung und zur Verwendung nach Ziffer 2 zur Verfügung gestellt werden.</li>
+                                    <li>Für die Nutzung wird keine inhaltliche, zeitliche oder räumliche Beschränkung vereinbart. Der Nutzung für folgende Zwecke wird uneingeschränkt zugestimmt:
+                                        <ul class="pl-8 list-disc">
+                                            <li>Veröffentlichung in den Medien des Bezirks und der Stämme (z.B. Zeitschrift, Newsletter)</li>
+                                            <li>Veröffentlichung in der Presse (z.B. Pressefotos)</li>
+                                            <li>Veröffentlichung im Internet (z.B. auf den Homepages des Verbandes oder den Auftritten des Verbandes bei Facebook, YouTube, Twitter etc.)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Die/der Fotografierte/Gefilmte stimmt einer Nutzung ihres/seines Fotos/Films zur Nutzung innerhalb von Fotomontagen unter Entfernung oder Ergänzung von Bildbestandteilen bzw. für verfremdete Bilder (keine Entstellung) der Originalaufnahmen zu.</li>
+                                    <li>Ein Anspruch auf eine Nutzung im Sinne der Ziffern 1 und 2 wird durch diese Vereinbarung nicht begründet. Der/die Fotografierte/Gefilmte kann beim Bezirk München-Ost die Art der Bild-Nutzung jederzeit erfragen.</li>
+                                    <li>Die/der Fotografierte/Gefilmte überträgt dem Fotografen alle zur Ausübung der Nutzung gem. Ziffer 2 notwendigen Rechte an den erstellten Fotografien und Filmen.</li>
+                                    <li>Der Name der/des Fotografierten/Gefilmten wird im Sinne des Datenschutzes nicht veröffentlicht. Eine Weitergabe zum Zwecke der Markt- und Meinungsforschung findet nicht statt.</li>
+                                    <li>Ein Honorar für die Fotografien und Filme wird nicht gezahlt.</li>
+                                    <li>Eine Veränderung an dieser Vereinbarung bedarf der Schriftform.</li>
+                                </ol>
+                            </div>
+
+                            <div class="mt-2">
+                                <BreezeLabel for="foto_consent_confirmed" value="Ich akzeptiere die obenstehende Vereinbarung über die Nutzung von Fotografien und Filmen" />
+                                <BreezeCheckbox id="foto_consent_confirmed" class="mt-1 block" v-model:checked="form.foto_consent_confirmed" />
+                            </div>
+                        </div>
 
                         <div class="flex items-center justify-end mt-4 p-6">
                             <BreezeButton class="ml-4" @click="save" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
@@ -201,9 +234,11 @@ export default {
                 insurance: this.participation.insurance,
                 vaccination_info_confirmed: !!this.participation.vaccination_info_confirmed,
                 food: this.participation.food,
+                allergies: this.participation.allergies,
                 parent_phone: this.participation.parent_phone,
                 parent_mobile: this.participation.parent_mobile,
                 parent_address: this.participation.parent_address,
+                foto_consent_confirmed: !!this.participation.foto_consent_confirmed,
                 apply: false,
             }),
             staemme: {
@@ -245,6 +280,13 @@ export default {
                 bildung: 'Bildungscafé',
                 dunno: 'Weiß ich noch nicht',
             }
+        }
+    },
+
+    computed: {
+        isOver18() {
+            let b = new Date(this.form.birthday)
+            return new Date(b.getFullYear() + 18, b.getMonth(), b.getDate()) <= new Date();
         }
     },
 

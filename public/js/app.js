@@ -20971,7 +20971,17 @@ __webpack_require__.r(__webpack_exports__);
     Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_10__.Head,
     Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_10__.Link
   },
+  props: {
+    prefill_email: {
+      type: String
+    },
+    mode: {
+      type: String
+    }
+  },
   data: function data() {
+    var _this$prefill_email, _this$mode;
+
     return {
       form: this.$inertia.form({
         firstname: '',
@@ -20982,14 +20992,17 @@ __webpack_require__.r(__webpack_exports__);
         stufe: '',
         role: '',
         prevention: false,
-        mail: '',
+        mail: (_this$prefill_email = this.prefill_email) !== null && _this$prefill_email !== void 0 ? _this$prefill_email : '',
         insurance_person: '',
         insurance: '',
         vaccination_info_confirmed: false,
         food: '',
+        allergies: '',
         parent_phone: '',
         parent_mobile: '',
         parent_address: '',
+        foto_consent_confirmed: false,
+        mode: (_this$mode = this.mode) !== null && _this$mode !== void 0 ? _this$mode : '',
         apply: false
       }),
       staemme: {
@@ -21032,6 +21045,12 @@ __webpack_require__.r(__webpack_exports__);
         dunno: 'Weiß ich noch nicht'
       }
     };
+  },
+  computed: {
+    isOver18: function isOver18() {
+      var b = new Date(this.form.birthday);
+      return new Date(b.getFullYear() + 18, b.getMonth(), b.getDate()) <= new Date();
+    }
   },
   methods: {
     save: function save() {
@@ -21118,9 +21137,11 @@ __webpack_require__.r(__webpack_exports__);
         insurance: this.participation.insurance,
         vaccination_info_confirmed: !!this.participation.vaccination_info_confirmed,
         food: this.participation.food,
+        allergies: this.participation.allergies,
         parent_phone: this.participation.parent_phone,
         parent_mobile: this.participation.parent_mobile,
         parent_address: this.participation.parent_address,
+        foto_consent_confirmed: !!this.participation.foto_consent_confirmed,
         apply: false
       }),
       staemme: {
@@ -21163,6 +21184,12 @@ __webpack_require__.r(__webpack_exports__);
         dunno: 'Weiß ich noch nicht'
       }
     };
+  },
+  computed: {
+    isOver18: function isOver18() {
+      var b = new Date(this.form.birthday);
+      return new Date(b.getFullYear() + 18, b.getMonth(), b.getDate()) <= new Date();
+    }
   },
   methods: {
     save: function save() {
@@ -21250,8 +21277,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     isOver18: function isOver18() {
-      var b = this.participation.birthday;
-      return new Date(b.year + 18, b.month, b.day) <= new Date();
+      var b = new Date(this.participation.birthday);
+      return new Date(b.getFullYear() + 18, b.getMonth(), b.getDate()) <= new Date();
     }
   }
 });
@@ -21692,7 +21719,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "w-6 h-6 inline-block",
+  "class": "w-6 h-6",
   fill: "currentColor",
   viewBox: "0 0 20 20"
 };
@@ -21710,7 +21737,7 @@ var _hoisted_3 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['text-status-' + $options.color + '-dark' + ' bg-status-' + $options.color + '-light', "mx-1 px-2 py-1 rounded-full inline-block"])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['text-status-' + $options.color + '-dark' + ' bg-status-' + $options.color + '-light', "rounded-full inline-flex items-center px-4 py-2"])
   }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_1, [$props.status ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("path", _hoisted_2)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("path", _hoisted_3))])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")], 2
   /* CLASS */
   );
@@ -22810,7 +22837,7 @@ var _hoisted_5 = {
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "font-semibold text-xl text-gray-800 leading-tight"
-}, " Basisdaten ", -1
+}, " Teilnehmer*in ", -1
 /* HOISTED */
 );
 
@@ -22920,18 +22947,19 @@ var _hoisted_32 = {
   "class": "mt-2"
 };
 var _hoisted_33 = {
+  "class": "mt-2"
+};
+var _hoisted_34 = {
+  key: 1,
   "class": "p-6 bg-white border-b border-gray-200"
 };
 
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "font-semibold text-xl text-gray-800 leading-tight"
 }, " Kontaktdaten der Erziehungsberechtigten ", -1
 /* HOISTED */
 );
 
-var _hoisted_35 = {
-  "class": "mt-2"
-};
 var _hoisted_36 = {
   "class": "mt-2"
 };
@@ -22939,12 +22967,38 @@ var _hoisted_37 = {
   "class": "mt-2"
 };
 var _hoisted_38 = {
+  "class": "mt-2"
+};
+var _hoisted_39 = {
+  "class": "p-6 bg-white border-b border-gray-200"
+};
+
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "font-semibold text-xl text-gray-800 leading-tight"
+}, " Vereinbarung über die Nutzung von Fotografien und Filmen ", -1
+/* HOISTED */
+);
+
+var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "mt-2"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Zwischen dem Bezirk München-Ost der Deutschen Pfadfinderschaft Sankt Georg (DPSG) und o.g. Person (bzw. deren Erziehungsberechtigten) wird folgende Nutzungsvereinbarung für Fotografien und Videos getroffen: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ol", {
+  "class": "pl-8 list-decimal"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Es wird zugestimmt, dass von der o.g. Person Aufnahmen erstellt und dem Bezirk München-Ost unentgeltlich zum Zwecke der Berichterstattung in Medien, zur Werbung und zur Verwendung nach Ziffer 2 zur Verfügung gestellt werden."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Für die Nutzung wird keine inhaltliche, zeitliche oder räumliche Beschränkung vereinbart. Der Nutzung für folgende Zwecke wird uneingeschränkt zugestimmt: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
+  "class": "pl-8 list-disc"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Veröffentlichung in den Medien des Bezirks und der Stämme (z.B. Zeitschrift, Newsletter)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Veröffentlichung in der Presse (z.B. Pressefotos)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Veröffentlichung im Internet (z.B. auf den Homepages des Verbandes oder den Auftritten des Verbandes bei Facebook, YouTube, Twitter etc.)")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Die/der Fotografierte/Gefilmte stimmt einer Nutzung ihres/seines Fotos/Films zur Nutzung innerhalb von Fotomontagen unter Entfernung oder Ergänzung von Bildbestandteilen bzw. für verfremdete Bilder (keine Entstellung) der Originalaufnahmen zu."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Ein Anspruch auf eine Nutzung im Sinne der Ziffern 1 und 2 wird durch diese Vereinbarung nicht begründet. Der/die Fotografierte/Gefilmte kann beim Bezirk München-Ost die Art der Bild-Nutzung jederzeit erfragen."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Die/der Fotografierte/Gefilmte überträgt dem Fotografen alle zur Ausübung der Nutzung gem. Ziffer 2 notwendigen Rechte an den erstellten Fotografien und Filmen."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Der Name der/des Fotografierten/Gefilmten wird im Sinne des Datenschutzes nicht veröffentlicht. Eine Weitergabe zum Zwecke der Markt- und Meinungsforschung findet nicht statt."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Ein Honorar für die Fotografien und Filme wird nicht gezahlt."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Eine Veränderung an dieser Vereinbarung bedarf der Schriftform.")])], -1
+/* HOISTED */
+);
+
+var _hoisted_42 = {
+  "class": "mt-2"
+};
+var _hoisted_43 = {
   "class": "flex items-center justify-end mt-4 p-6"
 };
 
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Speichern und später fortsetzen ");
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Speichern und später fortsetzen ");
 
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Verbindlich anmelden ");
+var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Verbindlich anmelden ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
@@ -22976,7 +23030,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mb-4"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
         action: "#",
-        onSubmit: _cache[16] || (_cache[16] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"]))
+        onSubmit: _cache[18] || (_cache[18] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"]))
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "firstname",
         value: "Vorname"
@@ -23153,7 +23207,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         required: ""
       }, null, 8
       /* PROPS */
-      , ["options", "modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+      , ["options", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "allergies",
+        value: "Allergien oder Unverträglichkeiten"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
+        id: "allergies",
+        type: "text",
+        "class": "mt-1 block w-full",
+        modelValue: $data.form.allergies,
+        "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
+          return $data.form.allergies = $event;
+        }),
+        required: ""
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])])]), !$options.isOver18 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "parent_phone",
         value: "Telefon"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
@@ -23161,14 +23229,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "tel",
         "class": "mt-1 block w-full",
         modelValue: $data.form.parent_phone,
-        "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
+        "onUpdate:modelValue": _cache[14] || (_cache[14] = function ($event) {
           return $data.form.parent_phone = $event;
         }),
-        required: "",
-        autofocus: ""
+        required: ""
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "parent_mobile",
         value: "Handy"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
@@ -23176,13 +23243,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "tel",
         "class": "mt-1 block w-full",
         modelValue: $data.form.parent_mobile,
-        "onUpdate:modelValue": _cache[14] || (_cache[14] = function ($event) {
+        "onUpdate:modelValue": _cache[15] || (_cache[15] = function ($event) {
           return $data.form.parent_mobile = $event;
         }),
         required: ""
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "parent_address",
         value: "Anschrift (während des Lagers)"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
@@ -23190,13 +23257,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "text",
         "class": "mt-1 block w-full",
         modelValue: $data.form.parent_address,
-        "onUpdate:modelValue": _cache[15] || (_cache[15] = function ($event) {
+        "onUpdate:modelValue": _cache[16] || (_cache[16] = function ($event) {
           return $data.form.parent_address = $event;
         }),
         required: ""
       }, null, 8
       /* PROPS */
-      , ["modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+      , ["modelValue"])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, _hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "foto_consent_confirmed",
+        value: "Ich akzeptiere die obenstehende Vereinbarung über die Nutzung von Fotografien und Filmen"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeCheckbox, {
+        id: "foto_consent_confirmed",
+        "class": "mt-1 block",
+        checked: $data.form.foto_consent_confirmed,
+        "onUpdate:checked": _cache[17] || (_cache[17] = function ($event) {
+          return $data.form.foto_consent_confirmed = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["checked"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["ml-4", {
           'opacity-25': $data.form.processing
         }]),
@@ -23204,7 +23283,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_39];
+          return [_hoisted_44];
         }),
         _: 1
         /* STABLE */
@@ -23219,7 +23298,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_40];
+          return [_hoisted_45];
         }),
         _: 1
         /* STABLE */
@@ -23275,7 +23354,7 @@ var _hoisted_5 = {
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "font-semibold text-xl text-gray-800 leading-tight"
-}, " Basisdaten ", -1
+}, " Teilnehmer*in ", -1
 /* HOISTED */
 );
 
@@ -23385,18 +23464,19 @@ var _hoisted_32 = {
   "class": "mt-2"
 };
 var _hoisted_33 = {
+  "class": "mt-2"
+};
+var _hoisted_34 = {
+  key: 1,
   "class": "p-6 bg-white border-b border-gray-200"
 };
 
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "font-semibold text-xl text-gray-800 leading-tight"
 }, " Kontaktdaten der Erziehungsberechtigten ", -1
 /* HOISTED */
 );
 
-var _hoisted_35 = {
-  "class": "mt-2"
-};
 var _hoisted_36 = {
   "class": "mt-2"
 };
@@ -23404,12 +23484,38 @@ var _hoisted_37 = {
   "class": "mt-2"
 };
 var _hoisted_38 = {
+  "class": "mt-2"
+};
+var _hoisted_39 = {
+  "class": "p-6 bg-white border-b border-gray-200"
+};
+
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "font-semibold text-xl text-gray-800 leading-tight"
+}, " Vereinbarung über die Nutzung von Fotografien und Filmen ", -1
+/* HOISTED */
+);
+
+var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "mt-2"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Zwischen dem Bezirk München-Ost der Deutschen Pfadfinderschaft Sankt Georg (DPSG) und o.g. Person (bzw. deren Erziehungsberechtigten) wird folgende Nutzungsvereinbarung für Fotografien und Videos getroffen: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ol", {
+  "class": "pl-8 list-decimal"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Es wird zugestimmt, dass von der o.g. Person Aufnahmen erstellt und dem Bezirk München-Ost unentgeltlich zum Zwecke der Berichterstattung in Medien, zur Werbung und zur Verwendung nach Ziffer 2 zur Verfügung gestellt werden."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Für die Nutzung wird keine inhaltliche, zeitliche oder räumliche Beschränkung vereinbart. Der Nutzung für folgende Zwecke wird uneingeschränkt zugestimmt: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
+  "class": "pl-8 list-disc"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Veröffentlichung in den Medien des Bezirks und der Stämme (z.B. Zeitschrift, Newsletter)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Veröffentlichung in der Presse (z.B. Pressefotos)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Veröffentlichung im Internet (z.B. auf den Homepages des Verbandes oder den Auftritten des Verbandes bei Facebook, YouTube, Twitter etc.)")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Die/der Fotografierte/Gefilmte stimmt einer Nutzung ihres/seines Fotos/Films zur Nutzung innerhalb von Fotomontagen unter Entfernung oder Ergänzung von Bildbestandteilen bzw. für verfremdete Bilder (keine Entstellung) der Originalaufnahmen zu."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Ein Anspruch auf eine Nutzung im Sinne der Ziffern 1 und 2 wird durch diese Vereinbarung nicht begründet. Der/die Fotografierte/Gefilmte kann beim Bezirk München-Ost die Art der Bild-Nutzung jederzeit erfragen."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Die/der Fotografierte/Gefilmte überträgt dem Fotografen alle zur Ausübung der Nutzung gem. Ziffer 2 notwendigen Rechte an den erstellten Fotografien und Filmen."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Der Name der/des Fotografierten/Gefilmten wird im Sinne des Datenschutzes nicht veröffentlicht. Eine Weitergabe zum Zwecke der Markt- und Meinungsforschung findet nicht statt."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Ein Honorar für die Fotografien und Filme wird nicht gezahlt."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Eine Veränderung an dieser Vereinbarung bedarf der Schriftform.")])], -1
+/* HOISTED */
+);
+
+var _hoisted_42 = {
+  "class": "mt-2"
+};
+var _hoisted_43 = {
   "class": "flex items-center justify-end mt-4 p-6"
 };
 
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Speichern und später fortsetzen ");
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Speichern und später fortsetzen ");
 
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Verbindlich anmelden ");
+var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Verbindlich anmelden ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
@@ -23441,7 +23547,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "mb-4"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
         action: "#",
-        onSubmit: _cache[16] || (_cache[16] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"]))
+        onSubmit: _cache[18] || (_cache[18] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"]))
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "firstname",
         value: "Vorname"
@@ -23618,7 +23724,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         required: ""
       }, null, 8
       /* PROPS */
-      , ["options", "modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+      , ["options", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "allergies",
+        value: "Allergien oder Unverträglichkeiten"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
+        id: "allergies",
+        type: "text",
+        "class": "mt-1 block w-full",
+        modelValue: $data.form.allergies,
+        "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
+          return $data.form.allergies = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])])]), !$options.isOver18 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "parent_phone",
         value: "Telefon"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
@@ -23626,14 +23745,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "tel",
         "class": "mt-1 block w-full",
         modelValue: $data.form.parent_phone,
-        "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
+        "onUpdate:modelValue": _cache[14] || (_cache[14] = function ($event) {
           return $data.form.parent_phone = $event;
         }),
         required: "",
         autofocus: ""
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "parent_mobile",
         value: "Handy"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
@@ -23641,13 +23760,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "tel",
         "class": "mt-1 block w-full",
         modelValue: $data.form.parent_mobile,
-        "onUpdate:modelValue": _cache[14] || (_cache[14] = function ($event) {
+        "onUpdate:modelValue": _cache[15] || (_cache[15] = function ($event) {
           return $data.form.parent_mobile = $event;
         }),
         required: ""
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "parent_address",
         value: "Anschrift (während des Lagers)"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
@@ -23655,13 +23774,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "text",
         "class": "mt-1 block w-full",
         modelValue: $data.form.parent_address,
-        "onUpdate:modelValue": _cache[15] || (_cache[15] = function ($event) {
+        "onUpdate:modelValue": _cache[16] || (_cache[16] = function ($event) {
           return $data.form.parent_address = $event;
         }),
         required: ""
       }, null, 8
       /* PROPS */
-      , ["modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+      , ["modelValue"])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, _hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "foto_consent_confirmed",
+        value: "Ich akzeptiere die obenstehende Vereinbarung über die Nutzung von Fotografien und Filmen"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeCheckbox, {
+        id: "foto_consent_confirmed",
+        "class": "mt-1 block",
+        checked: $data.form.foto_consent_confirmed,
+        "onUpdate:checked": _cache[17] || (_cache[17] = function ($event) {
+          return $data.form.foto_consent_confirmed = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["checked"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["ml-4", {
           'opacity-25': $data.form.processing
         }]),
@@ -23669,7 +23800,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_39];
+          return [_hoisted_44];
         }),
         _: 1
         /* STABLE */
@@ -23684,7 +23815,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_40];
+          return [_hoisted_45];
         }),
         _: 1
         /* STABLE */
@@ -23739,37 +23870,55 @@ var _hoisted_5 = {
 };
 var _hoisted_6 = ["href"];
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Anmelden ");
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Mich selbst anmelden ");
 
-var _hoisted_8 = {
-  key: 0
-};
-var _hoisted_9 = {
-  "class": "text-lg font-semibold"
-};
+var _hoisted_8 = ["href"];
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Mein Kind anmelden ");
+
 var _hoisted_10 = {
-  "class": "bg-white overflow-hidden shadow-sm sm:rounded-lg"
+  key: 0
 };
 var _hoisted_11 = {
-  "class": "p-6 bg-white border-b border-gray-200"
+  "class": "text-lg ml-2 font-semibold"
 };
 var _hoisted_12 = {
-  key: 0
+  "class": "bg-white overflow-hidden shadow-sm sm:rounded-lg"
+};
+var _hoisted_13 = {
+  "class": "p-6 flex flex-wrap items-center justify-between bg-white border-b border-gray-200"
+};
+var _hoisted_14 = {
+  key: 0,
+  "class": "items-center"
+};
+var _hoisted_15 = {
+  "class": "m-1"
+};
+var _hoisted_16 = {
+  "class": "justify-end items-center"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("angemeldet");
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("angemeldet");
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("unterschrieben");
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("unterschrieben");
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("bezahlt");
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("bezahlt");
 
-var _hoisted_16 = ["href"];
+var _hoisted_20 = {
+  "class": "justify-end items-center"
+};
+var _hoisted_21 = ["href"];
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Fortsetzen ");
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Fortsetzen ");
 
-var _hoisted_18 = ["href"];
+var _hoisted_23 = ["href"];
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" PDF herunterladen ");
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" PDF herunterladen ");
+
+var _hoisted_25 = ["href"];
+
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Vorschau ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
@@ -23788,8 +23937,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        href: _ctx.route('participation.create'),
-        "class": "ml-4"
+        "class": "inline-flex my-1 ml-4",
+        href: _ctx.route('participation.create')
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
         type: "button"
       }, {
@@ -23801,16 +23950,33 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       })], 8
       /* PROPS */
-      , _hoisted_6)])]), $props.participations.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)('Meine Anmeldung' + ($props.participations.length > 1 ? 'en' : '')), 1
+      , _hoisted_6), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        "class": "inline-flex my-1 ml-4",
+        href: _ctx.route('participation.create', {
+          mode: 'parent'
+        })
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+        type: "button"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_9];
+        }),
+        _: 1
+        /* STABLE */
+
+      })], 8
+      /* PROPS */
+      , _hoisted_8)])]), $props.participations.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)('Meine Anmeldung' + ($props.participations.length > 1 ? 'en' : '')), 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.participations, function (participation) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [$props.participations.length > 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(participation.firstname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(participation.lastname), 1
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.participations, function (participation) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [$props.participations.length > 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(participation.firstname) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(participation.lastname), 1
         /* TEXT */
-        )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StatusPill, {
+        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StatusPill, {
+          "class": "m-1",
           status: !!participation.applied_at
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [_hoisted_13];
+            return [_hoisted_17];
           }),
           _: 2
           /* DYNAMIC */
@@ -23818,10 +23984,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
         , ["status"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StatusPill, {
+          "class": "m-1",
           status: !!participation.signed_at
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [_hoisted_14];
+            return [_hoisted_18];
           }),
           _: 2
           /* DYNAMIC */
@@ -23829,52 +23996,70 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
         , ["status"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StatusPill, {
+          "class": "m-1",
           status: !!participation.paid_at
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [_hoisted_15];
+            return [_hoisted_19];
           }),
           _: 2
           /* DYNAMIC */
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["status"]), !participation.applied_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
-          key: 1,
+        , ["status"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [!participation.applied_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+          key: 0,
+          "class": "inline-flex m-1",
           href: _ctx.route('participation.edit', {
             id: participation.id
-          }),
-          "class": "ml-4"
+          })
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
           type: "button"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [_hoisted_17];
+            return [_hoisted_22];
           }),
           _: 1
           /* STABLE */
 
         })], 8
         /* PROPS */
-        , _hoisted_16)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), participation.applied_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
-          key: 2,
+        , _hoisted_21)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), participation.applied_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+          key: 1,
+          "class": "inline-flex m-1",
           href: _ctx.route('participation.pdf', {
             id: participation.id
           }),
-          "class": "ml-4",
           download: ""
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
           type: "button"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [_hoisted_19];
+            return [_hoisted_24];
           }),
           _: 1
           /* STABLE */
 
         })], 8
         /* PROPS */
-        , _hoisted_18)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+        , _hoisted_23)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), participation.applied_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+          key: 2,
+          "class": "inline-flex m-1",
+          href: _ctx.route('participation.preview', {
+            id: participation.id
+          })
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+          type: "button"
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [_hoisted_26];
+          }),
+          _: 1
+          /* STABLE */
+
+        })], 8
+        /* PROPS */
+        , _hoisted_25)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
       }), 256
       /* UNKEYED_FRAGMENT */
       ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])];
@@ -23979,7 +24164,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [_hoisted_1];
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [$props.participation.applied_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [_hoisted_6, _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ol", _hoisted_8, [_hoisted_9, $options.isOver18 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_10, "Anmeldung unterschreiben.")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_11, "Von deinen Eltern unterschreiben lassen.")), $options.isOver18 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_12, "Anmeldung bis spätestens ??? bei deinen Leiter*innen abgeben.")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_13, "Anmeldung bis spätestens ??? beim Stamm abgeben.")), _hoisted_14]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [$props.participation.applied_at ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [_hoisted_6, _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ol", _hoisted_8, [_hoisted_9, $options.isOver18 || $props.participation.mode === 'parent' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_10, "Anmeldung unterschreiben.")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_11, "Von deinen Eltern unterschreiben lassen.")), $props.participation.mode === 'parent' || $props.participation.stufe === 'leiter' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_12, "Anmeldung bis spätestens ??? beim Stamm abgeben.")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_13, "Anmeldung bis spätestens ??? bei deinen Leiter*innen (oder beim Stammesvorstand) abgeben.")), _hoisted_14]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
         href: _ctx.route('participation.pdf', {
           id: $props.participation.id
         }),
@@ -24044,7 +24229,7 @@ var _hoisted_6 = {
   "class": "max-w-6xl mx-auto sm:px-6 lg:px-8"
 };
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center pt-8 sm:justify-start sm:pt-0\" data-v-317d1a6e><img src=\"/images/München-Ost_Logo2_noBackground.png\" alt=\"Logo\" data-v-317d1a6e></div><div class=\"mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0\" data-v-317d1a6e><h1 class=\"ml-4 text-2xl font-bold text-gray-900 dark:text-white\" data-v-317d1a6e>Bezirkslager 2022</h1></div><div class=\"bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg\" data-v-317d1a6e><span data-v-317d1a6e>// Info Text hier...</span></div><div class=\"mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0\" data-v-317d1a6e><h1 class=\"ml-4 text-2xl font-bold text-gray-900 dark:text-white\" data-v-317d1a6e>Anmeldung zum Bezirkslager</h1></div><div class=\"bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg\" data-v-317d1a6e><div class=\"grid grid-cols-1 md:grid-cols-2\" data-v-317d1a6e><div class=\"p-6\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path d=\"M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Eltern</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die ihre Kinder anmelden möchten...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... können alle Kinder über ein einziges Benutzerkonto anmelden. Bitte registrieren Sie sich mit Ihrem Namen und Ihrer Email-Adresse. Anschließend füllen sie für jedes Kind einzeln die Anmeldung aus. Die Anmeldungen werden in einer Liste angezeigt und können vor dem Absenden beliebig oft bearbeitet werden. Nach dem Absenden erhalten Sie die Unterlagen zum Ausdrucken und unterschreiben. Außerdem können Sie jederzeit den Status der Anmeldung einsehen. </div></div></div><div class=\"p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path fill-rule=\"evenodd\" d=\"M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z\" clip-rule=\"evenodd\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Jugendliche</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die sich selbst anmelden möchten...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... registrieren sich und füllen anschließend die Anmeldung aus. <br data-v-317d1a6e>Nachdem du deine Anmeldung abgeschickt hast, bekommst du ein PDF. Das druckst du aus, unterschreibst es bzw. lässt es deine Eltern unterschreiben und gibst es bei deinen Leitern ab. <br data-v-317d1a6e>Ganz einfach, das schaffst du locker! </div></div></div><div class=\"p-6 border-t border-gray-200 dark:border-gray-700\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path d=\"M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Leiter*innen</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die sich anmelden möchten...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... registrieren sich, füllen anschließend die Anmeldung aus und achten dabei darauf, bei Stufe &#39;Leiter*innen&#39; auszuwählen. <br data-v-317d1a6e>Ich weiß, das ist echt schwierig, aber Baden Powell sagt: &quot;Hat man den Willen zu etwas, gelingt es auch, gleich, was einem im Wege steht.&quot; </div></div></div><div class=\"p-6 border-t border-gray-200 dark:border-gray-700 md:border-l\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path d=\"M10 12a2 2 0 100-4 2 2 0 000 4z\" data-v-317d1a6e></path><path fill-rule=\"evenodd\" d=\"M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z\" clip-rule=\"evenodd\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Verantwortliche</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die Zugriff auf die Daten ihres Stammes benötigen...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... registrieren sich ebenfalls, auch wenn sie nicht mit aufs Lager fahren möchten. <br data-v-317d1a6e>Danach müsst ihr leider noch ein wenig warten. Die Anzeige der Anmeldedaten für Verantwortliche befindet sich derzeit noch in Entwicklung. </div></div></div></div></div>", 5);
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center pt-8 sm:justify-start sm:pt-0\" data-v-317d1a6e><img src=\"/images/München-Ost_Logo2_noBackground.png\" alt=\"Logo DPSG München-Ost\" data-v-317d1a6e></div><div class=\"mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0\" data-v-317d1a6e><h1 class=\"ml-4 text-2xl font-bold text-gray-900 dark:text-white\" data-v-317d1a6e>Bezirkslager 2022</h1></div><div class=\"bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg\" data-v-317d1a6e><span data-v-317d1a6e>// Info Text hier...</span></div><div class=\"mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0\" data-v-317d1a6e><h1 class=\"ml-4 text-2xl font-bold text-gray-900 dark:text-white\" data-v-317d1a6e>Anmeldung zum Bezirkslager</h1></div><div class=\"bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg\" data-v-317d1a6e><div class=\"grid grid-cols-1 md:grid-cols-2\" data-v-317d1a6e><div class=\"p-6\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path d=\"M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Eltern</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die ihre Kinder anmelden möchten...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... können alle Kinder über ein einziges Benutzerkonto anmelden. Bitte registrieren Sie sich mit Ihrem Namen und Ihrer Email-Adresse. Anschließend füllen sie für jedes Kind einzeln die Anmeldung aus. Die Anmeldungen werden in einer Liste angezeigt und können vor dem Absenden beliebig oft bearbeitet werden. Nach dem Absenden erhalten Sie die Unterlagen zum Ausdrucken und unterschreiben. Außerdem können Sie jederzeit den Status der Anmeldung einsehen. </div></div></div><div class=\"p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path fill-rule=\"evenodd\" d=\"M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z\" clip-rule=\"evenodd\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Jugendliche</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die sich selbst anmelden möchten...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... registrieren sich und füllen anschließend die Anmeldung aus. <br data-v-317d1a6e>Nachdem du deine Anmeldung abgeschickt hast, bekommst du ein PDF. Das druckst du aus, unterschreibst es bzw. lässt es deine Eltern unterschreiben und gibst es bei deinen Leitern ab. <br data-v-317d1a6e>Ganz einfach, das schaffst du locker! </div></div></div><div class=\"p-6 border-t border-gray-200 dark:border-gray-700\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path d=\"M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Leiter*innen</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die sich anmelden möchten...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... registrieren sich, füllen anschließend die Anmeldung aus und achten dabei darauf, bei Stufe &#39;Leiter*innen&#39; auszuwählen. <br data-v-317d1a6e>Ich weiß, das ist echt schwierig, aber Baden Powell sagt: &quot;Hat man den Willen zu etwas, gelingt es auch, gleich, was einem im Wege steht.&quot; </div></div></div><div class=\"p-6 border-t border-gray-200 dark:border-gray-700 md:border-l\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><svg fill=\"currentColor\" viewBox=\"0 0 20 20\" class=\"w-16 h-16 text-gray-500\" data-v-317d1a6e><path d=\"M10 12a2 2 0 100-4 2 2 0 000 4z\" data-v-317d1a6e></path><path fill-rule=\"evenodd\" d=\"M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z\" clip-rule=\"evenodd\" data-v-317d1a6e></path></svg><div data-v-317d1a6e><div class=\"ml-4 text-2xl leading-7 font-bold text-gray-900 dark:text-white underline\" data-v-317d1a6e>Verantwortliche</div><div class=\"ml-4 text-md leading-7 font-semibold text-gray-900 dark:text-white\" data-v-317d1a6e>die Zugriff auf die Daten ihres Stammes benötigen...</div></div></div><div class=\"ml-20\" data-v-317d1a6e><div class=\"mt-2 text-gray-600 dark:text-gray-400 text-md\" data-v-317d1a6e> ... registrieren sich ebenfalls, auch wenn sie nicht mit aufs Lager fahren möchten. <br data-v-317d1a6e>Danach müsst ihr leider noch ein wenig warten. Die Anzeige der Anmeldedaten für Verantwortliche befindet sich derzeit noch in Entwicklung. </div></div></div></div></div>", 5);
 
 var _hoisted_12 = {
   "class": "mt-8 flex justify-center bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg p-6"
@@ -24119,7 +24304,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: "Anmeldung - DPSG München-Ost"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [$props.canLogin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [_ctx.$page.props.auth.user ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
     key: 0,
-    href: _ctx.route('dashboard'),
+    href: _ctx.route('participation.index'),
     "class": "text-sm text-gray-700 underline"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
