@@ -277,7 +277,7 @@ class ParticipationController extends Controller
             'parent_address' => $participation->parent_address,
             'foto_consent_confirmed' => $participation->foto_consent_confirmed,
             'isOver18' => $isOver18,
-            'beitrag' => $participation->role == 'leiter' ? 50 : 100
+            'beitrag' => $participation->stufe == 'leiter' ? 50 : 100
         ]);
     }
 
