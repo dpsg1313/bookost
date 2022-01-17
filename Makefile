@@ -13,12 +13,11 @@ install_dependencies:# install dependencies
 	$(artisan) migrate
 
 live_upgrade:
-    git pull origin master
-    php -d open_basedir= /usr/local/bin/composer install
-    yarn install --dev
-    composer dump-autoload --optimize
-    php artisan migrate
-    php artisan optimize
-    php artisan route:cache
-    php artisan view:cache
-    yarn run prod
+	php -d open_basedir= /usr/local/bin/composer install
+	yarn install --dev
+	composer dump-autoload --optimize
+	php artisan migrate
+	php artisan optimize
+	php artisan route:cache
+	php artisan view:cache
+	yarn run prod
