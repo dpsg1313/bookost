@@ -80,6 +80,10 @@
                         <td>Teilnahmebeitrag</td>
                         <td>{{ $beitrag }}€</td>
                     </tr>
+                    <tr>
+                        <td>Bitte überweisen bis spätestens 30. April 2022 an folgende Bankverbindung:</td>
+                        <td>Kontoinhaber: {{ $stamm['bankAccountOwner'] }}<br>IBAN: {{ $stamm['iban'] }}<br>BIC: {{ $stamm['bic'] }}</td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -105,7 +109,7 @@
                     <table class="table table-bordered mb-5">
                         <tbody>
                         <tr>
-                            <td>Stamm</td><td>{{ $stamm }}</td>
+                            <td>Stamm</td><td>{{ $stamm['name'] }}</td>
                         </tr>
                         <tr>
                             <td>Stufe</td><td>{{ $stufe }}</td>

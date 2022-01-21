@@ -18,14 +18,54 @@ use Symfony\Component\Process\Process;
 class ParticipationController extends Controller
 {
     private static $Tribes = [
-        131302 => 'Ottobrunn',
-        131304 => 'Camilo Torres (Hohenbrunn)',
-        131305 => 'Galileo Galilei (Messestadt Riem)',
-        131306 => 'Unterhaching 1',
-        131307 => 'Columbus (Neukeferloh)',
-        131308 => 'Condor (Waldtrudering)',
-        131309 => 'Arche Noah (Putzbrunn)',
-        131312 => 'St. Michael Perlach'
+        131302 => [
+            'name' => 'Ottobrunn',
+            'bankAccountOwner' => 'DPSG Ottobrunn',
+            'iban' => 'DE12 7001 0080 0343 1398 04',
+            'bic' => 'PBNKDEFFXXX',
+        ],
+        131304 => [
+            'name' => 'Camilo Torres (Hohenbrunn)',
+            'bankAccountOwner' => 'Camilo Torres',
+            'iban' => 'DE83 3706 0193 4007 8580 14',
+            'bic' => 'GENODED1PAX',
+        ],
+        131305 => [
+            'name' => 'Galileo Galilei (Messestadt Riem)',
+            'bankAccountOwner' => 'DPSG Mchn-Riem Stamm GaGa',
+            'iban' => 'DE92 7509 0300 0002 3046 43',
+            'bic' => 'GENODEF1M05',
+        ],
+        131306 => [
+            'name' => 'Unterhaching 1',
+            'bankAccountOwner' => 'DPSG Stamm U1',
+            'iban' => 'DE30 7025 0150 0210 4756 38',
+            'bic' => 'BYLADEM1KMS',
+        ],
+        131307 => [
+            'name' => 'Columbus (Neukeferloh)',
+            'bankAccountOwner' => 'DPSG Stamm Columbus',
+            'iban' => 'DE40 7509 0300 0002 2084 82',
+            'bic' => 'GENODEF1M05',
+        ],
+        131308 => [
+            'name' => 'Condor (Waldtrudering)',
+            'bankAccountOwner' => 'Stamm Condor',
+            'iban' => 'DE 24 7509 0300 0002 1424 22',
+            'bic' => 'GENODEF1M05',
+        ],
+        131309 => [
+            'name' => 'Arche Noah (Putzbrunn)',
+            'bankAccountOwner' => 'Dpsg Stamm Arche Noah Putzbrunn',
+            'iban' => 'DE90 7509 0300 0002 1560 75',
+            'bic' => 'GENODEF1M05',
+        ],
+        131312 => [
+            'name' => 'St. Michael Perlach',
+            'bankAccountOwner' => 'Stamm St. Michael Perlach',
+            'iban' => 'DE59 7509 0300 0102 3408 52',
+            'bic' => 'GENODEF1M05',
+        ],
     ];
 
     private static $Genders = [
@@ -51,6 +91,17 @@ class ParticipationController extends Controller
     ];
 
     private static $Roles = [
+        'woeleiter' => 'Wö-Leiter*in',
+        'jupfileiter' => 'Jupfi-Leiter*in',
+        'pfadileiter' => 'Pfadi-Leiter*in',
+        'roverleiter' => 'Rover-Leiter*in',
+        'kitchen' => 'Küche',
+        'cafe' => 'Café',
+        'bildung' => 'Bildungscafé',
+        'dunno' => 'Weiß ich noch nicht',
+    ];
+
+    private static $BankAccounts = [
         'woeleiter' => 'Wö-Leiter*in',
         'jupfileiter' => 'Jupfi-Leiter*in',
         'pfadileiter' => 'Pfadi-Leiter*in',
@@ -135,7 +186,8 @@ class ParticipationController extends Controller
     public function show(Request $request, Participation $participation)
     {
         return Inertia::render('Participation/Show', [
-            'participation' => $participation
+            'participation' => $participation,
+            'stamm' => self::$Tribes[$participation->stamm],
         ]);
     }
 

@@ -24,7 +24,14 @@
                             <li v-else>Von deinen Eltern unterschreiben lassen.</li>
                             <li v-if="participation.mode === 'parent' || participation.stufe === 'leiter'">Anmeldung bis spätestens 17. April beim Stamm abgeben.</li>
                             <li v-else>Anmeldung bis spätestens 17. April bei deinen Leiter*innen (oder beim Stammesvorstand) abgeben.</li>
-                            <li>Teilnahmebeitrag überweisen bis spätestens 30. April.</li>
+                            <li>
+                                Teilnahmebeitrag überweisen bis spätestens 30. April.
+                                <p class="ml-8">
+                                    Kontoinhaber: {{ stamm.bankAccountOwner }}<br>
+                                    IBAN: {{ stamm.iban }}<br>
+                                    BIC: {{ stamm.bic }}
+                                </p>
+                            </li>
                         </ol>
                         <div class="flex items-center">
                             <a :href="route('participation.pdf', { id: participation.id })" class="flex justify-center ml-4 mt-8" download >
@@ -59,6 +66,9 @@ export default {
 
     props: {
         participation: {
+            type: Object,
+        },
+        stamm: {
             type: Object,
         },
     },
