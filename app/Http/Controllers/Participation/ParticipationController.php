@@ -299,7 +299,7 @@ class ParticipationController extends Controller
         $file = 'generated_pdfs' . DIRECTORY_SEPARATOR . Uuid::uuid4() . '.pdf';
         $process = new Process(
             [
-                '/usr/bin/google-chrome-stable',
+                config('app.chrome_path'),
                 '--headless',
                 '--disable-gpu',
                 '--disable-software-rasterizer',
