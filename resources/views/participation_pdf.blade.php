@@ -77,7 +77,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Teilnehmendenbeitrag</td>
+                        <td>Teilnahmebeitrag</td>
                         <td>{{ $beitrag }}€</td>
                     </tr>
                     </tbody>

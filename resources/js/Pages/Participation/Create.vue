@@ -100,8 +100,12 @@
                             </h2>
                             <p>Wir empfehlen die Impfung gegen Tetanus (Wundstarrkrampf) sowie Zecken (FSME) für alle Teilnehmenden des Zeltlagers. Bitte überprüft euren Impfschutz rechtzeitig und sprecht ggf. mit eurem Hausarzt.</p>
                             <p>Zur Teilnahme am Zeltlager ist möglicherweise der Nachweis einer Corona-Impfung erforderlich. Welche Regelungen im Sommer 2022 gelten, können wir zum jetzigen Zeitpunkt noch nicht abschätzen.</p>
-                            <BreezeLabel for="vaccination_info_confirmed" value="Ich habe die obenstehenden Hinweise zum Thema Impfung gelesen und verstanden" />
-                            <BreezeCheckbox id="vaccination_info_confirmed" class="mt-1 block" v-model:checked="form.vaccination_info_confirmed" />
+                            <div class="mt-2">
+                                <svg class="w-8 h-8 inline text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z" clip-rule="evenodd"></path></svg>
+                                <svg class="w-6 h-6 inline text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                <BreezeCheckbox id="vaccination_info_confirmed" class="m-1" v-model:checked="form.vaccination_info_confirmed" />
+                                <BreezeLabel for="vaccination_info_confirmed" class="inline m-1 text-base text-gray-800" value="Ich habe die obenstehenden Hinweise zum Thema Impfung gelesen und verstanden" />
+                            </div>
                         </div>
 
                         <div class="p-6 bg-white border-b border-gray-200">
@@ -121,6 +125,11 @@
                             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                                 Kontaktdaten der Erziehungsberechtigten
                             </h2>
+                            <p>Kontaktdaten eines Erziehungsberechtigten, der während des Lagers unter folgenden Kontaktdaten für den Notfall erreichbar ist.</p>
+                            <div class="mt-2">
+                                <BreezeLabel for="parent_name" value="Vor- und Nachname" />
+                                <BreezeInput id="parent_name" type="tel" class="mt-1 block w-full" v-model="form.parent_name" required  />
+                            </div>
                             <div class="mt-2">
                                 <BreezeLabel for="parent_phone" value="Telefon" />
                                 <BreezeInput id="parent_phone" type="tel" class="mt-1 block w-full" v-model="form.parent_phone" required />
@@ -162,8 +171,10 @@
                             </div>
 
                             <div class="mt-2">
-                                <BreezeLabel for="foto_consent_confirmed" value="Ich akzeptiere die obenstehende Vereinbarung über die Nutzung von Fotografien und Filmen" />
-                                <BreezeCheckbox id="foto_consent_confirmed" class="mt-1 block" v-model:checked="form.foto_consent_confirmed" />
+                                <svg class="w-8 h-8 inline text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z" clip-rule="evenodd"></path></svg>
+                                <svg class="w-6 h-6 inline text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                <BreezeCheckbox id="foto_consent_confirmed" class="m-1" v-model:checked="form.foto_consent_confirmed" />
+                                <BreezeLabel for="foto_consent_confirmed" class="inline m-1 text-base text-gray-800" value="Ich akzeptiere die obenstehende Vereinbarung über die Nutzung von Fotografien und Filmen" />
                             </div>
                         </div>
 
@@ -238,12 +249,12 @@ export default {
                 vaccination_info_confirmed: false,
                 food: '',
                 allergies: '',
+                parent_name: '',
                 parent_phone: '',
                 parent_mobile: '',
                 parent_address: '',
                 foto_consent_confirmed: false,
                 mode: this.mode ?? '',
-                apply: false,
             }),
             staemme: {
                 131302: 'Ottobrunn',
@@ -296,13 +307,11 @@ export default {
 
     methods: {
         save() {
-            this.form.apply = false
             this.form.post(this.route('participation.store'), {})
         },
         apply() {
             if(confirm('Sicher anmelden?')) {
-                this.form.apply = true
-                this.form.post(this.route('participation.store'), {})
+                this.form.post(this.route('participation.store-and-apply'), {})
             }
         }
     }

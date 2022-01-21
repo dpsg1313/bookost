@@ -98,45 +98,32 @@ class ParticipationController extends Controller
      */
     public function store(Request $request)
     {
-        $requiredIfUnder18 = Rule::requiredIf(function () use ($request) {
-            $bday = new DateTime($request->birthday);
-            $bday->add(new DateInterval("P18Y")); //adds time interval of 18 years to bday
-            return $bday >= new DateTime();
-        });
-
-        $data = $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'birthday' => 'required|date',
-            'gender' => ['required', Rule::in(['m', 'w', 'd'])],
-            'stamm' => ['required', Rule::in(['131302', '131304', '131305', '131306', '131307', '131308', '131309', '131312'])],
-            'stufe' => ['required', Rule::in(['woes', 'jupfis', 'pfadis', 'rover', 'leiter'])],
-            'role' => ['required_if:stufe,leiter', 'exclude_unless:stufe,leiter', Rule::in(['woeleiter', 'jupfileiter', 'pfadileiter', 'roverleiter', 'kitchen', 'cafe', 'bildung', 'dunno'])],
-            'prevention' => ['exclude_unless:stufe,leiter', 'boolean'],
-            'mail' => 'required|email',
-            'insurance_person' => 'required',
-            'insurance' => 'required',
-            'vaccination_info_confirmed' => 'required|boolean',
-            'food' => ['required', Rule::in(['vegetarian', 'meet', 'vegan', 'gluten_free', 'lactose_free'])],
-            'allergies' => 'nullable|string',
-            'parent_phone' => [$requiredIfUnder18],
-            'parent_mobile' => [$requiredIfUnder18],
-            'parent_address' => [$requiredIfUnder18],
-            'foto_consent_confirmed' => 'required|boolean',
-            'mode' => ['string', Rule::in(['parent', 'normal'])],
-            'apply' => 'boolean',
-        ]);
+        $data = $this->validateForSaving($request);
 
         $data['user_id'] = $request->user()->id;
         $participation = Participation::create($data);
 
-        if($data['apply']){
-            $participation->apply();
-            $participation->save();
-            return redirect()->route('participation.show', $participation->id);
-        }
-
         return redirect()->route('participation.index');
+    }
+
+    /**
+     * Store the participation data.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function storeAndApply(Request $request)
+    {
+        $data = $this->validateForApply($request);
+
+        $data['user_id'] = $request->user()->id;
+        $participation = Participation::create($data);
+
+        $participation->apply();
+        $participation->save();
+        return redirect()->route('participation.show', $participation->id);
     }
 
     /**
@@ -175,74 +162,30 @@ class ParticipationController extends Controller
      */
     public function update(Request $request, Participation $participation)
     {
-        $requiredIfUnder18 = Rule::requiredIf(function () use ($request) {
-            $bday = new DateTime($request->birthday);
-            $bday->add(new DateInterval("P18Y")); //adds time interval of 18 years to bday
-            return $bday >= new DateTime();
-        });
-
-        $data = $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'birthday' => 'required|date',
-            'gender' => ['required', Rule::in(['m', 'w', 'd'])],
-            'stamm' => ['required', Rule::in(['131302', '131304', '131305', '131306', '131307', '131308', '131309', '131312'])],
-            'stufe' => ['required', Rule::in(['woes', 'jupfis', 'pfadis', 'rover', 'leiter'])],
-            'role' => ['required_if:stufe,leiter', 'exclude_unless:stufe,leiter', Rule::in(['woeleiter', 'jupfileiter', 'pfadileiter', 'roverleiter', 'kitchen', 'cafe', 'bildung', 'dunno'])],
-            'prevention' => ['exclude_unless:stufe,leiter', 'boolean'],
-            'mail' => 'required|email',
-            'insurance_person' => 'required',
-            'insurance' => 'required',
-            'vaccination_info_confirmed' => 'required|boolean',
-            'food' => ['required', Rule::in(['vegetarian', 'meet', 'vegan', 'gluten_free', 'lactose_free'])],
-            'allergies' => 'nullable|string',
-            'parent_phone' => [$requiredIfUnder18],
-            'parent_mobile' => [$requiredIfUnder18],
-            'parent_address' => [$requiredIfUnder18],
-            'foto_consent_confirmed' => 'required|boolean',
-            'apply' => 'boolean',
-        ]);
-
         abort_unless($request->user()->can('edit', $participation), 403, 'Access denied.');
-
-        $participation->firstname = $data['firstname'];
-        $participation->lastname = $data['lastname'];
-        $participation->birthday = $data['birthday'];
-        $participation->gender = $data['gender'];
-        $participation->stamm = $data['stamm'];
-        $participation->stufe = $data['stufe'];
-        if(array_key_exists('role', $data)){
-            $participation->role = $data['role'];
-        }
-        if(array_key_exists('prevention', $data)){
-            $participation->prevention = $data['prevention'];
-        }
-        $participation->mail = $data['mail'];
-        $participation->insurance_person = $data['insurance_person'];
-        $participation->insurance = $data['insurance'];
-        $participation->vaccination_info_confirmed = $data['vaccination_info_confirmed'];
-        $participation->food = $data['food'];
-        $participation->allergies = $data['allergies'];
-        if(array_key_exists('parent_phone', $data)){
-            $participation->parent_phone = $data['parent_phone'];
-        }
-        if(array_key_exists('parent_mobile', $data)){
-            $participation->parent_mobile = $data['parent_mobile'];
-        }
-        if(array_key_exists('parent_address', $data)){
-            $participation->parent_address = $data['parent_address'];
-        }
-        $participation->foto_consent_confirmed = $data['foto_consent_confirmed'];
-
+        $data = $this->validateForSaving($request);
+        $this->updateFields($data, $participation);
         $participation->save();
 
-        if($data['apply']){
-            $participation->apply();
-            $participation->save();
-            return redirect()->route('participation.show', $participation->id);
-        }
-
         return redirect()->route('participation.index');
+    }
+
+    /**
+     * Store the participation data.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function updateAndApply(Request $request, Participation $participation)
+    {
+        abort_unless($request->user()->can('edit', $participation), 403, 'Access denied.');
+        $data = $this->validateForApply($request);
+        $this->updateFields($data, $participation);
+        $participation->apply();
+        $participation->save();
+        return redirect()->route('participation.show', $participation->id);
     }
 
     /**
@@ -272,6 +215,7 @@ class ParticipationController extends Controller
             'vaccination_info_confirmed' => $participation->vaccination_info_confirmed,
             'food' => self::$Foods[$participation->food],
             'allergies' => $participation->allergies,
+            'parent_name' => $participation->parent_name,
             'parent_phone' => $participation->parent_phone,
             'parent_mobile' => $participation->parent_mobile,
             'parent_address' => $participation->parent_address,
@@ -327,6 +271,96 @@ class ParticipationController extends Controller
         catch (ProcessFailedException $exception)
         {
             return false;
+        }
+    }
+
+    private function requiredIfUnder18Rule($birthday){
+        return Rule::requiredIf(function () use ($birthday) {
+            $bday = new DateTime($birthday);
+            $bday->add(new DateInterval("P18Y")); //adds time interval of 18 years to bday
+            return $bday >= new DateTime();
+        });
+    }
+
+    private function validateForSaving(Request $request): array{
+        return $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'birthday' => 'required|date',
+            'gender' => ['nullable', Rule::in(array_keys(self::$Genders))],
+            'stamm' => ['nullable', Rule::in(array_keys(self::$Tribes))],
+            'stufe' => ['nullable', Rule::in(array_keys(self::$Stufen))],
+            'role' => ['nullable', 'exclude_unless:stufe,leiter', Rule::in(array_keys(self::$Roles))],
+            'prevention' => ['nullable', 'exclude_unless:stufe,leiter', 'boolean'],
+            'mail' => 'nullable|email',
+            'insurance_person' => 'nullable|string',
+            'insurance' => 'nullable|string',
+            'vaccination_info_confirmed' => 'nullable|boolean',
+            'food' => ['nullable', Rule::in(array_keys(self::$Foods))],
+            'allergies' => 'nullable|string',
+            'parent_name' => 'nullable|string',
+            'parent_phone' => 'nullable|string',
+            'parent_mobile' => 'nullable|string',
+            'parent_address' => 'nullable|string',
+            'foto_consent_confirmed' => 'nullable|boolean',
+            'mode' => ['string', Rule::in(['parent', 'normal'])],
+        ]);
+    }
+
+    private function validateForApply(Request $request): array{
+        $requiredIfUnder18 = $this->requiredIfUnder18Rule($request->birthday);
+
+        return $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'birthday' => 'required|date',
+            'gender' => ['required', Rule::in(['m', 'w', 'd'])],
+            'stamm' => ['required', Rule::in(['131302', '131304', '131305', '131306', '131307', '131308', '131309', '131312'])],
+            'stufe' => ['required', Rule::in(['woes', 'jupfis', 'pfadis', 'rover', 'leiter'])],
+            'role' => ['required_if:stufe,leiter', 'exclude_unless:stufe,leiter', Rule::in(['woeleiter', 'jupfileiter', 'pfadileiter', 'roverleiter', 'kitchen', 'cafe', 'bildung', 'dunno'])],
+            'prevention' => ['exclude_unless:stufe,leiter', 'boolean'],
+            'mail' => 'required|email',
+            'insurance_person' => 'required',
+            'insurance' => 'required',
+            'vaccination_info_confirmed' => 'required|boolean',
+            'food' => ['required', Rule::in(['vegetarian', 'meet', 'vegan', 'gluten_free', 'lactose_free'])],
+            'allergies' => 'nullable|string',
+            'parent_name' => [$requiredIfUnder18],
+            'parent_phone' => [$requiredIfUnder18],
+            'parent_mobile' => [$requiredIfUnder18],
+            'parent_address' => [$requiredIfUnder18],
+            'foto_consent_confirmed' => 'required|boolean',
+            'mode' => ['string', Rule::in(['parent', 'normal'])],
+            'apply' => 'boolean',
+        ]);
+    }
+
+    private function updateFields(array $data, Participation $participation){
+        $fieldnames = [
+            'firstname',
+            'lastname',
+            'birthday',
+            'gender',
+            'stamm',
+            'stufe',
+            'role',
+            'prevention',
+            'mail',
+            'insurance_person',
+            'insurance',
+            'vaccination_info_confirmed',
+            'food',
+            'allergies',
+            'parent_name',
+            'parent_phone',
+            'parent_mobile',
+            'parent_address',
+            'foto_consent_confirmed',
+        ];
+        foreach ($fieldnames as $field) {
+            if(array_key_exists($field, $data)){
+                $participation->$field = $data[$field];
+            }
         }
     }
 }

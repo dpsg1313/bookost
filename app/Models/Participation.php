@@ -15,7 +15,6 @@ class Participation extends Model
      * @var array
      */
     protected $casts = [
-        'birthday' => 'date',
         'prevention' => 'boolean',
         'vaccination_info_confirmed' => 'boolean',
         'foto_consent_confirmed' => 'boolean',

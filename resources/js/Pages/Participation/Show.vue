@@ -22,9 +22,9 @@
                             <li>Anmeldung herunterladen und ausdrucken.</li>
                             <li v-if="isOver18 || participation.mode === 'parent'">Anmeldung unterschreiben.</li>
                             <li v-else>Von deinen Eltern unterschreiben lassen.</li>
-                            <li v-if="participation.mode === 'parent' || participation.stufe === 'leiter'">Anmeldung bis spätestens ??? beim Stamm abgeben.</li>
-                            <li v-else>Anmeldung bis spätestens ??? bei deinen Leiter*innen (oder beim Stammesvorstand) abgeben.</li>
-                            <li>Teilnahmebeitrag überweisen bis spätestens ???.</li>
+                            <li v-if="participation.mode === 'parent' || participation.stufe === 'leiter'">Anmeldung bis spätestens 17. April beim Stamm abgeben.</li>
+                            <li v-else>Anmeldung bis spätestens 17. April bei deinen Leiter*innen (oder beim Stammesvorstand) abgeben.</li>
+                            <li>Teilnahmebeitrag überweisen bis spätestens 30. April.</li>
                         </ol>
                         <div class="flex items-center">
                             <a :href="route('participation.pdf', { id: participation.id })" class="flex justify-center ml-4 mt-8" download >

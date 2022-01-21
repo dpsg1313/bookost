@@ -26,29 +26,44 @@
                 <h1 class="ml-4 text-2xl font-bold text-gray-900 dark:text-white">Bezirkslager 2022</h1>
             </div>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg p-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 justify-items-stretch justify-around">
-                    <div class="p-6 md:border-r border-gray-200 dark:border-gray-700 text-center">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-stretch justify-around">
+                    <div class="p-6 sm:border-b sm:border-r lg:border-b-0 border-gray-200 dark:border-gray-700 text-center">
                         <h2 class="text-lg font-bold text-gray-900 dark:text-white">Termin</h2>
                         <ul class="">
                             <li>von 28. August</li>
                             <li>bis 4. September</li>
                         </ul>
                     </div>
-                    <div class="p-6 md:border-r md:border-l border-gray-200 dark:border-gray-700 text-center">
+                    <div class="p-6 sm:border-b sm:border-l lg:border-b-0 lg:border-r border-gray-200 dark:border-gray-700 text-center">
                         <h2 class="text-lg font-bold text-gray-900 dark:text-white">Kosten</h2>
                         <ul class="">
                             <li>100€ für Kinder/Jugendliche</li>
                             <li>50€ für Leiter*innen</li>
                         </ul>
                     </div>
-                    <div class="p-6 md:border-l border-gray-200 dark:border-gray-700 text-center">
-                            <h2 class="text-lg font-bold text-gray-900 dark:text-white">Ort</h2>
-                            <div>
-                                Zeltplatz Bucher Berg<br>
-                                in Breitenbrunn (Oberpfalz)
-                            </div>
+                    <div class="p-6 sm:border-t sm:border-r lg:border-t-0 lg:border-l border-gray-200 dark:border-gray-700 text-center">
+                        <h2 class="text-lg font-bold text-gray-900 dark:text-white">Ort</h2>
+                        <div>
+                            Zeltplatz Bucher Berg<br>
+                            in Breitenbrunn (Oberpfalz)
+                        </div>
+                    </div>
+                    <div class="p-6 sm:border-t sm:border-l lg:border-t-0 border-gray-200 dark:border-gray-700 text-center">
+                        <h2 class="text-lg font-bold text-gray-900 dark:text-white">Anmeldeschluss</h2>
+                        <div>
+                            17. April 2022<br>
+                            Ostersonntag
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="mt-8 flex justify-center bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg p-6">
+                <a :href="loginRoute" >
+                    <BreezeButton type="button" class="text-xl" >
+                        Zur Anmeldung
+                    </BreezeButton>
+                </a>
             </div>
 
             <div class="mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0">
@@ -68,7 +83,12 @@
 
                         <div class="ml-20">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-md">
-                                ... können alle Kinder über ein einziges Benutzerkonto anmelden. Bitte registrieren Sie sich mit Ihrem Namen und Ihrer Email-Adresse. Anschließend füllen sie für jedes Kind einzeln die Anmeldung aus. Die Anmeldungen werden in einer Liste angezeigt und können vor dem Absenden beliebig oft bearbeitet werden. Nach dem Absenden erhalten Sie die Unterlagen zum Ausdrucken und unterschreiben. Außerdem können Sie jederzeit den Status der Anmeldung einsehen.
+                                ... können alle Kinder über ein einziges Benutzerkonto anmelden.
+                                Bitte registrieren Sie sich mit Ihrem Namen und Ihrer Email-Adresse auf dieser Seite.
+                                Anschließend füllen Sie für jedes Kind einzeln die Anmeldung aus.
+                                Die Anmeldungen werden in einer Liste aufgeführt und können vor dem Absenden beliebig oft bearbeitet werden.
+                                Nach dem Absenden erhalten Sie die Unterlagen zum Ausdrucken und Unterschreiben, um sie beim Stamm abzugeben.
+                                Außerdem können Sie jederzeit den Status der Anmeldung einsehen.
                             </div>
                         </div>
                     </div>
@@ -85,7 +105,11 @@
 
                         <div class="ml-20">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-md">
-                                ... registrieren sich und füllen anschließend die Anmeldung aus. <br>Nachdem du deine Anmeldung abgeschickt hast, bekommst du ein PDF. Das druckst du aus, unterschreibst es bzw. lässt es deine Eltern unterschreiben und gibst es bei deinen Leitern ab. <br>Ganz einfach, das schaffst du locker!
+                                ... registrieren sich und füllen anschließend die Anmeldung aus.<br>
+                                Nachdem du deine Anmeldung abgeschickt hast, bekommst du ein PDF.
+                                Das druckst du aus, unterschreibst es und lässt es deine Eltern unterschreiben, wenn du noch keine 18 Jahre alt bist.<br>
+                                Anschließend gibst du es bei deinen Leiter*innen ab.<br>
+                                Ganz einfach, das schaffst du locker!
                             </div>
                         </div>
                     </div>
@@ -102,7 +126,8 @@
 
                         <div class="ml-20">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-md">
-                                ... registrieren sich, füllen anschließend die Anmeldung aus und achten dabei darauf, bei Stufe 'Leiter*innen' auszuwählen. <br>Ich weiß, das ist echt schwierig, aber Baden Powell sagt: "Hat man den Willen zu etwas, gelingt es auch, gleich, was einem im Wege steht."
+                                ... registrieren sich, füllen anschließend die Anmeldung aus und achten dabei darauf, bei der Auswahl Stufe 'Leiter*innen' anzuklicken.<br>
+                                Ich weiß, das ist echt schwierig, aber Baden Powell sagt: "Hat man den Willen zu etwas, gelingt es auch, gleich, was einem im Wege steht."
                             </div>
                         </div>
                     </div>
@@ -119,19 +144,12 @@
 
                         <div class="ml-20">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-md">
-                                ... registrieren sich ebenfalls, auch wenn sie nicht mit aufs Lager fahren möchten. <br>Danach müsst ihr leider noch ein wenig warten. Die Anzeige der Anmeldedaten für Verantwortliche befindet sich derzeit noch in Entwicklung.
+                                ... registrieren sich ebenfalls, auch wenn sie nicht mit aufs Lager fahren möchten.<br>
+                                Danach müsst ihr leider noch ein wenig warten. Die Anzeige der Anmeldedaten für Verantwortliche befindet sich derzeit noch in der Entwicklung.
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="mt-8 flex justify-center bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg p-6">
-                <a :href="loginRoute" >
-                    <BreezeButton type="button" class="text-xl" >
-                        Zur Anmeldung
-                    </BreezeButton>
-                </a>
             </div>
 
             <div class="mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0">
@@ -250,7 +268,7 @@ export default {
     computed: {
         loginRoute(){
             if(this.$page.props.auth.user){
-                return this.route('dashboard')
+                return this.route('participation.index')
             }else{
                 return this.route('register')
             }

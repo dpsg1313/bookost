@@ -23,11 +23,7 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
         'laravelEnvironment' => App::environment(),
     ]);
-});
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('welcome');
 
 require __DIR__.'/auth.php';
 require __DIR__ . '/participation.php';
