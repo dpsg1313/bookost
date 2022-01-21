@@ -7,6 +7,7 @@ use App\Models\Participation;
 use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use PDF;
@@ -255,7 +256,7 @@ class ParticipationController extends Controller
         return view('participation_pdf', [
             'firstname' => $participation->firstname,
             'lastname' => $participation->lastname,
-            'birthday' => $participation->birthday,
+            'birthday' => Carbon::make($participation->birthday),
             'gender' => self::$Genders[$participation->gender],
             'stamm' => self::$Tribes[$participation->stamm],
             'stufe' => self::$Stufen[$participation->stufe],
