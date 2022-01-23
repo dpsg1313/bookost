@@ -170,6 +170,8 @@ return [
         'insurance' => 'Versicherung',
         'vaccination_info_confirmed' => 'Impfbestätigung',
         'food' => 'Ernährung',
+        'gluten' => 'glutenfrei',
+        'lactose' => 'laktosefrei',
         'allergies' => 'Allergien',
         'parent_phone' => 'Eltern Telefon',
         'parent_mobile' => 'Eltern Handy',

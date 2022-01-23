@@ -29,6 +29,8 @@ class CreateParticipationsTable extends Migration
             $table->string('insurance')->nullable();
             $table->boolean('vaccination_info_confirmed')->nullable();
             $table->string('food')->nullable();
+            $table->boolean('gluten')->nullable();
+            $table->boolean('lactose')->nullable();
             $table->string('allergies')->nullable();
             $table->string('parent_name')->nullable();
             $table->string('parent_phone')->nullable();

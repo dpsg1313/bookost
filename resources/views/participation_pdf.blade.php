@@ -181,7 +181,7 @@
                     <table class="table table-bordered mb-5">
                         <tbody>
                         <tr>
-                            <td>Ernährung:</td><td>{{ $food }}</td>
+                            <td>Ernährung:</td><td>{{ $food }}{{ $gluten ? ', glutenfrei' : ''}}{{$lactose ? ', laktosefrei' : ''}}</td>
                         </tr>
                         <tr>
                             <td>Allergien oder Unverträglichkeiten:</td><td>{{ $allergies }}</td>

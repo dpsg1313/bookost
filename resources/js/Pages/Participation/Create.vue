@@ -116,6 +116,14 @@
                                 <BreezeRadio id="food" class="mt-1 block w-full" :options="foods" v-model="form.food" required />
                             </div>
                             <div class="mt-2">
+                                <BreezeCheckbox id="gluten" class="m-1" v-model:checked="form.gluten" />
+                                <BreezeLabel for="gluten" class="inline m-1 text-base text-gray-800" value="glutenfrei" />
+                            </div>
+                            <div class="mt-2">
+                                <BreezeCheckbox id="lactose" class="m-1" v-model:checked="form.lactose" />
+                                <BreezeLabel for="lactose" class="inline m-1 text-base text-gray-800" value="laktosefrei" />
+                            </div>
+                            <div class="mt-2">
                                 <BreezeLabel for="allergies" value="Allergien oder Unverträglichkeiten" />
                                 <BreezeInput id="allergies" type="text" class="mt-1 block w-full" v-model="form.allergies" required />
                             </div>
@@ -248,6 +256,8 @@ export default {
                 insurance: '',
                 vaccination_info_confirmed: false,
                 food: '',
+                gluten: false,
+                lactose: false,
                 allergies: '',
                 parent_name: '',
                 parent_phone: '',
@@ -282,8 +292,6 @@ export default {
                 vegetarian: 'vegetarisch',
                 meet: 'esse auch Fleisch',
                 vegan: 'vegan',
-                gluten_free: 'glutenfrei',
-                lactose_free: 'laktosefrei',
             },
             roles: {
                 woeleiter: 'Wö-Leiter*in',
