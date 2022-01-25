@@ -137,7 +137,7 @@
                             <td colspan="2">Wir empfehlen die Impfung gegen Tetanus (Wundstarrkrampf) sowie Zecken (FSME) für alle Teilnehmenden des Zeltlagers. Bitte überprüft euren Impfschutz rechtzeitig und sprecht ggf. mit eurem Hausarzt.</td>
                         </tr>
                         <tr>
-                            <td colspan="2">Zur Teilnahme am Zeltlager ist möglicherweise der Nachweis einer Corona-Impfung erforderlich. Welche Regelungen im Sommer 2022 gelten, können wir zum jetzigen Zeitpunkt noch nicht abschätzen.</td>
+                            <td colspan="2">Zur Teilnahme am Zeltlager ist möglicherweise der Nachweis einer Corona-Impfung erforderlich. Welche Regelungen im Sommer 2022 gelten, können wir zum jetzigen Zeitpunkt noch nicht abschätzen. Falls ein Impfnachweis oder ähnliches benötigt werden sollte, kommt dazu noch eine Info-Mail.</td>
                         </tr>
                         <tr>
                             <td><label for="vaccination_info_confirmed">Ich habe die obenstehenden Hinweise zum Thema Impfung gelesen und verstanden</label></td><td><input type="checkbox" id="vaccination_info_confirmed" checked="{{ $vaccination_info_confirmed }}" /></td>
@@ -243,7 +243,6 @@
                         <tbody>
                         <tr>
                             <td class="content-end">Anmeldung bitte bis spätestens 17. April beim Stamm abgeben!</td>
-
                         </tr>
                         </tbody>
                     </table>

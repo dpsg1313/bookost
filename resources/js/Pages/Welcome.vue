@@ -127,7 +127,7 @@
                         <div class="ml-20">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-md">
                                 ... registrieren sich, füllen anschließend die Anmeldung aus und achten dabei darauf, bei der Auswahl Stufe 'Leiter*innen' anzuklicken.<br>
-                                Ich weiß, das ist echt schwierig, aber Baden Powell sagt: "Hat man den Willen zu etwas, gelingt es auch, gleich, was einem im Wege steht."
+                                Wir wissen, das ist echt schwierig, aber um Baden Powell zu zitieren: "Hat man den Willen zu etwas, gelingt es auch, gleich, was einem im Wege steht."
                             </div>
                         </div>
                     </div>
