@@ -120,7 +120,9 @@ class ParticipationController extends Controller
     public function index(Request $request)
     {
         return Inertia::render('Participation/ListParticipations', [
-            'participations' => $request->user()->participations()->get()
+            'participations' => $request->user()->participations()->get(),
+            'admin' => $request->user()->email == 'florian.kick@googlemail.com' && $request->user()->hasVerifiedEmail(),
+            'tribes' => self::$Tribes,
         ]);
     }
 
