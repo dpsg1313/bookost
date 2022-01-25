@@ -9,26 +9,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
     <style>
-        .page-header, .page-header-space {
-            height: 200px;
-        }
-
         @page {
             margin: 20mm
         }
 
         @media print {
-            thead.layoutframe {display: table-header-group;}
-
-            button {display: none;}
-
-            body {margin: 0;}
-
-            div.page-header {
+            .header, .header-space {
+                height: 100px;
+            }
+            .header {
                 position: fixed;
-                top: 10mm;
-                right: 10mm;
-                left: 10mm;
+                top: 0;
             }
         }
     </style>
@@ -36,32 +27,12 @@
 
 <body>
 
-<div class="page-header" style="text-align: center">
-    <div class="header flex justify-between items-center">
-        <h2 class="inline-flex text-center mb-3 text-3xl font-bold">Anmeldung zum Bezirkslager 2022</h2>
-        <img class="inline-flex justify-end h-20" src="{{asset('images/München-Ost_Logo2_noBackground.png')}}" alt="Logo DPSG München-Ost" />
-    </div>
-</div>
-
 <table>
-
-    <thead class="layoutframe">
-    <tr>
-        <td>
-            <!--place holder for the fixed-position header-->
-            <div class="page-header-space"></div>
-        </td>
-    </tr>
-    </thead>
-
-    <tbody>
-    <tr>
-        <td>
-            <!--*** CONTENT GOES HERE ***-->
-            <div class="container">
-
-
-
+    <thead><tr><td>
+            <div class="header-space">&nbsp;</div>
+        </td></tr></thead>
+    <tbody><tr><td>
+            <div class="content">
                 <table class="table table-bordered mb-5">
                     <tbody>
                     <tr>
@@ -275,11 +246,15 @@
                     </table>
                 </div>
             </div>
-        </td>
-    </tr>
-    </tbody>
-
+        </td></tr></tbody>
 </table>
+
+<div class="header" style="text-align: center">
+    <div class="header flex justify-between items-center">
+        <img class="inline-flex h-20" src="{{asset('images/München-Ost_Logo2_noBackground.png')}}" alt="Logo DPSG München-Ost" />
+        <h2 class="ml-8 inline-flex justify-end text-center mb-3 text-3xl font-bold">Anmeldung zum Bezirkslager 2022</h2>
+    </div>
+</div>
 
 </body>
 
