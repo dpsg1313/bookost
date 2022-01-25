@@ -298,6 +298,9 @@ export default {
                 kitchen: 'Küche',
                 cafe: 'Café',
                 bildung: 'Bildungscafé',
+                crew: 'Crew/Planungsteam',
+                staff: 'Staff/Helfer',
+                missing: 'Meine Aufgabe fehlt in der Auswahl',
                 dunno: 'Weiß ich noch nicht',
             }
         }

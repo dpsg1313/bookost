@@ -97,17 +97,9 @@ class ParticipationController extends Controller
         'kitchen' => 'Küche',
         'cafe' => 'Café',
         'bildung' => 'Bildungscafé',
-        'dunno' => 'Weiß ich noch nicht',
-    ];
-
-    private static $BankAccounts = [
-        'woeleiter' => 'Wö-Leiter*in',
-        'jupfileiter' => 'Jupfi-Leiter*in',
-        'pfadileiter' => 'Pfadi-Leiter*in',
-        'roverleiter' => 'Rover-Leiter*in',
-        'kitchen' => 'Küche',
-        'cafe' => 'Café',
-        'bildung' => 'Bildungscafé',
+        'crew' => 'Crew/Planungsteam',
+        'staff' => 'Staff/Helfer',
+        'missing' => 'Meine Aufgabe fehlt in der Auswahl',
         'dunno' => 'Weiß ich noch nicht',
     ];
 
