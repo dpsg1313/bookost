@@ -162,9 +162,12 @@
 
                 @if(!$isOver18)
                     <div class="break-inside-avoid">
-                        <h3 class="ml-2 text-lg font-semibold break-after-avoid-page">Kontaktdaten der Erziehungsberechtigten</h3>
+                        <h3 class="ml-2 text-lg font-semibold break-after-avoid-page">Kontaktdaten eines/einer Erziehungsberechtigten, der/die während des Lagers unter folgenden Kontaktdaten für den Notfall erreichbar ist.</h3>
                         <table class="table table-bordered mb-5">
                             <tbody>
+                            <tr>
+                                <td>Name:</td><td>{{ $parent_name }}</td>
+                            </tr>
                             <tr>
                                 <td>Telefon:</td><td>{{ $parent_phone }}</td>
                             </tr>

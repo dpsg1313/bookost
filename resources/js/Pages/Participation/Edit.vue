@@ -113,7 +113,7 @@
                                 Ernährung
                             </h2>
                             <div class="mt-2">
-                                <BreezeRadio id="food" class="mt-1 block w-full" :options="foods" v-model="form.food" required />
+                                <BreezeRadio id="food" class="mt-1 block w-full" name="food" :options="foods" v-model="form.food" required />
                             </div>
                             <div class="mt-2">
                                 <BreezeCheckbox id="gluten" class="m-1" v-model:checked="form.gluten" />
@@ -133,10 +133,10 @@
                             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                                 Kontaktdaten der Erziehungsberechtigten
                             </h2>
-                            <p>Kontaktdaten eines Erziehungsberechtigten, der während des Lagers unter folgenden Kontaktdaten für den Notfall erreichbar ist.</p>
+                            <p>Kontaktdaten eines/einer Erziehungsberechtigten, der/die während des Lagers unter folgenden Kontaktdaten für den Notfall erreichbar ist.</p>
                             <div class="mt-2">
                                 <BreezeLabel for="parent_name" value="Vor- und Nachname" />
-                                <BreezeInput id="parent_name" type="tel" class="mt-1 block w-full" v-model="form.parent_name" required  />
+                                <BreezeInput id="parent_name" type="text" class="mt-1 block w-full" v-model="form.parent_name" required  />
                             </div>
                             <div class="mt-2">
                                 <BreezeLabel for="parent_phone" value="Telefon" />

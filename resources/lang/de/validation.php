@@ -173,6 +173,7 @@ return [
         'gluten' => 'glutenfrei',
         'lactose' => 'laktosefrei',
         'allergies' => 'Allergien',
+        'parent_name' => 'Eltern Name',
         'parent_phone' => 'Eltern Telefon',
         'parent_mobile' => 'Eltern Handy',
         'parent_address' => 'Eltern Anschrift',
