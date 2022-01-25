@@ -97,7 +97,7 @@
                                 <td>Rolle/Aufgabe</td><td>{{ $role }}</td>
                             </tr>
                             <tr>
-                                <td>Ich habe eine Präventionsschulung (Modul 2d + 2e) besucht</td><td>{{ $prevention }}</td>
+                                <td><label for="vaccination_info_confirmed">Ich habe eine Präventionsschulung (Modul 2d + 2e) besucht</label></td><td><input type="checkbox" id="prevention" checked="{{ $prevention }}" /></td>
                             </tr>
                             </tbody>
                         </table>
