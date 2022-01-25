@@ -154,7 +154,7 @@
                             <td>Ernährung:</td><td>{{ $food }}{{ $gluten ? ', glutenfrei' : ''}}{{$lactose ? ', laktosefrei' : ''}}</td>
                         </tr>
                         <tr>
-                            <td>Allergien oder Unverträglichkeiten:</td><td>{{ $allergies }}</td>
+                            <td>Allergien und sonstige Essensbesonderheiten:</td><td>{{ $allergies }}</td>
                         </tr>
                         </tbody>
                     </table>

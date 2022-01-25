@@ -124,7 +124,7 @@
                                 <BreezeLabel for="lactose" class="inline m-1 text-base text-gray-800" value="laktosefrei" />
                             </div>
                             <div class="mt-2">
-                                <BreezeLabel for="allergies" value="Allergien oder Unverträglichkeiten" />
+                                <BreezeLabel for="allergies" value="Allergien und sonstige Essensbesonderheiten" />
                                 <BreezeInput id="allergies" type="text" class="mt-1 block w-full" v-model="form.allergies" required />
                             </div>
                         </div>
