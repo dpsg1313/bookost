@@ -18,8 +18,7 @@
         }
 
         @media print {
-            thead {display: table-header-group;}
-            tfoot {display: table-footer-group;}
+            thead.layoutframe {display: table-header-group;}
 
             button {display: none;}
 
@@ -46,7 +45,7 @@
 
 <table>
 
-    <thead>
+    <thead class="layoutframe">
     <tr>
         <td>
             <!--place holder for the fixed-position header-->
@@ -265,6 +264,16 @@
                     @endif
                 </div>
 
+                <div class="break-inside-avoid">
+                    <table class="table table-bordered mb-2">
+                        <tbody>
+                        <tr>
+                            <td class="content-end">Anmeldung bitte bis spätestens 17. April beim Stamm abgeben!</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </td>
     </tr>
