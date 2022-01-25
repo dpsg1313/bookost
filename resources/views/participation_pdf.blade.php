@@ -88,7 +88,7 @@
                     </table>
                 </div>
 
-                @if($stufe == 'leiter')
+                @if($stufe_id == 'leiter')
                     <div class="break-inside-avoid">
                         <h3 class="ml-2 text-lg font-semibold break-after-avoid-page">Für Leitende</h3>
                         <table class="table table-bordered mb-5">

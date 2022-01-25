@@ -251,6 +251,7 @@ class ParticipationController extends Controller
             'birthday' => Carbon::make($participation->birthday),
             'gender' => self::$Genders[$participation->gender],
             'stamm' => self::$Tribes[$participation->stamm],
+            'stufe_id' => $participation->stufe,
             'stufe' => self::$Stufen[$participation->stufe],
             'role' => $participation->role ? self::$Roles[$participation->role] : null,
             'prevention' => $participation->prevention,
