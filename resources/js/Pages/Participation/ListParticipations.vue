@@ -65,7 +65,7 @@
                                     </template>
                                     <template v-if="!participation.paid_at">
                                         <li>
-                                            Teilnahmebeitrag überweisen bis spätestens 30. April.
+                                            Teilnahmebeitrag ({{participation.stufe === 'leiter' ? 50 : 100}}€) überweisen bis spätestens 30. April.
                                             <p class="ml-8">
                                                 Kontoinhaber: {{ stamm.bankAccountOwner }}<br>
                                                 IBAN: {{ stamm.iban }}<br>

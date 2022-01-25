@@ -25,7 +25,7 @@
                             <li v-if="participation.mode === 'parent' || participation.stufe === 'leiter'">Anmeldung bis spätestens 17. April beim Stamm abgeben.</li>
                             <li v-else>Anmeldung bis spätestens 17. April bei deinen Leiter*innen (oder beim Stammesvorstand) abgeben.</li>
                             <li>
-                                Teilnahmebeitrag überweisen bis spätestens 30. April.
+                                Teilnahmebeitrag ({{participation.stufe === 'leiter' ? 50 : 100}}€) überweisen bis spätestens 30. April.
                                 <p class="ml-8">
                                     Kontoinhaber: {{ stamm.bankAccountOwner }}<br>
                                     IBAN: {{ stamm.iban }}<br>
