@@ -47,4 +47,19 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Participation::class, 'user_id');
     }
+
+    public function responsibilities(): HasMany
+    {
+        return $this->hasMany(Responsibility::class, 'user_id');
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->email == 'florian.kick@googlemail.com' && $this->hasVerifiedEmail();
+    }
+
+    public function isResponsible(): bool
+    {
+        return $this->responsibilities()->count() > 0;
+    }
 }

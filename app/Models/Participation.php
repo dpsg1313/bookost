@@ -24,6 +24,14 @@ class Participation extends Model
         $this->applied_at = now();
     }
 
+    public function sign() {
+        $this->signed_at = now();
+    }
+
+    public function pay() {
+        $this->paid_at = now();
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');

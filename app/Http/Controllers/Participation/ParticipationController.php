@@ -18,7 +18,7 @@ use Symfony\Component\Process\Process;
 
 class ParticipationController extends Controller
 {
-    private static $Tribes = [
+    public static $Tribes = [
         131302 => [
             'name' => 'Ottobrunn',
             'bankAccountOwner' => 'DPSG Ottobrunn',
@@ -69,13 +69,13 @@ class ParticipationController extends Controller
         ],
     ];
 
-    private static $Genders = [
+    public static $Genders = [
         'm' => 'männlich',
         'w' => 'weiblich',
         'd' => 'divers',
     ];
 
-    private static $Stufen = [
+    public static $Stufen = [
         'woes' => 'Wölflinge',
         'jupfis' => 'Jupfis',
         'pfadis' => 'Pfadis',
@@ -83,13 +83,13 @@ class ParticipationController extends Controller
         'leiter' => 'Leiter*innen / Staff'
     ];
 
-    private static $Foods = [
+    public static $Foods = [
         'vegetarian' => 'vegetarisch',
         'meet' => 'esse auch Fleisch',
         'vegan' => 'vegan',
     ];
 
-    private static $Roles = [
+    public static $Roles = [
         'woeleiter' => 'Wö-Leiter*in',
         'jupfileiter' => 'Jupfi-Leiter*in',
         'pfadileiter' => 'Pfadi-Leiter*in',
@@ -113,7 +113,7 @@ class ParticipationController extends Controller
     {
         return Inertia::render('Participation/ListParticipations', [
             'participations' => $request->user()->participations()->get(),
-            'admin' => $request->user()->email == 'florian.kick@googlemail.com' && $request->user()->hasVerifiedEmail(),
+            'admin' => $request->user()->isAdmin(),
             'tribes' => self::$Tribes,
         ]);
     }

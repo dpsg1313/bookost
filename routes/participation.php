@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Participation\ParticipationController;
+use App\Http\Controllers\Responsibles\ResponsiblesController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,4 +21,11 @@ Route::prefix('participation')->middleware(['auth', 'verified'])->name('particip
         ->withoutMiddleware(['auth', 'verified'])
         ->middleware('secret')
         ->name('print');
+});
+
+Route::prefix('responsibles')->middleware(['auth', 'verified'])->name('responsibles.')->group(function () {
+    Route::get('/participation/', [ResponsiblesController::class, 'listParticipations'])->name('participation.list');
+    Route::get('/participation/{participation}/sign', [ResponsiblesController::class, 'signParticipation'])->name('participation.sign');
+    Route::get('/participation/{participation}/pay', [ResponsiblesController::class, 'payParticipation'])->name('participation.pay');
+    Route::get('/participation/export', [ResponsiblesController::class, 'exportParticipations'])->name('participation.export');
 });

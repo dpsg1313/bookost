@@ -18,6 +18,9 @@
                                 <BreezeNavLink :href="route('participation.index')" :active="route().current('participation.index')">
                                     Teilnehmen
                                 </BreezeNavLink>
+                                <BreezeNavLink :href="route('responsibles.participation.list')" :active="route().current('responsibles.participation.list')" v-if="$page.props.auth.isResponsible">
+                                    Listen
+                                </BreezeNavLink>
                             </div>
                         </div>
 
@@ -63,6 +66,9 @@
                     <div class="pt-2 pb-3 space-y-1">
                         <BreezeResponsiveNavLink :href="route('participation.index')" :active="route().current('participation.index')">
                             Teilnehmen
+                        </BreezeResponsiveNavLink>
+                        <BreezeResponsiveNavLink :href="route('responsibles.participation.list')" :active="route().current('responsibles.participation.list')" v-if="$page.props.auth.isResponsible">
+                            Listen
                         </BreezeResponsiveNavLink>
                     </div>
 

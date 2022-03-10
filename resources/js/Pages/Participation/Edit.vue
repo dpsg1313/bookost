@@ -1,5 +1,5 @@
 <template>
-    <Head title="Neue Anmeldung" />
+    <Head title="Anmeldung bearbeiten" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
