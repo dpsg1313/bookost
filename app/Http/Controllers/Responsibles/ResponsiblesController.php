@@ -21,6 +21,8 @@ class ResponsiblesController extends Controller
     public function listParticipations(Request $request)
     {
         $user = $request->user();
+        $sortColumn = $request->query->get('sort', 'firstname');
+        $sortDesc = $request->query->getBoolean('desc', false);
 
         $query = Participation::query();
         $query = $query->whereNotNull('applied_at');
@@ -35,11 +37,14 @@ class ResponsiblesController extends Controller
         }
         $query = $query->whereIn('stamm', $tribes);
 
+        $query = $query->orderBy($sortColumn, $sortDesc ? 'desc' : 'asc');
+
         return Inertia::render('Responsibles/List', [
             'participations' => $query->get(),
             'tribes' => ParticipationController::$Tribes,
             'stufen' => ParticipationController::$Stufen,
-            'roles' => ParticipationController::$Roles,
+            'sortColumn' => $sortColumn,
+            'sortDesc' => $sortDesc,
         ]);
     }
 
