@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Participation;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,6 +23,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
         'laravelEnvironment' => App::environment(),
+        'participationCount' => Participation::query()->whereNotNull('applied_at')->count()
     ]);
 })->name('welcome');
 

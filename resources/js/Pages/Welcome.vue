@@ -19,10 +19,17 @@
         </div>
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
+            <div class="grid gap-8 justify-items-center sm:justify-items-start items-center grid-cols-1 sm:grid-cols-2 pt-2 sm:justify-start sm:pt-8">
                 <img src="/images/München-Ost_Logo2_noBackground.png" alt="Logo DPSG München-Ost" />
+                <div class="text-center">
+                        <span class="text-lg font-bold text-center">Anmeldungen:</span><br>
+                        <div class="inline-grid counter font-digital-clock tracking-wider bg-gray-800 px-2 py-0 rounded-md">
+                            <p class="mt-0 mr-0 text-right text-white z-50">{{ participationCount }}</p>
+                            <p class="mt-0 mr-0 text-right text-gray-700">8888</p>
+                        </div>
+                </div>
             </div>
-            <div class="mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0">
+            <div class="mt-8 flex pt-8 sm:justify-start sm:pt-0">
                 <h1 class="ml-4 text-2xl font-bold text-gray-900 dark:text-white">Bezirkslager 2022</h1>
             </div>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg p-6">
@@ -66,7 +73,7 @@
                 </a>
             </div>
 
-            <div class="mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0">
+            <div class="mt-8 flex pt-8 sm:justify-start sm:pt-0">
                 <h1 class="ml-4 text-2xl font-bold text-gray-900 dark:text-white">Anmeldung zum Bezirkslager</h1>
             </div>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
@@ -152,7 +159,7 @@
                 </div>
             </div>
 
-            <div class="mt-8 flex justify-center pt-8 sm:justify-start sm:pt-0">
+            <div class="mt-8 flex pt-8 sm:justify-start sm:pt-0">
                 <h1 class="ml-4 text-2xl font-bold text-gray-900 dark:text-white">Trailer zum Bezirkslager</h1>
             </div>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
@@ -185,6 +192,24 @@
 </template>
 
 <style scoped>
+    @font-face{
+        font-family:'digital-clock-font';
+        src: url('/fonts/digital-7 (mono).ttf');
+    }
+
+    .font-digital-clock{
+        font-family: 'digital-clock-font', serif;
+    }
+
+    .counter {
+        font-size: 4rem;
+        line-height: 4rem;
+    }
+
+    .counter > * {
+        grid-area: 1/1;
+    }
+
     .bg-gray-100 {
         background-color: #f7fafc;
         background-color: rgba(247, 250, 252, var(--tw-bg-opacity));
@@ -263,6 +288,7 @@ export default {
         canRegister: Boolean,
         laravelVersion: String,
         phpVersion: String,
+        participationCount: Number,
     },
 
     computed: {
