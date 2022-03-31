@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Responsibles;
+namespace App\Http\Controllers\Participation;
 
 use App\Exports\ParticipationExport;
 use App\Http\Controllers\Controller;
@@ -9,7 +9,7 @@ use App\Models\Participation;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class ResponsiblesController extends Controller
+class ListController extends Controller
 {
 
     /**
@@ -39,7 +39,7 @@ class ResponsiblesController extends Controller
 
         $query = $query->orderBy($sortColumn, $sortDesc ? 'desc' : 'asc');
 
-        return Inertia::render('Responsibles/List', [
+        return Inertia::render('Participation/List', [
             'participations' => $query->get(),
             'tribes' => ParticipationController::$Tribes,
             'stufen' => ParticipationController::$Stufen,
@@ -62,7 +62,7 @@ class ResponsiblesController extends Controller
         $participation->sign();
         $participation->save();
 
-        return redirect()->route('responsibles.participation.list');
+        return redirect()->route('participation.list');
     }
 
     /**
@@ -79,7 +79,7 @@ class ResponsiblesController extends Controller
         $participation->pay();
         $participation->save();
 
-        return redirect()->route('responsibles.participation.list');
+        return redirect()->route('participation.list');
     }
 
     public function exportParticipations(Request $request)

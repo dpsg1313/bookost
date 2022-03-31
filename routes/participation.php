@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Participation\ListController;
 use App\Http\Controllers\Participation\ParticipationController;
-use App\Http\Controllers\Responsibles\ResponsiblesController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,11 +21,13 @@ Route::prefix('participation')->middleware(['auth', 'verified'])->name('particip
         ->withoutMiddleware(['auth', 'verified'])
         ->middleware('secret')
         ->name('print');
+
+    Route::get('/list', [ListController::class, 'listParticipations'])->name('list');
+    Route::get('/{participation}/sign', [ListController::class, 'signParticipation'])->name('sign');
+    Route::get('/{participation}/pay', [ListController::class, 'payParticipation'])->name('pay');
+    Route::get('/export', [ListController::class, 'exportParticipations'])->name('export');
 });
 
-Route::prefix('responsibles')->middleware(['auth', 'verified'])->name('responsibles.')->group(function () {
-    Route::get('/participation/', [ResponsiblesController::class, 'listParticipations'])->name('participation.list');
-    Route::get('/participation/{participation}/sign', [ResponsiblesController::class, 'signParticipation'])->name('participation.sign');
-    Route::get('/participation/{participation}/pay', [ResponsiblesController::class, 'payParticipation'])->name('participation.pay');
-    Route::get('/participation/export', [ResponsiblesController::class, 'exportParticipations'])->name('participation.export');
+Route::prefix('admin')->middleware(['auth', 'verified'])->name('admin.')->group(function () {
+
 });

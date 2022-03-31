@@ -12,7 +12,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-8">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <a class="inline-flex my-1 ml-4" :href="route('responsibles.participation.export')">
+                        <a class="inline-flex my-1 ml-4" :href="route('participation.export')">
                             <BreezeButton type="button">
                                 Alle Exportieren
                             </BreezeButton>
@@ -27,32 +27,32 @@
                             <thead>
                             <tr>
                                 <th class="px-1">
-                                    <table-head-sort-link column="firstname" :sort-column="sortColumn" :sort-desc="sortDesc" routeName="responsibles.participation.list">
+                                    <table-head-sort-link column="firstname" :sort-column="sortColumn" :sort-desc="sortDesc" routeName="participation.list">
                                         Vorname
                                     </table-head-sort-link>
                                 </th>
                                 <th class="px-1">
-                                    <table-head-sort-link column="lastname" :sort-column="sortColumn" :sort-desc="sortDesc" routeName="responsibles.participation.list">
+                                    <table-head-sort-link column="lastname" :sort-column="sortColumn" :sort-desc="sortDesc" routeName="participation.list">
                                         Nachname
                                     </table-head-sort-link>
                                 </th>
                                 <th class="px-1">
-                                    <table-head-sort-link column="stamm" :sort-column="sortColumn" :sort-desc="sortDesc" routeName="responsibles.participation.list">
+                                    <table-head-sort-link column="stamm" :sort-column="sortColumn" :sort-desc="sortDesc" routeName="participation.list">
                                         Stamm
                                     </table-head-sort-link>
                                 </th>
                                 <th class="px-1">
-                                    <table-head-sort-link column="stufe" :sort-column="sortColumn" :sort-desc="sortDesc" routeName="responsibles.participation.list">
+                                    <table-head-sort-link column="stufe" :sort-column="sortColumn" :sort-desc="sortDesc" routeName="participation.list">
                                         Stufe
                                     </table-head-sort-link>
                                 </th>
                                 <th class="px-1">
-                                    <table-head-sort-link column="signed_at" :sort-column="sortColumn" :sort-desc="sortDesc" routeName="responsibles.participation.list">
+                                    <table-head-sort-link column="signed_at" :sort-column="sortColumn" :sort-desc="sortDesc" routeName="participation.list">
                                         Unterschrift
                                     </table-head-sort-link>
                                 </th>
                                 <th class="px-1">
-                                    <table-head-sort-link column="paid_at" :sort-column="sortColumn" :sort-desc="sortDesc" routeName="responsibles.participation.list">
+                                    <table-head-sort-link column="paid_at" :sort-column="sortColumn" :sort-desc="sortDesc" routeName="participation.list">
                                         Beitrag
                                     </table-head-sort-link>
                                 </th>
@@ -74,12 +74,12 @@
                                     <StatusBubble class="m-1" :status="!!participation.paid_at" :info="participation.paid_at"></StatusBubble>
                                 </td>
                                 <td class="border-t px-1">
-                                    <a class="inline-flex m-1" :href="route('responsibles.participation.sign', { id: participation.id })" v-if="!participation.signed_at">
+                                    <a class="inline-flex m-1" :href="route('participation.sign', { id: participation.id })" v-if="!participation.signed_at">
                                         <BreezeButton type="button" >
                                             Unterschrieben
                                         </BreezeButton>
                                     </a>
-                                    <a class="inline-flex m-1" :href="route('responsibles.participation.pay', { id: participation.id })" v-if="!participation.paid_at">
+                                    <a class="inline-flex m-1" :href="route('participation.pay', { id: participation.id })" v-if="!participation.paid_at">
                                         <BreezeButton type="button" >
                                             Bezahlt
                                         </BreezeButton>

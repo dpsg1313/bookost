@@ -111,7 +111,7 @@ class ParticipationController extends Controller
      */
     public function index(Request $request)
     {
-        return Inertia::render('Participation/ListParticipations', [
+        return Inertia::render('Participation/MyParticipations', [
             'participations' => $request->user()->participations()->get(),
             'admin' => $request->user()->isAdmin(),
             'tribes' => self::$Tribes,
