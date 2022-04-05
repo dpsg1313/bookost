@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function listUsers(Request $request)
     {
-        $sortColumn = $request->query->get('sort', 'firstname');
+        $sortColumn = $request->query->get('sort', 'name');
         $sortDesc = $request->query->getBoolean('desc', false);
 
         $query = User::query();
