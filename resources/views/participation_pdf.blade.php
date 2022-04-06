@@ -97,7 +97,7 @@
                                 <td>Rolle/Aufgabe</td><td>{{ $role }}</td>
                             </tr>
                             <tr>
-                                <td><label for="vaccination_info_confirmed">Ich habe eine Präventionsschulung (Modul 2d + 2e) besucht</label></td><td><input type="checkbox" id="prevention" checked="{{ $prevention }}" /></td>
+                                <td><label for="prevention">Ich habe eine Präventionsschulung (Modul 2d + 2e) besucht</label></td><td><input type="checkbox" id="prevention" {{ $prevention ? ' checked="checked"' : '' }}/></td>
                             </tr>
                             </tbody>
                         </table>
@@ -140,7 +140,7 @@
                             <td colspan="2">Zur Teilnahme am Zeltlager ist möglicherweise der Nachweis einer Corona-Impfung erforderlich. Welche Regelungen im Sommer 2022 gelten, können wir zum jetzigen Zeitpunkt noch nicht abschätzen. Falls ein Impfnachweis oder ähnliches benötigt werden sollte, kommt dazu noch eine Info-Mail.</td>
                         </tr>
                         <tr>
-                            <td><label for="vaccination_info_confirmed">Ich habe die obenstehenden Hinweise zum Thema Impfung gelesen und verstanden</label></td><td><input type="checkbox" id="vaccination_info_confirmed" checked="{{ $vaccination_info_confirmed }}" /></td>
+                            <td><label for="vaccination_info_confirmed">Ich habe die obenstehenden Hinweise zum Thema Impfung gelesen und verstanden</label></td><td><input type="checkbox" id="vaccination_info_confirmed" {{ $vaccination_info_confirmed ? ' checked="checked"' : '' }}/></td>
                         </tr>
                         </tbody>
                     </table>
@@ -208,7 +208,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="foto_consent_confirmed">Mit meiner Unterschrift akzeptiere ich die obenstehende Vereinbarung über die Nutzung von Fotografien und Filmen</label></td><td><input type="checkbox" id="foto_consent_confirmed" checked="{{ $foto_consent_confirmed }}" /></td>
+                            <td><label for="foto_consent_confirmed">Mit meiner Unterschrift akzeptiere ich die obenstehende Vereinbarung über die Nutzung von Fotografien und Filmen</label></td><td><input type="checkbox" id="foto_consent_confirmed" {{ $foto_consent_confirmed ? ' checked="checked"' : '' }}/></td>
                         </tr>
                         </tbody>
                     </table>
