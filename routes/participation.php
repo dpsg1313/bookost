@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\StatisticController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Participation\ListController;
 use App\Http\Controllers\Participation\ParticipationController;
@@ -32,4 +33,5 @@ Route::prefix('participation')->middleware(['auth', 'verified'])->name('particip
 Route::prefix('admin')->middleware(['auth', 'verified'])->name('admin.')->group(function () {
     Route::get('/user/list', [UserController::class, 'listUsers'])->name('user.list');
     Route::post('/user/{user}/responsibility', [UserController::class, 'saveUserResponsibility'])->name('user.responsibility');
+    Route::get('/statistics', [StatisticController::class, 'showStats'])->name('statistics');
 });
