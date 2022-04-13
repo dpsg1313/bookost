@@ -160,6 +160,119 @@
             </div>
 
             <div class="mt-8 flex pt-8 sm:justify-start sm:pt-0">
+                <h1 class="ml-4 text-2xl font-bold text-gray-900 dark:text-white">Fragen & Antworten</h1>
+            </div>
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div
+                        class="accordion-item border-t-0 border-l-0 border-r-0 rounded-none bg-white border border-gray-200">
+                        <h2 class="accordion-header mb-0" id="flush-headingOne">
+                            <button class="accordion-button
+                                    collapsed
+                                    relative
+                                    flex
+                                    items-center
+                                    w-full
+                                    py-4
+                                    px-5
+                                    text-base text-gray-800 text-left
+                                    bg-white
+                                    border-0
+                                    rounded-none
+                                    transition
+                                    focus:outline-none
+                                    font-bold"
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#faq-1"
+                                    aria-expanded="false" aria-controls="faq-1">
+                                Wie kommen wir zum Lagerplatz?
+                            </button>
+                        </h2>
+                        <div id="faq-1" class="accordion-collapse border-0 collapse"
+                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body py-4 px-5">
+                                Wir fahren gemeinsam mit Reisebussen von München zum Lagerplatz und wieder zurück.<br>
+                                Die genauen Abfahrtszeiten und -orte werden noch bekannt gegeben.<br>
+                                Die Fahrtkosten sind im Lagerbeitrag enthalten.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-l-0 border-r-0 rounded-none bg-white border border-gray-200">
+                        <h2 class="accordion-header mb-0" id="flush-headingTwo">
+                            <button class="accordion-button
+                                    collapsed
+                                    relative
+                                    flex
+                                    items-center
+                                    w-full
+                                    py-4
+                                    px-5
+                                    text-base text-gray-800 text-left
+                                    bg-white
+                                    border-0
+                                    rounded-none
+                                    transition
+                                    focus:outline-none
+                                    font-bold"
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#faq-2"
+                                    aria-expanded="false" aria-controls="faq-2">
+                                Was ist im Lagerbeitrag enhalten?
+                            </button>
+                        </h2>
+                        <div id="faq-2" class="accordion-collapse border-0 collapse"
+                             aria-labelledby="flush-headingTwo"
+                             data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body py-4 px-5">
+                                Im Lagerbeitrag enthalten sind:
+                                <ul class="px-8 py-2 list-disc">
+                                    <li>7 Übernachtungen im Zelt</li>
+                                    <li>Hin- und Rückfahrt im Reisebus</li>
+                                    <li>Vollverpflegung</li>
+                                    <li>Pfadfinderisches Mitmachprogramm ;-)</li>
+                                </ul>
+                                Nicht enthalten sind:
+                                <ul class="px-8 py-2 list-disc">
+                                    <li>Zusätzliche Getränke oder Snacks in unserem Lager-Café</li>
+                                    <li>eigene Fahrtkosten bei verspäteter Anreise oder frühzeitiger Abreise</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="accordion-item border-l-0 border-r-0 border-b-0 rounded-none bg-white border border-gray-200">
+                        <h2 class="accordion-header mb-0" id="flush-headingThree">
+                            <button class="accordion-button
+                                    collapsed
+                                    relative
+                                    flex
+                                    items-center
+                                    w-full
+                                    py-4
+                                    px-5
+                                    text-base text-gray-800 text-left
+                                    bg-white
+                                    border-0
+                                    rounded-none
+                                    transition
+                                    focus:outline-none
+                                    font-bold"
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#faq-3"
+                                    aria-expanded="false" aria-controls="faq-3">
+                                Was benötige ich für die Teilnahme?
+                            </button>
+                        </h2>
+                        <div id="faq-3" class="accordion-collapse collapse"
+                             aria-labelledby="flush-headingThree"
+                             data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body py-4 px-5">
+                                Als persönliche Lagerausstattung benötigst du einen Schlafsack und eine Isomatte sowie eigenes Geschirr und Besteck.<br>
+                                Was du sonst noch zum Zeltlager mitnehmen solltest (vor allem an geeigneter Kleidung), fragst du am besten deine Leiter*innen. Die haben sicher einiges an Erfahrung!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 flex pt-8 sm:justify-start sm:pt-0">
                 <h1 class="ml-4 text-2xl font-bold text-gray-900 dark:text-white">Trailer zum Bezirkslager</h1>
             </div>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">

@@ -6,6 +6,7 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
+        './node_modules/tw-elements/dist/js/**/*.js',
     ],
 
     safelist: [
@@ -36,5 +37,6 @@ module.exports = {
 
     plugins: [
         require("@tailwindcss/forms"),
+        require('tw-elements/dist/plugin'),
     ],
 };
