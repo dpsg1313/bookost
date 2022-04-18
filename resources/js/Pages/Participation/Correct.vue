@@ -277,11 +277,15 @@ export default {
     methods: {
         save() {
             this.form
-                .transform((data) => ({
-                    ...data,
-                    signed_at: moment(data.signed_at, 'YYYY-MM-DDTHH:mm')?.format('YYYY-MM-DD HH:mm:ss'),
-                    paid_at: moment(data.paid_at, 'YYYY-MM-DDTHH:mm')?.format('YYYY-MM-DD HH:mm:ss'),
-                }))
+                .transform((data) => {
+                    const signedAt = moment(data.signed_at, 'YYYY-MM-DDTHH:mm')
+                    const paidAt = moment(data.paid_at, 'YYYY-MM-DDTHH:mm')
+                    return {
+                        ...data,
+                        signed_at: signedAt.isValid() ? signedAt.format('YYYY-MM-DD HH:mm:ss') : null,
+                        paid_at: paidAt.isValid() ? paidAt.format('YYYY-MM-DD HH:mm:ss') : null,
+                    }
+                })
                 .post(this.route('participation.saveCorrection', this.participation.id))
         },
     }
