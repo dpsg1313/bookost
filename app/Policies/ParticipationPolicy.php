@@ -55,4 +55,19 @@ class ParticipationPolicy
         }
         return false;
     }
+
+    /**
+     * Determine whether the user can pay the model.
+     *
+     * @param User $user
+     * @param Participation $participation
+     * @return bool
+     */
+    public function correct(User $user, Participation $participation): bool
+    {
+        if(Responsibility::query()->where('user_id', $user->id)->whereIn('group', [1313, $participation->stamm])->exists()){
+            return true;
+        }
+        return false;
+    }
 }

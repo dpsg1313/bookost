@@ -18,6 +18,8 @@ class Participation extends Model
         'prevention' => 'boolean',
         'vaccination_info_confirmed' => 'boolean',
         'foto_consent_confirmed' => 'boolean',
+        'gluten' => 'boolean',
+        'lactose' => 'boolean',
     ];
 
     public function apply() {

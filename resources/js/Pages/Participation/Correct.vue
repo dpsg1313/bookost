@@ -1,10 +1,10 @@
 <template>
-    <Head title="Anmeldung bearbeiten" />
+    <Head title="Anmeldung korrigieren" />
 
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Anmeldung bearbeiten
+                Anmeldung korrigieren
             </h2>
         </template>
 
@@ -43,10 +43,6 @@
                             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                                 Gruppe
                             </h2>
-                            <div class="mt-2">
-                                <BreezeLabel for="stamm" value="Stamm" />
-                                <BreezeSelect id="stamm" class='mt-1 block' required :options="staemme" v-model='form.stamm' />
-                            </div>
 
                             <div class="mt-2">
                                 <BreezeLabel for="stufe" value="Stufe" />
@@ -91,20 +87,6 @@
                             <div class="mt-2">
                                 <BreezeLabel for="insurance" value="Krankenversicherung (z.B. AOK, Barmer GEK etc.):" />
                                 <BreezeInput id="insurance" type="text" class="mt-1 block w-full" v-model="form.insurance" required />
-                            </div>
-                        </div>
-
-                        <div class="p-6 bg-white border-b border-gray-200">
-                            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                                Impfungen
-                            </h2>
-                            <p>Wir empfehlen die Impfung gegen Tetanus (Wundstarrkrampf) sowie Zecken (FSME) für alle Teilnehmenden des Zeltlagers. Bitte überprüft euren Impfschutz rechtzeitig und sprecht ggf. mit eurem Hausarzt.</p>
-                            <p>Zur Teilnahme am Zeltlager ist möglicherweise der Nachweis einer Corona-Impfung erforderlich. Welche Regelungen im Sommer 2022 gelten, können wir zum jetzigen Zeitpunkt noch nicht abschätzen. Falls ein Impfnachweis oder ähnliches benötigt werden sollte, kommt dazu noch eine Info-Mail.</p>
-                            <div class="mt-2">
-                                <svg class="w-8 h-8 inline text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z" clip-rule="evenodd"></path></svg>
-                                <svg class="w-6 h-6 inline text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                <BreezeCheckbox id="vaccination_info_confirmed" class="m-1" v-model:checked="form.vaccination_info_confirmed" />
-                                <BreezeLabel for="vaccination_info_confirmed" class="inline m-1 text-base text-gray-800" value="Ich habe die obenstehenden Hinweise zum Thema Impfung gelesen und verstanden" />
                             </div>
                         </div>
 
@@ -156,42 +138,21 @@
 
                         <div class="p-6 bg-white border-b border-gray-200">
                             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                                Vereinbarung über die Nutzung von Fotografien und Filmen
+                                Abgabedaten
                             </h2>
                             <div class="mt-2">
-                                Zwischen dem Bezirk München-Ost der Deutschen Pfadfinderschaft Sankt Georg (DPSG) und o.g. Person (bzw. deren Erziehungsberechtigten) wird folgende Nutzungsvereinbarung für Fotografien und Videos getroffen:
-                                <ol class="pl-8 list-decimal">
-                                    <li>Es wird zugestimmt, dass von der o.g. Person Aufnahmen erstellt und dem Bezirk München-Ost unentgeltlich zum Zwecke der Berichterstattung in Medien, zur Werbung und zur Verwendung nach Ziffer 2 zur Verfügung gestellt werden.</li>
-                                    <li>Für die Nutzung wird keine inhaltliche, zeitliche oder räumliche Beschränkung vereinbart. Der Nutzung für folgende Zwecke wird uneingeschränkt zugestimmt:
-                                        <ul class="pl-8 list-disc">
-                                            <li>Veröffentlichung in den Medien des Bezirks und der Stämme (z.B. Zeitschrift, Newsletter)</li>
-                                            <li>Veröffentlichung in der Presse (z.B. Pressefotos)</li>
-                                            <li>Veröffentlichung im Internet (z.B. auf den Homepages des Verbandes oder den Auftritten des Verbandes bei Facebook, YouTube, Twitter etc.)</li>
-                                        </ul>
-                                    </li>
-                                    <li>Die/der Fotografierte/Gefilmte stimmt einer Nutzung ihres/seines Fotos/Films zur Nutzung innerhalb von Fotomontagen unter Entfernung oder Ergänzung von Bildbestandteilen bzw. für verfremdete Bilder (keine Entstellung) der Originalaufnahmen zu.</li>
-                                    <li>Ein Anspruch auf eine Nutzung im Sinne der Ziffern 1 und 2 wird durch diese Vereinbarung nicht begründet. Der/die Fotografierte/Gefilmte kann beim Bezirk München-Ost die Art der Bild-Nutzung jederzeit erfragen.</li>
-                                    <li>Die/der Fotografierte/Gefilmte überträgt dem Fotografen alle zur Ausübung der Nutzung gem. Ziffer 2 notwendigen Rechte an den erstellten Fotografien und Filmen.</li>
-                                    <li>Der Name der/des Fotografierten/Gefilmten wird im Sinne des Datenschutzes nicht veröffentlicht. Eine Weitergabe zum Zwecke der Markt- und Meinungsforschung findet nicht statt.</li>
-                                    <li>Ein Honorar für die Fotografien und Filme wird nicht gezahlt.</li>
-                                    <li>Eine Veränderung an dieser Vereinbarung bedarf der Schriftform.</li>
-                                </ol>
+                                <BreezeLabel for="signed_at" value="Unterschriebene Anmeldung abgegeben am" />
+                                <BreezeInput id="signed_at" type="datetime-local" class="mt-1 block w-full" v-model="form.signed_at" />
                             </div>
-
                             <div class="mt-2">
-                                <svg class="w-8 h-8 inline text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z" clip-rule="evenodd"></path></svg>
-                                <svg class="w-6 h-6 inline text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                <BreezeCheckbox id="foto_consent_confirmed" class="m-1" v-model:checked="form.foto_consent_confirmed" />
-                                <BreezeLabel for="foto_consent_confirmed" class="inline m-1 text-base text-gray-800" value="Ich akzeptiere die obenstehende Vereinbarung über die Nutzung von Fotografien und Filmen" />
+                                <BreezeLabel for="paid_at" value="Beitrag bezahlt am" />
+                                <BreezeInput id="paid_at" type="datetime-local" class="mt-1 block w-full" v-model="form.paid_at" />
                             </div>
                         </div>
 
                         <div class="flex items-center justify-end mt-4 p-6">
                             <BreezeButton class="ml-4" @click="save" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                Speichern und später fortsetzen
-                            </BreezeButton>
-                            <BreezeButton class="ml-4" @click="apply" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                Verbindlich anmelden
+                                Speichern
                             </BreezeButton>
                         </div>
                     </form>
@@ -215,6 +176,7 @@ import BreezeLabel from '@/Components/Label.vue'
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head, Link } from '@inertiajs/inertia-vue3';
+import moment from "moment";
 
 export default {
     components: {
@@ -251,7 +213,6 @@ export default {
                 mail: this.participation.mail,
                 insurance_person: this.participation.insurance_person,
                 insurance: this.participation.insurance,
-                vaccination_info_confirmed: !!this.participation.vaccination_info_confirmed,
                 food: this.participation.food,
                 gluten: !!this.participation.gluten,
                 lactose: !!this.participation.lactose,
@@ -260,7 +221,8 @@ export default {
                 parent_phone: this.participation.parent_phone,
                 parent_mobile: this.participation.parent_mobile,
                 parent_address: this.participation.parent_address,
-                foto_consent_confirmed: !!this.participation.foto_consent_confirmed,
+                signed_at: moment(this.participation.signed_at).format('YYYY-MM-DDTHH:mm'),
+                paid_at: moment(this.participation.paid_at).format('YYYY-MM-DDTHH:mm'),
             }),
             staemme: {
                 131302: 'Ottobrunn',
@@ -314,13 +276,14 @@ export default {
 
     methods: {
         save() {
-            this.form.post(this.route('participation.update', this.participation.id), {})
+            this.form
+                .transform((data) => ({
+                    ...data,
+                    signed_at: moment(data.signed_at, 'YYYY-MM-DDTHH:mm')?.format('YYYY-MM-DD HH:mm:ss'),
+                    paid_at: moment(data.paid_at, 'YYYY-MM-DDTHH:mm')?.format('YYYY-MM-DD HH:mm:ss'),
+                }))
+                .post(this.route('participation.saveCorrection', this.participation.id))
         },
-        apply() {
-            if(confirm('Sicher anmelden?')) {
-                this.form.post(this.route('participation.update-and-apply', this.participation.id), {})
-            }
-        }
     }
 }
 </script>

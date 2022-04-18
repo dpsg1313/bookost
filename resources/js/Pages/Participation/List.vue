@@ -84,6 +84,11 @@
                                             Bezahlt
                                         </BreezeButton>
                                     </a>
+                                    <a class="inline-flex m-1" :href="route('participation.correct', { id: participation.id })">
+                                        <BreezeButton type="button" >
+                                            Korrigieren
+                                        </BreezeButton>
+                                    </a>
                                 </td>
                             </tr>
                             </tbody>
