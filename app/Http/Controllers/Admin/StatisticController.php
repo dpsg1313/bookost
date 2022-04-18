@@ -29,11 +29,19 @@ class StatisticController extends Controller
             ->whereNotNull('applied_at')
             ->groupBy('stufe');
 
+        $byRoleQuery = DB::table('participations')
+            ->select('role', DB::raw('count(*) as tn'))
+            ->whereNotNull('applied_at')
+            ->where('stufe', '=', 'leiter')
+            ->groupBy('role');
+
         return Inertia::render('Admin/Statistics', [
             'byStamm' => $byStammQuery->pluck('tn','stamm'),
             'byStufe' => $byStufeQuery->pluck('tn','stufe'),
+            'byRole' => $byRoleQuery->pluck('tn','role'),
             'tribes' => ParticipationController::$Tribes,
             'stufen' => ParticipationController::$Stufen,
+            'roles' => ParticipationController::$Roles,
         ]);
     }
 }

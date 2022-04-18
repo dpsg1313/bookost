@@ -50,6 +50,26 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <table class="table-auto">
+                        <thead>
+                        <tr>
+                            <th class="px-1">
+                                Rolle
+                            </th>
+                            <th class="px-1">
+                                Anzahl
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(tn, role) in byRole">
+                            <td class="border-r border-t px-1">{{getRole(role)}}</td>
+                            <td class="border-r border-t px-1">{{tn}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </BreezeAuthenticatedLayout>
@@ -76,10 +96,16 @@ export default {
         byStufe: {
             type: Object,
         },
+        byRole: {
+            type: Object,
+        },
         tribes: {
             type: Object,
         },
         stufen: {
+            type: Object,
+        },
+        roles: {
             type: Object,
         },
     },
@@ -89,6 +115,9 @@ export default {
         },
         getStufe(stufe){
             return this.stufen[stufe]
+        },
+        getRole(role){
+            return this.roles[role]
         },
     }
 }
