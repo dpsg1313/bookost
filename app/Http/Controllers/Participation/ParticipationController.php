@@ -160,6 +160,7 @@ class ParticipationController extends Controller
      */
     public function storeAndApply(Request $request)
     {
+        abort(403, 'Der Anmeldezeitraum ist vorbei!');
         $data = $this->validateForApply($request);
 
         $data['user_id'] = $request->user()->id;
@@ -225,6 +226,7 @@ class ParticipationController extends Controller
      */
     public function updateAndApply(Request $request, Participation $participation)
     {
+        abort(403, 'Der Anmeldezeitraum ist vorbei!');
         abort_unless($request->user()->can('edit', $participation), 403, 'Access denied.');
         $data = $this->validateForApply($request);
         $this->updateFields($data, $participation);
