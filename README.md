@@ -5,6 +5,8 @@ Getting into web user shell:
 
 ## Live Deployment
 
+There is a shortcut: after git-pull just run `make live_upgrade` as user `www-data` in the application directory.
+
 1. Composer install:
    `php -d open_basedir= /usr/local/bin/composer install`
 
@@ -44,3 +46,6 @@ Getting into web user shell:
 10. (Once) Create a symbolic link from public/storage to storage/app/public (docs):
 
     `php artisan storage:link`
+
+## Database Backup
+sudo mysqldump -u root -p bookost > bookost_db_backup.sql
