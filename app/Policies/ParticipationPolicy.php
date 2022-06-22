@@ -35,7 +35,7 @@ class ParticipationPolicy
      */
     public function sign(User $user, Participation $participation): bool
     {
-        if(Responsibility::query()->where('user_id', $user->id)->where('group', $participation->stamm)->exists()){
+        if(Responsibility::query()->where('user_id', $user->id)->where('group', $participation->stamm)->where('readonly', false)->exists()){
             return true;
         }
         return false;
@@ -50,7 +50,7 @@ class ParticipationPolicy
      */
     public function pay(User $user, Participation $participation): bool
     {
-        if(Responsibility::query()->where('user_id', $user->id)->where('group', $participation->stamm)->exists()){
+        if(Responsibility::query()->where('user_id', $user->id)->where('group', $participation->stamm)->where('readonly', false)->exists()){
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ class ParticipationPolicy
      */
     public function correct(User $user, Participation $participation): bool
     {
-        if(Responsibility::query()->where('user_id', $user->id)->whereIn('group', [1313, $participation->stamm])->exists()){
+        if(Responsibility::query()->where('user_id', $user->id)->whereIn('group', [1313, $participation->stamm])->where('readonly', false)->exists()){
             return true;
         }
         return false;

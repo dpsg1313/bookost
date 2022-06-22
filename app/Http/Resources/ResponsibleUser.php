@@ -19,6 +19,7 @@ class ResponsibleUser extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'responsibleFor' => $this->responsibilities()->count() ? $this->responsibilities()->first()->group : 'none',
+            'readonly' => $this->responsibilities()->count() ? !!$this->responsibilities()->first()->readonly : false,
         ];
     }
 }

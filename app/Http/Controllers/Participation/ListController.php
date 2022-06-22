@@ -28,7 +28,9 @@ class ListController extends Controller
         $query = $query->whereNotNull('applied_at');
 
         $tribes = [];
+        $readonly = false;
         foreach ($user->responsibilities()->get() as $responsibility) {
+            $readonly = $responsibility->readonly;
             if($responsibility->group == '1313'){
                 $tribes = array_keys(ParticipationController::$Tribes);
                 break;
@@ -41,6 +43,7 @@ class ListController extends Controller
 
         return Inertia::render('Participation/List', [
             'participations' => $query->get(),
+            'readonly' => $readonly,
             'tribes' => ParticipationController::$Tribes,
             'stufen' => ParticipationController::$Stufen,
             'sortColumn' => $sortColumn,

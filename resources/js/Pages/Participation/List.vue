@@ -56,7 +56,7 @@
                                         Beitrag
                                     </table-head-sort-link>
                                 </th>
-                                <th class="px-1">
+                                <th class="px-1" v-if="!readonly">
                                     Aktionen
                                 </th>
                             </tr>
@@ -73,7 +73,7 @@
                                 <td class="border-r border-t px-1 text-center">
                                     <StatusBubble class="m-1" :status="!!participation.paid_at" :info="participation.paid_at"></StatusBubble>
                                 </td>
-                                <td class="border-t px-1">
+                                <td class="border-t px-1" v-if="!readonly">
                                     <a class="inline-flex m-1" :href="route('participation.sign', { id: participation.id })" v-if="!participation.signed_at">
                                         <BreezeButton type="button" >
                                             Unterschrieben
@@ -122,6 +122,9 @@ export default {
     props: {
         participations: {
             type: Array,
+        },
+        readonly: {
+            type: Boolean,
         },
         tribes: {
             type: Object,

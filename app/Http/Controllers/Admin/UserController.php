@@ -50,8 +50,10 @@ class UserController extends Controller
     {
         $data = $request->validate([
             'group' => Rule::in(array_merge(['none', 1313], array_keys(ParticipationController::$Tribes))),
+            'readonly' => 'boolean',
         ]);
         $group = $data['group'];
+        $readonly = $data['readonly'];
 
         if($group == 'none'){
             $user->responsibilities()->delete();
@@ -59,10 +61,12 @@ class UserController extends Controller
             if($user->responsibilities()->count()) {
                 $responsibility = $user->responsibilities()->first();
                 $responsibility->group = $group;
+                $responsibility->readonly = $readonly;
                 $responsibility->save();
             }else{
                 $responsibility = new Responsibility();
                 $responsibility->group = $group;
+                $responsibility->readonly = $readonly;
                 $user->responsibilities()->save($responsibility);
             }
         }

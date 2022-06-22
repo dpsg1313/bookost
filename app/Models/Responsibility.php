@@ -9,6 +9,10 @@ class Responsibility extends Model
 {
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'readonly' => 'boolean',
+    ];
+
     public function apply() {
         $this->applied_at = now();
     }
