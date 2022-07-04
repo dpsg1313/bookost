@@ -20,7 +20,7 @@ class StatisticController extends Controller
     public function showStats(Request $request)
     {
         $byStammQuery = DB::table('participations')
-            ->select('stamm', DB::raw('count(*) as tn'))
+            ->select('stamm', DB::raw('count(*) as tn'), DB::raw('sum(bus_there = 1) as bus_there_tn'), DB::raw('sum(bus_back = 1) as bus_back_tn'))
             ->whereNotNull('applied_at')
             ->groupBy('stamm');
 
@@ -36,7 +36,7 @@ class StatisticController extends Controller
             ->groupBy('role');
 
         return Inertia::render('Admin/Statistics', [
-            'byStamm' => $byStammQuery->pluck('tn','stamm'),
+            'byStamm' => $byStammQuery->get(),
             'byStufe' => $byStufeQuery->pluck('tn','stufe'),
             'byRole' => $byRoleQuery->pluck('tn','role'),
             'tribes' => ParticipationController::$Tribes,

@@ -9,7 +9,7 @@
         </template>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex gap-4">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-wrap gap-4">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <table class="table-auto">
                         <thead>
@@ -20,12 +20,20 @@
                             <th class="px-1">
                                 Teilnehmer
                             </th>
+                            <th class="px-1">
+                                Bus Hinfahrt
+                            </th>
+                            <th class="px-1">
+                                Bus Rückfahrt
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(tn, stamm) in byStamm">
-                            <td class="border-r border-t px-1">{{getStamm(stamm)}}</td>
-                            <td class="border-r border-t px-1">{{tn}}</td>
+                        <tr v-for="row in byStamm">
+                            <td class="border-r border-t px-1">{{getStamm(row.stamm)}}</td>
+                            <td class="border-r border-t px-1">{{row.tn}}</td>
+                            <td class="border-r border-t px-1">{{row.bus_there_tn}}</td>
+                            <td class="border-r border-t px-1">{{row.bus_back_tn}}</td>
                         </tr>
                         </tbody>
                     </table>
