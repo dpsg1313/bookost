@@ -20,6 +20,8 @@ class Participation extends Model
         'foto_consent_confirmed' => 'boolean',
         'gluten' => 'boolean',
         'lactose' => 'boolean',
+        'bus_there' => 'boolean',
+        'bus_back' => 'boolean',
     ];
 
     public function apply() {

@@ -138,6 +138,24 @@
 
                         <div class="p-6 bg-white border-b border-gray-200">
                             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                                Reise Info
+                            </h2>
+                            <div class="mt-2">
+                                <BreezeCheckbox id="bus_there" class="m-1" v-model:checked="form.bus_there" />
+                                <BreezeLabel for="bus_there" class="inline m-1 text-base text-gray-800" value="Bus Hinfahrt" />
+                            </div>
+                            <div class="mt-2">
+                                <BreezeCheckbox id="bus_back" class="m-1" v-model:checked="form.bus_back" />
+                                <BreezeLabel for="bus_back" class="inline m-1 text-base text-gray-800" value="Bus Rückfahrt" />
+                            </div>
+                            <div class="mt-2">
+                                <BreezeLabel for="travel_comment" value="Kommentar zur Fahrt (optional)" />
+                                <BreezeInput id="travel_comment" type="text" class="mt-1 block w-full" v-model="form.travel_comment" />
+                            </div>
+                        </div>
+
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                                 Abgabedaten
                             </h2>
                             <div class="mt-2">
@@ -221,6 +239,9 @@ export default {
                 parent_phone: this.participation.parent_phone,
                 parent_mobile: this.participation.parent_mobile,
                 parent_address: this.participation.parent_address,
+                bus_there: !!this.participation.bus_there,
+                bus_back: !!this.participation.bus_back,
+                travel_comment: this.participation.travel_comment,
                 signed_at: moment(this.participation.signed_at).format('YYYY-MM-DDTHH:mm'),
                 paid_at: moment(this.participation.paid_at).format('YYYY-MM-DDTHH:mm'),
             }),

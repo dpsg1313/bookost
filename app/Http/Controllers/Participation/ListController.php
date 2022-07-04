@@ -54,10 +54,10 @@ class ListController extends Controller
     /**
      * Sign the participation.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     * @param Participation $participation
      * @return \Illuminate\Http\RedirectResponse
      *
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function signParticipation(Request $request, Participation $participation)
     {
@@ -71,10 +71,10 @@ class ListController extends Controller
     /**
      * Pay the participation.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     * @param Participation $participation
      * @return \Illuminate\Http\RedirectResponse
      *
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function payParticipation(Request $request, Participation $participation)
     {
@@ -104,7 +104,8 @@ class ListController extends Controller
     /**
      * Edit a participation.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     * @param Participation $participation
      * @return \Inertia\Response
      */
     public function correctParticipation(Request $request, Participation $participation)
@@ -118,10 +119,10 @@ class ListController extends Controller
     /**
      * Store the participation data.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     * @param Participation $participation
      * @return \Illuminate\Http\RedirectResponse
      *
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function saveCorrection(Request $request, Participation $participation)
     {
@@ -154,6 +155,9 @@ class ListController extends Controller
             'parent_phone' => 'nullable|string|max:255',
             'parent_mobile' => 'nullable|string|max:255',
             'parent_address' => 'nullable|string|max:255',
+            'bus_there' => 'required|boolean',
+            'bus_back' => 'required|boolean',
+            'travel_comment' => 'nullable|string|max:255',
             'signed_at' => 'nullable|date',
             'paid_at' => 'nullable|date',
         ]);
@@ -180,6 +184,9 @@ class ListController extends Controller
             'parent_phone',
             'parent_mobile',
             'parent_address',
+            'bus_there',
+            'bus_back',
+            'travel_comment',
             'signed_at',
             'paid_at',
         ];
