@@ -271,7 +271,7 @@ class ParticipationController extends Controller
             'parent_address' => $participation->parent_address,
             'foto_consent_confirmed' => $participation->foto_consent_confirmed,
             'isOver18' => $isOver18,
-            'beitrag' => $participation->stufe == 'leiter' ? 50 : 100
+            'beitrag' => $this->calculatePrice($participation),
         ]);
     }
 
@@ -417,6 +417,14 @@ class ParticipationController extends Controller
             if(array_key_exists($field, $data)){
                 $participation->$field = $data[$field];
             }
+        }
+    }
+
+    private function calculatePrice(Participation $participation){
+        if($participation->applied_at > "2022-07-01") {
+            return $participation->stufe == 'leiter' ? 75 : 125;
+        }else{
+            return $participation->stufe == 'leiter' ? 50 : 100;
         }
     }
 }

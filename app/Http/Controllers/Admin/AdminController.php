@@ -100,11 +100,13 @@ class AdminController extends Controller
 
         $data['user_id'] = $request->user()->id;
         $data['mode'] = 'manual';
+        $data['vaccination_info_confirmed'] = true;
+        $data['foto_consent_confirmed'] = true;
         $participation = Participation::create($data);
 
         $participation->apply();
         $participation->save();
-        return redirect()->route('participation.list');
+        return redirect()->route('participation.index');
     }
 
     private function validateForCorrection(Request $request): array{

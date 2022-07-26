@@ -96,20 +96,6 @@
 
                         <div class="p-6 bg-white border-b border-gray-200">
                             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                                Impfungen
-                            </h2>
-                            <p>Wir empfehlen die Impfung gegen Tetanus (Wundstarrkrampf) sowie Zecken (FSME) für alle Teilnehmenden des Zeltlagers. Bitte überprüft euren Impfschutz rechtzeitig und sprecht ggf. mit eurem Hausarzt.</p>
-                            <p>Zur Teilnahme am Zeltlager ist möglicherweise der Nachweis einer Corona-Impfung erforderlich. Welche Regelungen im Sommer 2022 gelten, können wir zum jetzigen Zeitpunkt noch nicht abschätzen. Falls ein Impfnachweis oder ähnliches benötigt werden sollte, kommt dazu noch eine Info-Mail.</p>
-                            <div class="mt-2">
-                                <svg class="w-8 h-8 inline text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z" clip-rule="evenodd"></path></svg>
-                                <svg class="w-6 h-6 inline text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                <BreezeCheckbox id="vaccination_info_confirmed" class="m-1" v-model:checked="form.vaccination_info_confirmed" />
-                                <BreezeLabel for="vaccination_info_confirmed" class="inline m-1 text-base text-gray-800" value="Ich habe die obenstehenden Hinweise zum Thema Impfung gelesen und verstanden" />
-                            </div>
-                        </div>
-
-                        <div class="p-6 bg-white border-b border-gray-200">
-                            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                                 Ernährung
                             </h2>
                             <div class="mt-2">
@@ -151,38 +137,6 @@
                             <div class="mt-2">
                                 <BreezeLabel for="parent_address" value="Anschrift (während des Lagers)" />
                                 <BreezeInput id="parent_address" type="text" class="mt-1 block w-full" v-model="form.parent_address" required />
-                            </div>
-                        </div>
-
-                        <div class="p-6 bg-white border-b border-gray-200">
-                            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                                Vereinbarung über die Nutzung von Fotografien und Filmen
-                            </h2>
-                            <div class="mt-2">
-                                Zwischen dem Bezirk München-Ost der Deutschen Pfadfinderschaft Sankt Georg (DPSG) und o.g. Person (bzw. deren Erziehungsberechtigten) wird folgende Nutzungsvereinbarung für Fotografien und Videos getroffen:
-                                <ol class="pl-8 list-decimal">
-                                    <li>Es wird zugestimmt, dass von der o.g. Person Aufnahmen erstellt und dem Bezirk München-Ost unentgeltlich zum Zwecke der Berichterstattung in Medien, zur Werbung und zur Verwendung nach Ziffer 2 zur Verfügung gestellt werden.</li>
-                                    <li>Für die Nutzung wird keine inhaltliche, zeitliche oder räumliche Beschränkung vereinbart. Der Nutzung für folgende Zwecke wird uneingeschränkt zugestimmt:
-                                        <ul class="pl-8 list-disc">
-                                            <li>Veröffentlichung in den Medien des Bezirks und der Stämme (z.B. Zeitschrift, Newsletter)</li>
-                                            <li>Veröffentlichung in der Presse (z.B. Pressefotos)</li>
-                                            <li>Veröffentlichung im Internet (z.B. auf den Homepages des Verbandes oder den Auftritten des Verbandes bei Facebook, YouTube, Twitter etc.)</li>
-                                        </ul>
-                                    </li>
-                                    <li>Die/der Fotografierte/Gefilmte stimmt einer Nutzung ihres/seines Fotos/Films zur Nutzung innerhalb von Fotomontagen unter Entfernung oder Ergänzung von Bildbestandteilen bzw. für verfremdete Bilder (keine Entstellung) der Originalaufnahmen zu.</li>
-                                    <li>Ein Anspruch auf eine Nutzung im Sinne der Ziffern 1 und 2 wird durch diese Vereinbarung nicht begründet. Der/die Fotografierte/Gefilmte kann beim Bezirk München-Ost die Art der Bild-Nutzung jederzeit erfragen.</li>
-                                    <li>Die/der Fotografierte/Gefilmte überträgt dem Fotografen alle zur Ausübung der Nutzung gem. Ziffer 2 notwendigen Rechte an den erstellten Fotografien und Filmen.</li>
-                                    <li>Der Name der/des Fotografierten/Gefilmten wird im Sinne des Datenschutzes nicht veröffentlicht. Eine Weitergabe zum Zwecke der Markt- und Meinungsforschung findet nicht statt.</li>
-                                    <li>Ein Honorar für die Fotografien und Filme wird nicht gezahlt.</li>
-                                    <li>Eine Veränderung an dieser Vereinbarung bedarf der Schriftform.</li>
-                                </ol>
-                            </div>
-
-                            <div class="mt-2">
-                                <svg class="w-8 h-8 inline text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z" clip-rule="evenodd"></path></svg>
-                                <svg class="w-6 h-6 inline text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                <BreezeCheckbox id="foto_consent_confirmed" class="m-1" v-model:checked="form.foto_consent_confirmed" />
-                                <BreezeLabel for="foto_consent_confirmed" class="inline m-1 text-base text-gray-800" value="Ich akzeptiere die obenstehende Vereinbarung über die Nutzung von Fotografien und Filmen" />
                             </div>
                         </div>
 
@@ -263,7 +217,6 @@ export default {
                 mail: this.prefill_email ?? '',
                 insurance_person: '',
                 insurance: '',
-                vaccination_info_confirmed: false,
                 food: '',
                 gluten: false,
                 lactose: false,
@@ -272,7 +225,6 @@ export default {
                 parent_phone: '',
                 parent_mobile: '',
                 parent_address: '',
-                foto_consent_confirmed: false,
                 bus_there: true,
                 bus_back: true,
                 travel_comment: '',
