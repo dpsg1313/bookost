@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Participation;
+
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Participation\ParticipationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;

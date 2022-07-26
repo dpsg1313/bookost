@@ -21,7 +21,7 @@
                                 <BreezeNavLink :href="route('participation.list')" :active="route().current('participation.list')" v-if="$page.props.auth.isResponsible">
                                     Listen
                                 </BreezeNavLink>
-                                <BreezeNavLink :href="route('admin.statistics')" :active="route().current('admin.statistics')" v-if="$page.props.auth.isResponsible">
+                                <BreezeNavLink :href="route('participation.statistics')" :active="route().current('participation.statistics')" v-if="$page.props.auth.isResponsible">
                                     Statistik
                                 </BreezeNavLink>
                                 <BreezeNavLink :href="route('admin.user.list')" :active="route().current('admin.user.list')" v-if="$page.props.auth.isAdmin">
@@ -76,7 +76,7 @@
                         <BreezeResponsiveNavLink :href="route('participation.list')" :active="route().current('participation.list')" v-if="$page.props.auth.isResponsible">
                             Listen
                         </BreezeResponsiveNavLink>
-                        <BreezeResponsiveNavLink :href="route('admin.statistics')" :active="route().current('admin.statistics')" v-if="$page.props.auth.isResponsible">
+                        <BreezeResponsiveNavLink :href="route('participation.statistics')" :active="route().current('participation.statistics')" v-if="$page.props.auth.isResponsible">
                             Statistik
                         </BreezeResponsiveNavLink>
                         <BreezeResponsiveNavLink :href="route('admin.user.list')" :active="route().current('admin.user.list')" v-if="$page.props.auth.isAdmin">

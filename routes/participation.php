@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\StatisticController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Participation\ListController;
 use App\Http\Controllers\Participation\ParticipationController;
+use App\Http\Controllers\Participation\StatisticController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,10 +31,14 @@ Route::prefix('participation')->middleware(['auth', 'verified'])->name('particip
 
     Route::get('/{participation}/correct', [ListController::class, 'correctParticipation'])->name('correct');
     Route::post('/{participation}/correct', [ListController::class, 'saveCorrection'])->name('saveCorrection');
+
+    Route::get('/statistics', [StatisticController::class, 'showStats'])->name('statistics');
 });
 
-Route::prefix('admin')->middleware(['auth', 'verified'])->name('admin.')->group(function () {
-    Route::get('/user/list', [UserController::class, 'listUsers'])->name('user.list');
-    Route::post('/user/{user}/responsibility', [UserController::class, 'saveUserResponsibility'])->name('user.responsibility');
-    Route::get('/statistics', [StatisticController::class, 'showStats'])->name('statistics');
+Route::prefix('admin')->middleware(['auth', 'verified', 'adminOnly'])->name('admin.')->group(function () {
+    Route::get('/user/list', [AdminController::class, 'listUsers'])->name('user.list');
+    Route::post('/user/{user}/responsibility', [AdminController::class, 'saveUserResponsibility'])->name('user.responsibility');
+
+    Route::get('/participation/manual', [AdminController::class, 'manual'])->name('participation.manual');
+    Route::post('/participation/append', [AdminController::class, 'append'])->name('participation.append');
 });

@@ -14,6 +14,11 @@
                     <div class="p-6 bg-white border-b border-gray-200">
                         <p class="text-lg font-bold">Der Anmeldezeitraum ist vorbei!</p>
                         <p>Für nachträgliche Anmeldungen wende dich bitte an bezirkslager@dpsg1313.de und wir schauen, was noch möglich ist.</p>
+                        <a class="inline-flex my-1 ml-4" :href="route('admin.participation.manual')" v-if="$page.props.auth.isAdmin">
+                            <BreezeButton type="button">
+                                Nachmelden
+                            </BreezeButton>
+                        </a>
                         <!--
                         <a class="inline-flex my-1 ml-4" :href="route('participation.create')" >
                             <BreezeButton type="button" >
@@ -42,11 +47,11 @@
                                 <StatusPill class="m-1" :status="!!participation.paid_at">bezahlt</StatusPill>
                             </div>
                             <div class="justify-end items-center">
-                                <a class="inline-flex m-1" :href="route('participation.edit', { id: participation.id })" v-if="!participation.applied_at" >
+                                <!--<a class="inline-flex m-1" :href="route('participation.edit', { id: participation.id })" v-if="!participation.applied_at" >
                                     <BreezeButton type="button" >
                                         Fortsetzen
                                     </BreezeButton>
-                                </a>
+                                </a>-->
                                 <a class="inline-flex m-1" :href="route('participation.pdf', { id: participation.id })" v-if="participation.applied_at" download >
                                     <BreezeButton type="button">
                                         PDF herunterladen
@@ -58,7 +63,7 @@
                                     </BreezeButton>
                                 </a>
                             </div>
-                            <div class="w-full" v-if="participation.applied_at">
+                            <div class="w-full" v-if="participation.applied_at && participation.mode !== 'manual'">
                                 <ol class="list-decimal ml-4 mt-2">
                                     <template v-if="!participation.signed_at">
                                         <li>Anmeldung herunterladen und ausdrucken.</li>
@@ -78,6 +83,9 @@
                                         </li>
                                     </template>
                                 </ol>
+                            </div>
+                            <div class="w-full" v-if="participation.mode === 'manual'">
+                                (Manuell nachgemeldet)
                             </div>
                         </div>
                     </div>
