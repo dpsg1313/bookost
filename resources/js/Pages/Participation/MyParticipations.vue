@@ -74,7 +74,7 @@
                                     </template>
                                     <template v-if="!participation.paid_at">
                                         <li>
-                                            Teilnahmebeitrag ({{participation.stufe === 'leiter' ? 50 : 100}}€) überweisen bis spätestens 30. April.
+                                            Teilnahmebeitrag ({{calculatePrice(participation)}}€) überweisen bis spätestens 30. April.
                                             <p class="ml-8">
                                                 Kontoinhaber: {{ stamm.bankAccountOwner }}<br>
                                                 IBAN: {{ stamm.iban }}<br>
@@ -85,7 +85,8 @@
                                 </ol>
                             </div>
                             <div class="w-full" v-if="participation.mode === 'manual'">
-                                (Manuell nachgemeldet)
+                                <p>Teilnahmebeitrag: {{calculatePrice(participation)}}€</p>
+                                <p>(Manuell nachgemeldet)</p>
                             </div>
                         </div>
                     </div>
@@ -128,6 +129,13 @@ export default {
         isOver18(birthday) {
             let b = new Date(birthday)
             return new Date(b.getFullYear() + 18, b.getMonth(), b.getDate()) <= new Date();
+        },
+        calculatePrice(participation){
+            if(participation.applied_at > "2022-07-01") {
+                return participation.stufe === 'leiter' ? 75 : 125;
+            }else{
+                return participation.stufe === 'leiter' ? 50 : 100
+            }
         }
     }
 }
