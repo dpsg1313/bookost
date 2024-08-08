@@ -151,8 +151,8 @@
 
                         <div class="ml-20">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-md">
-                                ... registrieren sich ebenfalls, auch wenn sie nicht mit aufs Lager fahren möchten.<br>
-                                Danach müsst ihr leider noch ein wenig warten. Die Anzeige der Anmeldedaten für Verantwortliche befindet sich derzeit noch in der Entwicklung.
+                                ... registrieren sich ebenfalls, egal ob ihr aufs Lager mitfahren möchtet oder nicht.<br>
+                                Danach meldet ihr euch bei den BeVos und lasst euch für die Verwaltung freischalten. Gebt dabei bitte die Emailadresse an, die ihr bei der Registrierung verwendet habt.
                             </div>
                         </div>
                     </div>
