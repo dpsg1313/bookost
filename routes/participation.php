@@ -32,6 +32,9 @@ Route::prefix('participation')->middleware(['auth', 'verified'])->name('particip
     Route::get('/bulksign', [ListController::class, 'bulkSignParticipations'])->name('bulksign');
     Route::post('/bulksign', [ListController::class, 'saveSignatures'])->name('saveSignatures');
 
+    Route::get('/bulkpay', [ListController::class, 'bulkPayParticipations'])->name('bulkpay');
+    Route::post('/bulkpay', [ListController::class, 'savePayments'])->name('savePayments');
+
     Route::get('/{participation}/correct', [ListController::class, 'correctParticipation'])->name('correct');
     Route::post('/{participation}/correct', [ListController::class, 'saveCorrection'])->name('saveCorrection');
 

@@ -31,6 +31,9 @@ class Participation extends Model
     public function isSigned() {
         return !is_null($this->signed_at);
     }
+    public function isPaid() {
+        return !is_null($this->paid_at);
+    }
 
     public function apply() {
         $this->applied_at = now();
@@ -46,6 +49,10 @@ class Participation extends Model
 
     public function pay() {
         $this->paid_at = now();
+    }
+
+    public function unpay() {
+        $this->paid_at = null;
     }
 
     public function user(): BelongsTo

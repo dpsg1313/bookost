@@ -22,6 +22,11 @@
                                 Unterschriften bestätigen
                             </BreezeButton>
                         </a>
+                        <a class="inline-flex my-1 ml-4" :href="route('participation.bulkpay')">
+                            <BreezeButton type="button">
+                                Beiträge bestätigen
+                            </BreezeButton>
+                        </a>
                     </div>
                 </div>
 

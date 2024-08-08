@@ -163,6 +163,66 @@ class ListController extends Controller
     }
 
     /**
+     * Bulk edit participation (to confirm payments).
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param Participation $participation
+     * @return \Inertia\Response
+     */
+    public function bulkPayParticipations(Request $request)
+    {
+        $user = $request->user();
+
+        $query = Participation::query();
+        $query = $query->whereNotNull('applied_at');
+
+        $tribes = [];
+        foreach ($user->responsibilities()->where('readonly', '=', false)->get() as $responsibility) {
+            if($responsibility->group == '1313'){
+                $tribes = array_keys(ParticipationController::$Tribes);
+                break;
+            }
+            $tribes[] = $responsibility->group;
+        }
+        $query = $query->whereIn('stamm', $tribes);
+
+        $query = $query->orderBy('lastname');
+
+        return Inertia::render('Participation/BulkPay', [
+            'participations' => $query->get(),
+        ]);
+    }
+
+    /**
+     * Store the payments from bulk-sign.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     */
+    public function savePayments(Request $request)
+    {
+        DB::transaction(function () use ($request) {
+            $data = $request->post();
+            foreach ($data as $id => $paid) {
+                $participation = Participation::find($id);
+                if (!$participation) {
+                    abort(404, 'Participation not found.');
+                }
+                abort_unless($request->user()->can('pay', $participation), 403, 'Access denied.');
+                if (!$participation->isPaid() && $paid) {
+                    $participation->pay();
+                    $participation->save();
+                } else if ($participation->isPaid() && !$paid) {
+                    $participation->unpay();
+                    $participation->save();
+                }
+            }
+        });
+        return redirect()->route('participation.list');
+    }
+
+    /**
      * Edit a participation.
      *
      * @param \Illuminate\Http\Request $request
