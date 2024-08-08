@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Lageranmeldung</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
@@ -26,6 +27,13 @@
 </head>
 
 <body>
+
+<div class="header" style="text-align: center">
+    <div class="header flex justify-between items-center">
+        <img class="inline-flex h-20" src="{{asset('images/München-Ost_Logo2_noBackground.png')}}" alt="Logo DPSG München-Ost" />
+        <h2 class="ml-8 inline-flex justify-end text-center mb-3 text-3xl font-bold">Anmeldung zum Bezirkslager 2022</h2>
+    </div>
+</div>
 
 <table>
     <thead><tr><td>
@@ -134,10 +142,7 @@
                     <table class="table table-bordered mb-5">
                         <tbody>
                         <tr>
-                            <td colspan="2">Wir empfehlen die Impfung gegen Tetanus (Wundstarrkrampf) sowie Zecken (FSME) für alle Teilnehmenden des Zeltlagers. Bitte überprüft euren Impfschutz rechtzeitig und sprecht ggf. mit eurem Hausarzt.</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">Zur Teilnahme am Zeltlager ist möglicherweise der Nachweis einer Corona-Impfung erforderlich. Welche Regelungen im Sommer 2022 gelten, können wir zum jetzigen Zeitpunkt noch nicht abschätzen. Falls ein Impfnachweis oder ähnliches benötigt werden sollte, kommt dazu noch eine Info-Mail.</td>
+                            <td colspan="2">Wir empfehlen die Impfung gegen Tetanus (Wundstarrkrampf) sowie FSME (Zecken) für alle Teilnehmenden des Zeltlagers. Bitte überprüft euren Impfschutz rechtzeitig und sprecht ggf. mit eurem Hausarzt.</td>
                         </tr>
                         <tr>
                             <td><label for="vaccination_info_confirmed">Ich habe die obenstehenden Hinweise zum Thema Impfung gelesen und verstanden</label></td><td><input type="checkbox" id="vaccination_info_confirmed" {{ $vaccination_info_confirmed ? ' checked="checked"' : '' }}/></td>
@@ -250,13 +255,6 @@
             </div>
         </td></tr></tbody>
 </table>
-
-<div class="header" style="text-align: center">
-    <div class="header flex justify-between items-center">
-        <img class="inline-flex h-20" src="{{asset('images/München-Ost_Logo2_noBackground.png')}}" alt="Logo DPSG München-Ost" />
-        <h2 class="ml-8 inline-flex justify-end text-center mb-3 text-3xl font-bold">Anmeldung zum Bezirkslager 2022</h2>
-    </div>
-</div>
 
 </body>
 

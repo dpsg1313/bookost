@@ -152,6 +152,10 @@
                                 <BreezeLabel for="travel_comment" value="Kommentar zur Fahrt (optional)" />
                                 <BreezeInput id="travel_comment" type="text" class="mt-1 block w-full" v-model="form.travel_comment" />
                             </div>
+                            <div class="mt-2">
+                                <BreezeLabel for="bus_stop" value="Abfahrtsort" />
+                                <BreezeSelect id="bus_stop" class='mt-1 block' :options="bus_stops" v-model='form.bus_stop' />
+                            </div>
                         </div>
 
                         <div class="p-6 bg-white border-b border-gray-200">
@@ -241,6 +245,7 @@ export default {
                 parent_address: this.participation.parent_address,
                 bus_there: !!this.participation.bus_there,
                 bus_back: !!this.participation.bus_back,
+                bus_stop: this.bus_stop,
                 travel_comment: this.participation.travel_comment,
                 signed_at: moment(this.participation.signed_at).format('YYYY-MM-DDTHH:mm'),
                 paid_at: moment(this.participation.paid_at).format('YYYY-MM-DDTHH:mm'),
@@ -284,7 +289,14 @@ export default {
                 staff: 'Staff/Helfer',
                 missing: 'Meine Aufgabe fehlt in der Auswahl',
                 dunno: 'Weiß ich noch nicht',
-            }
+            },
+            bus_stops: {
+                perlach: 'Perlach',
+                riem: 'Riem',
+                ottobrunn: 'Ottobrunn',
+                vortrupp: 'Vortrupp',
+                none: 'Eigene Anreise',
+            },
         }
     },
 

@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="mt-8 flex pt-8 sm:justify-start sm:pt-0">
-                <h1 class="ml-4 text-2xl font-bold text-gray-900 dark:text-white">Bezirkslager 2022</h1>
+                <h1 class="ml-4 text-2xl font-bold text-gray-900 dark:text-white">Bezirkslager 2025</h1>
             </div>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg p-6">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-stretch justify-around">
@@ -270,17 +270,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="mt-8 flex pt-8 sm:justify-start sm:pt-0">
-                <h1 class="ml-4 text-2xl font-bold text-gray-900 dark:text-white">Trailer zum Bezirkslager</h1>
-            </div>
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                <video playsinline controls poster="/images/Trailer_Thumbnail.png" class="flex justify-center w-full" tabindex="-1" aria-label="Motto-Reveal-Trailer">
-                    <source src="/images/MottoRevealTrailer.mp4" type="video/mp4" />
-                    <img src="/img/Trailer_Thumbnail.png" alt="Motto-Logo">
-                </video>
-
             </div>
 
             <div class="flex justify-center mt-4 sm:items-center sm:justify-between">

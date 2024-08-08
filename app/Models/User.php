@@ -43,6 +43,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    protected $admin_emails = [
+        'maximilian.hofstetter@gmx.net',
+        'florian.kick@googlemail.com'
+    ];
+
     public function participations(): HasMany
     {
         return $this->hasMany(Participation::class, 'user_id');
@@ -55,7 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isAdmin(): bool
     {
-        return $this->email == 'florian.kick@googlemail.com' && $this->hasVerifiedEmail();
+        return in_array($this->email, $this->admin_emails) && $this->hasVerifiedEmail();
     }
 
     public function isResponsible(): bool

@@ -8,6 +8,7 @@ use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use PDF;
@@ -103,6 +104,18 @@ class ParticipationController extends Controller
         'dunno' => 'Weiß ich noch nicht',
     ];
 
+    public static $BusStops = [
+        'perlach' => 'Perlach',
+        'riem' => 'Riem',
+        'ottobrunn' => 'Ottobrunn',
+        'vortrupp' => 'Vortrupp',
+        'none' => 'Eigene Anreise',
+    ];
+
+    public static $EarlyBirdUntil = "2024-12-31";
+
+    public static $ApplicationOpenUntil = "2025-03-31";
+
     /**
      * Display list of participations.
      *
@@ -160,7 +173,7 @@ class ParticipationController extends Controller
      */
     public function storeAndApply(Request $request)
     {
-        abort(403, 'Der Anmeldezeitraum ist vorbei!');
+        abort_unless($this->applicationOpen(),403, 'Der Anmeldezeitraum ist vorbei!');
         $data = $this->validateForApply($request);
 
         $data['user_id'] = $request->user()->id;
@@ -226,7 +239,7 @@ class ParticipationController extends Controller
      */
     public function updateAndApply(Request $request, Participation $participation)
     {
-        abort(403, 'Der Anmeldezeitraum ist vorbei!');
+        abort_unless($this->applicationOpen(),403, 'Der Anmeldezeitraum ist vorbei!');
         abort_unless($request->user()->can('edit', $participation), 403, 'Access denied.');
         $data = $this->validateForApply($request);
         $this->updateFields($data, $participation);
@@ -235,19 +248,11 @@ class ParticipationController extends Controller
         return redirect()->route('participation.show', $participation->id);
     }
 
-    /**
-     * Print a participation.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function print(Request $request, Participation $participation)
-    {
+    private function getPrintData(Participation $participation){
         $bday = new DateTime($participation->birthday);
         $bday->add(new DateInterval("P18Y")); //adds time interval of 18 years to bday
         $isOver18 = $bday < new DateTime();
-
-        return view('participation_pdf', [
+        return [
             'firstname' => $participation->firstname,
             'lastname' => $participation->lastname,
             'birthday' => Carbon::make($participation->birthday),
@@ -272,28 +277,39 @@ class ParticipationController extends Controller
             'foto_consent_confirmed' => $participation->foto_consent_confirmed,
             'isOver18' => $isOver18,
             'beitrag' => $this->calculatePrice($participation),
-        ]);
+        ];
+    }
+
+    /**
+     * Print a participation.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function print(Request $request, Participation $participation)
+    {
+        return view('participation_pdf', $this->getPrintData($participation));
     }
 
     // Generate PDF
     public function createPDF(Request $request, Participation $participation) {
-        $result = $this->chromePDF($request, $participation);
+        $result = $this->wkHtml2PDF($request, $participation);
 
         if($result !== false) {
             return $result;
         }
 
-        // share data to view
-        view()->share('participation',$participation);
-        $pdf = PDF::loadView('participation_pdf', $participation);
+        abort(500, "PDF generation failed!");
+        $pdf = PDF::loadView('participation_pdf', $this->getPrintData($participation));
 
         // download PDF file with download method
-        return $pdf->download('anmeldung.pdf');
+        return $pdf->download('Anmeldung_BeLa.pdf');
     }
 
     private function chromePDF(Request $request, Participation $participation){
         Storage::makeDirectory('generated_pdfs');
         $file = 'generated_pdfs' . DIRECTORY_SEPARATOR . Uuid::uuid4() . '.pdf';
+        info(config('app.chrome_path'));
         $process = new Process(
             [
                 config('app.chrome_path'),
@@ -320,6 +336,33 @@ class ParticipationController extends Controller
         }
         catch (ProcessFailedException $exception)
         {
+            Log::error($exception);
+            return false;
+        }
+    }
+
+    private function wkHtml2PDF(Request $request, Participation $participation){
+        Storage::makeDirectory('generated_pdfs');
+        $file = 'generated_pdfs' . DIRECTORY_SEPARATOR . Uuid::uuid4() . '.pdf';
+        $process = new Process(
+            [
+                'wkhtmltopdf',
+                route('participation.print', [
+                    'participation' => $participation->id,
+                    'secret' => config('app.pdf_secret')
+                ]),
+                Storage::path($file)
+            ], null, null, null, null
+        );
+
+        try
+        {
+            $process->mustRun();
+            return \Storage::download($file, 'Anmeldung_Bezirkslager.pdf');
+        }
+        catch (ProcessFailedException $exception)
+        {
+            Log::error($exception);
             return false;
         }
     }
@@ -421,10 +464,14 @@ class ParticipationController extends Controller
     }
 
     private function calculatePrice(Participation $participation){
-        if($participation->applied_at > "2022-07-01") {
+        if($participation->applied_at > self::$EarlyBirdUntil) {
             return $participation->stufe == 'leiter' ? 75 : 125;
         }else{
             return $participation->stufe == 'leiter' ? 50 : 100;
         }
+    }
+
+    private function applicationOpen(){
+        return Carbon::now()->isBefore(Carbon::parse(self::$ApplicationOpenUntil));
     }
 }

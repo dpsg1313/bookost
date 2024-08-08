@@ -53,10 +53,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Secret String for Secret Middleware
+    | Path to the Chrome application
     |--------------------------------------------------------------------------
     |
-    | Used to somewhat secure the print route for pdf generation.
+    | Used for efficient PDF generation.
     |
     */
     'chrome_path' => (string) env('CHROME_PATH', 'google-chrome'),
