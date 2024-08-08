@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @mixin Builder
+ */
 class Participation extends Model
 {
     protected $guarded = ['id'];
@@ -24,12 +28,20 @@ class Participation extends Model
         'bus_back' => 'boolean',
     ];
 
+    public function isSigned() {
+        return !is_null($this->signed_at);
+    }
+
     public function apply() {
         $this->applied_at = now();
     }
 
     public function sign() {
         $this->signed_at = now();
+    }
+
+    public function unsign() {
+        $this->signed_at = null;
     }
 
     public function pay() {

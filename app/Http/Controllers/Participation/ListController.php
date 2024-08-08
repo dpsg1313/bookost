@@ -6,6 +6,7 @@ use App\Exports\ParticipationExport;
 use App\Http\Controllers\Controller;
 use App\Models\Participation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
@@ -99,6 +100,66 @@ class ListController extends Controller
         }
 
         return (new ParticipationExport())->forTribes($tribes)->download('Anmeldungen.xlsx');
+    }
+
+    /**
+     * Bulk edit participation (to confirm signatures).
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param Participation $participation
+     * @return \Inertia\Response
+     */
+    public function bulkSignParticipations(Request $request)
+    {
+        $user = $request->user();
+
+        $query = Participation::query();
+        $query = $query->whereNotNull('applied_at');
+
+        $tribes = [];
+        foreach ($user->responsibilities()->where('readonly', '=', false)->get() as $responsibility) {
+            if($responsibility->group == '1313'){
+                $tribes = array_keys(ParticipationController::$Tribes);
+                break;
+            }
+            $tribes[] = $responsibility->group;
+        }
+        $query = $query->whereIn('stamm', $tribes);
+
+        $query = $query->orderBy('lastname');
+
+        return Inertia::render('Participation/BulkSign', [
+            'participations' => $query->get(),
+        ]);
+    }
+
+    /**
+     * Store the signatures from bulk-sign.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     */
+    public function saveSignatures(Request $request)
+    {
+        DB::transaction(function () use ($request) {
+            $data = $request->post();
+            foreach ($data as $id => $signed) {
+                $participation = Participation::find($id);
+                if (!$participation) {
+                    abort(404, 'Participation not found.');
+                }
+                abort_unless($request->user()->can('sign', $participation), 403, 'Access denied.');
+                if (!$participation->isSigned() && $signed) {
+                    $participation->sign();
+                    $participation->save();
+                } else if ($participation->isSigned() && !$signed) {
+                    $participation->unsign();
+                    $participation->save();
+                }
+            }
+        });
+        return redirect()->route('participation.list');
     }
 
     /**

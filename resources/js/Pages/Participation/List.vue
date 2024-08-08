@@ -17,6 +17,11 @@
                                 Alle Exportieren
                             </BreezeButton>
                         </a>
+                        <a class="inline-flex my-1 ml-4" :href="route('participation.bulksign')">
+                            <BreezeButton type="button">
+                                Unterschriften bestätigen
+                            </BreezeButton>
+                        </a>
                     </div>
                 </div>
 
