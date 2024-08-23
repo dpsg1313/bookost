@@ -200,7 +200,7 @@
                                         <ul class="pl-8 list-disc">
                                             <li>Veröffentlichung in den Medien des Bezirks und der Stämme (z.B. Zeitschrift, Newsletter)</li>
                                             <li>Veröffentlichung in der Presse (z.B. Pressefotos)</li>
-                                            <li>Veröffentlichung im Internet (z.B. auf den Homepages des Verbandes oder den Auftritten des Verbandes bei Facebook, YouTube, Twitter etc.)</li>
+                                            <li>Veröffentlichung auf Homepage und Sozialen Medien</li>
                                         </ul>
                                     </li>
                                     <li>Die/der Fotografierte/Gefilmte stimmt einer Nutzung ihres/seines Fotos/Films zur Nutzung innerhalb von Fotomontagen unter Entfernung oder Ergänzung von Bildbestandteilen bzw. für verfremdete Bilder (keine Entstellung) der Originalaufnahmen zu.</li>
