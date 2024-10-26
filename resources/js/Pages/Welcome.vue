@@ -37,15 +37,15 @@
                     <div class="p-6 sm:border-b sm:border-r lg:border-b-0 border-gray-200 dark:border-gray-700 text-center">
                         <h2 class="text-lg font-bold text-gray-900 dark:text-white">Termin</h2>
                         <ul class="">
-                            <li>von 28. August</li>
-                            <li>bis 4. September</li>
+                            <li>von 9. August</li>
+                            <li>bis 16. August</li>
                         </ul>
                     </div>
                     <div class="p-6 sm:border-b sm:border-l lg:border-b-0 lg:border-r border-gray-200 dark:border-gray-700 text-center">
                         <h2 class="text-lg font-bold text-gray-900 dark:text-white">Kosten</h2>
                         <ul class="">
-                            <li>100€ für Kinder/Jugendliche</li>
-                            <li>50€ für Leiter*innen</li>
+                            <li>individuell je nach Stamm</li>
+                            <li>und Funktion</li>
                         </ul>
                     </div>
                     <div class="p-6 sm:border-t sm:border-r lg:border-t-0 lg:border-l border-gray-200 dark:border-gray-700 text-center">
@@ -58,8 +58,7 @@
                     <div class="p-6 sm:border-t sm:border-l lg:border-t-0 border-gray-200 dark:border-gray-700 text-center">
                         <h2 class="text-lg font-bold text-gray-900 dark:text-white">Anmeldeschluss</h2>
                         <div>
-                            17. April 2022<br>
-                            Ostersonntag
+                            15. Dezember 2024
                         </div>
                     </div>
                 </div>
@@ -184,10 +183,73 @@
                                     font-bold"
                                     type="button" data-bs-toggle="collapse" data-bs-target="#faq-1"
                                     aria-expanded="false" aria-controls="faq-1">
-                                Wie kommen wir zum Lagerplatz?
+                                Was kostet das Lager?
                             </button>
                         </h2>
                         <div id="faq-1" class="accordion-collapse border-0 collapse"
+                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body py-4 px-5">
+                                Die Gesamtkosten für das Lager betragen 225€ pro Person. Dank diverser Zuschüsse ist der Teilnehmerbeitrag niedriger.<br>
+                                Da die Zuschüsse über die Stämme beantragt werden und unterschiedlich hoch sein können, sind auch die Lagerbeiträge abhängig vom Stamm.<br>
+                                Erfragt bitte den konkreten Teilnehmerbeitrag bei eurem Stamm.
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="accordion-item border-t-0 border-l-0 border-r-0 rounded-none bg-white border border-gray-200">
+                        <h2 class="accordion-header mb-0" id="flush-headingOne">
+                            <button class="accordion-button
+                                    collapsed
+                                    relative
+                                    flex
+                                    items-center
+                                    w-full
+                                    py-4
+                                    px-5
+                                    text-base text-gray-800 text-left
+                                    bg-white
+                                    border-0
+                                    rounded-none
+                                    transition
+                                    focus:outline-none
+                                    font-bold"
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#faq-2"
+                                    aria-expanded="false" aria-controls="faq-2">
+                                Wohin muss ich den Lagerbeitrag überweisen?
+                            </button>
+                        </h2>
+                        <div id="faq-2" class="accordion-collapse border-0 collapse"
+                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body py-4 px-5">
+                                Der Lagerbeitrag wird über die Stämme gesammelt.<br>
+                                Die Kontoverbindung erhaltet ihr von eurem Stamm.
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="accordion-item border-t-0 border-l-0 border-r-0 rounded-none bg-white border border-gray-200">
+                        <h2 class="accordion-header mb-0" id="flush-headingOne">
+                            <button class="accordion-button
+                                    collapsed
+                                    relative
+                                    flex
+                                    items-center
+                                    w-full
+                                    py-4
+                                    px-5
+                                    text-base text-gray-800 text-left
+                                    bg-white
+                                    border-0
+                                    rounded-none
+                                    transition
+                                    focus:outline-none
+                                    font-bold"
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#faq-3"
+                                    aria-expanded="false" aria-controls="faq-3">
+                                Wie kommen wir zum Lagerplatz?
+                            </button>
+                        </h2>
+                        <div id="faq-3" class="accordion-collapse border-0 collapse"
                              aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body py-4 px-5">
                                 Wir fahren gemeinsam mit Reisebussen von München zum Lagerplatz und wieder zurück.<br>
@@ -213,12 +275,12 @@
                                     transition
                                     focus:outline-none
                                     font-bold"
-                                    type="button" data-bs-toggle="collapse" data-bs-target="#faq-2"
-                                    aria-expanded="false" aria-controls="faq-2">
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#faq-4"
+                                    aria-expanded="false" aria-controls="faq-4">
                                 Was ist im Lagerbeitrag enhalten?
                             </button>
                         </h2>
-                        <div id="faq-2" class="accordion-collapse border-0 collapse"
+                        <div id="faq-4" class="accordion-collapse border-0 collapse"
                              aria-labelledby="flush-headingTwo"
                              data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body py-4 px-5">
@@ -255,12 +317,12 @@
                                     transition
                                     focus:outline-none
                                     font-bold"
-                                    type="button" data-bs-toggle="collapse" data-bs-target="#faq-3"
-                                    aria-expanded="false" aria-controls="faq-3">
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#faq-5"
+                                    aria-expanded="false" aria-controls="faq-5">
                                 Was benötige ich für die Teilnahme?
                             </button>
                         </h2>
-                        <div id="faq-3" class="accordion-collapse collapse"
+                        <div id="faq-5" class="accordion-collapse collapse"
                              aria-labelledby="flush-headingThree"
                              data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body py-4 px-5">

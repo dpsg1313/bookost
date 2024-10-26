@@ -69,23 +69,18 @@
                                         <li>Anmeldung herunterladen und ausdrucken.</li>
                                         <li v-if="isOver18(participation.birthday) || participation.mode === 'parent'">Anmeldung unterschreiben.</li>
                                         <li v-else>Von deinen Eltern unterschreiben lassen.</li>
-                                        <li v-if="participation.mode === 'parent' || participation.stufe === 'leiter'">Anmeldung bis spätestens 17. April beim Stamm abgeben.</li>
-                                        <li v-else>Anmeldung bis spätestens 17. April bei deinen Leiter*innen (oder beim Stammesvorstand) abgeben.</li>
+                                        <li v-if="participation.mode === 'parent' || participation.stufe === 'leiter'">Anmeldung bis spätestens 15. Dezember beim Stamm abgeben.</li>
+                                        <li v-else>Anmeldung bis spätestens 15. Dezember bei deinen Leiter*innen (oder beim Stammesvorstand) abgeben.</li>
                                     </template>
                                     <template v-if="!participation.paid_at">
                                         <li>
-                                            Teilnahmebeitrag ({{calculatePrice(participation)}}€) überweisen bis spätestens 30. April.
-                                            <p class="ml-8">
-                                                Kontoinhaber: {{ stamm.bankAccountOwner }}<br>
-                                                IBAN: {{ stamm.iban }}<br>
-                                                BIC: {{ stamm.bic }}
-                                            </p>
+                                            Teilnahmebeitrag bis spätestens 31. Dezember an den Stamm überweisen. <br>
+                                            Höhe des Beitrags sowie die Kontoverbindung erfährst du bei deinem Stamm.
                                         </li>
                                     </template>
                                 </ol>
                             </div>
                             <div class="w-full" v-if="participation.mode === 'manual'">
-                                <p>Teilnahmebeitrag: {{calculatePrice(participation)}}€</p>
                                 <p>(Manuell nachgemeldet)</p>
                             </div>
                         </div>
@@ -130,13 +125,6 @@ export default {
             let b = new Date(birthday)
             return new Date(b.getFullYear() + 18, b.getMonth(), b.getDate()) <= new Date();
         },
-        calculatePrice(participation){
-            if(participation.applied_at > "2022-07-01") {
-                return participation.stufe === 'leiter' ? 75 : 125;
-            }else{
-                return participation.stufe === 'leiter' ? 50 : 100
-            }
-        }
     }
 }
 </script>

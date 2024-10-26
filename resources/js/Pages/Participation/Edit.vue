@@ -115,6 +115,10 @@
                                 <BreezeRadio id="food" class="mt-1 block w-full" name="food" :options="foods" v-model="form.food" required />
                             </div>
                             <div class="mt-2">
+                                <BreezeCheckbox id="fishsticks" class="m-1" v-model:checked="form.fishsticks" />
+                                <BreezeLabel for="fishsticks" class="inline m-1 text-base text-gray-800" value="Ich würde auf dem Lager auch Fischstäbchen essen" />
+                            </div>
+                            <div class="mt-2">
                                 <BreezeCheckbox id="gluten" class="m-1" v-model:checked="form.gluten" />
                                 <BreezeLabel for="gluten" class="inline m-1 text-base text-gray-800" value="glutenfrei" />
                             </div>
@@ -252,6 +256,7 @@ export default {
                 insurance: this.participation.insurance,
                 vaccination_info_confirmed: !!this.participation.vaccination_info_confirmed,
                 food: this.participation.food,
+                fishsticks: !!this.participation.fishsticks,
                 gluten: !!this.participation.gluten,
                 lactose: !!this.participation.lactose,
                 allergies: this.participation.allergies,
@@ -285,8 +290,9 @@ export default {
             },
             foods: {
                 vegetarian: 'vegetarisch',
-                meet: 'esse auch Fleisch',
                 vegan: 'vegan',
+                nopig: 'kein Schweinefleisch',
+                meet: 'mit Fleisch',
             },
             roles: {
                 woeleiter: 'Wö-Leiter*in',
@@ -316,7 +322,7 @@ export default {
             this.form.post(this.route('participation.update', this.participation.id), {})
         },
         apply() {
-            if(confirm('Sicher anmelden?')) {
+            if(confirm('Die Anmeldung ist verbindlich. Möchtest du die Anmeldung jetzt abschicken?')) {
                 this.form.post(this.route('participation.update-and-apply', this.participation.id), {})
             }
         }

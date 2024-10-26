@@ -22,15 +22,11 @@
                             <li>Anmeldung herunterladen und ausdrucken.</li>
                             <li v-if="isOver18 || participation.mode === 'parent'">Anmeldung unterschreiben.</li>
                             <li v-else>Von deinen Eltern unterschreiben lassen.</li>
-                            <li v-if="participation.mode === 'parent' || participation.stufe === 'leiter'">Anmeldung bis spätestens 17. April beim Stamm abgeben.</li>
-                            <li v-else>Anmeldung bis spätestens 17. April bei deinen Leiter*innen (oder beim Stammesvorstand) abgeben.</li>
-                            <li>
-                                Teilnahmebeitrag ({{participation.stufe === 'leiter' ? 50 : 100}}€) überweisen bis spätestens 30. April.
-                                <p class="ml-8">
-                                    Kontoinhaber: {{ stamm.bankAccountOwner }}<br>
-                                    IBAN: {{ stamm.iban }}<br>
-                                    BIC: {{ stamm.bic }}
-                                </p>
+                            <li v-if="participation.mode === 'parent' || participation.stufe === 'leiter'">Anmeldung bis spätestens 15. Dezember beim Stamm abgeben.</li>
+                            <li v-else>Anmeldung bis spätestens 15. Dezember bei deinen Leiter*innen (oder beim Stammesvorstand) abgeben.</li>
+                            <li v-if="!participation.paid_at">
+                                Teilnahmebeitrag bis spätestens 31. Dezember an den Stamm überweisen. <br>
+                                Höhe des Beitrags sowie die Kontoverbindung erfährst du bei deinem Stamm.
                             </li>
                         </ol>
                         <div class="flex items-center">

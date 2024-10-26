@@ -31,7 +31,7 @@
 <div class="header" style="text-align: center">
     <div class="header flex justify-between items-center">
         <img class="inline-flex h-20" src="{{asset('images/München-Ost_Logo2_noBackground.png')}}" alt="Logo DPSG München-Ost" />
-        <h2 class="ml-8 inline-flex justify-end text-center mb-3 text-3xl font-bold">Anmeldung zum Bezirkslager 2022</h2>
+        <h2 class="ml-8 inline-flex justify-end text-center mb-3 text-3xl font-bold">Anmeldung zum Bezirkslager 2025</h2>
     </div>
 </div>
 
@@ -45,7 +45,7 @@
                     <tbody>
                     <tr>
                         <td>Zeitraum</td>
-                        <td>28. August bis 4. September 2022</td>
+                        <td>9. bis 16. August 2025</td>
                     </tr>
                     <tr>
                         <td>Ort</td>
@@ -55,12 +55,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Teilnahmebeitrag</td>
-                        <td>{{ $beitrag }}€</td>
-                    </tr>
-                    <tr>
-                        <td>Bitte überweisen bis spätestens 30. April 2022 an folgende Bankverbindung:</td>
-                        <td>Kontoinhaber: {{ $stamm['bankAccountOwner'] }}<br>IBAN: {{ $stamm['iban'] }}<br>BIC: {{ $stamm['bic'] }}</td>
+                        <td>Den fälligen Lagerbeitrag überweise ich bis spätestens 31. Dezember 2024.</td>
+                        <td>Die Höhe des Lagerbeitrags sowie die Kontoverbindung erfahre ich bei meinem Stamm.</td>
                     </tr>
                     </tbody>
                 </table>
@@ -159,6 +155,9 @@
                             <td>Ernährung:</td><td>{{ $food }}{{ $gluten ? ', glutenfrei' : ''}}{{$lactose ? ', laktosefrei' : ''}}</td>
                         </tr>
                         <tr>
+                            <td>Esse Fischstäbchen:</td><td>{{ $fishsticks ? 'ja' : 'nein'}}</td>
+                        </tr>
+                        <tr>
                             <td>Allergien und sonstige Essensbesonderheiten:</td><td>{{ $allergies }}</td>
                         </tr>
                         </tbody>
@@ -247,7 +246,7 @@
                     <table class="table table-bordered mb-2">
                         <tbody>
                         <tr>
-                            <td class="content-end">Anmeldung bitte bis spätestens 17. April beim Stamm abgeben!</td>
+                            <td class="content-end">Anmeldung bitte bis spätestens 15. Dezember beim Stamm abgeben!</td>
                         </tr>
                         </tbody>
                     </table>

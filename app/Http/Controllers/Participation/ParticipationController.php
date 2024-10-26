@@ -86,8 +86,9 @@ class ParticipationController extends Controller
 
     public static $Foods = [
         'vegetarian' => 'vegetarisch',
-        'meet' => 'esse auch Fleisch',
         'vegan' => 'vegan',
+        'nopig' => 'kein Schweinefleisch',
+        'meet' => 'mit Fleisch',
     ];
 
     public static $Roles = [
@@ -112,9 +113,9 @@ class ParticipationController extends Controller
         'none' => 'Eigene Anreise',
     ];
 
-    public static $EarlyBirdUntil = "2024-12-31";
+    public static $EarlyBirdUntil = "2024-10-31";
 
-    public static $ApplicationOpenUntil = "2025-03-31";
+    public static $ApplicationOpenUntil = "2024-12-15";
 
     /**
      * Display list of participations.
@@ -267,6 +268,7 @@ class ParticipationController extends Controller
             'insurance' => $participation->insurance,
             'vaccination_info_confirmed' => $participation->vaccination_info_confirmed,
             'food' => self::$Foods[$participation->food],
+            'fishsticks' => $participation->fishsticks,
             'gluten' => $participation->gluten,
             'lactose' => $participation->lactose,
             'allergies' => $participation->allergies,
@@ -390,6 +392,7 @@ class ParticipationController extends Controller
             'insurance' => 'nullable|string|max:255',
             'vaccination_info_confirmed' => 'nullable|boolean',
             'food' => ['nullable', Rule::in(array_keys(self::$Foods))],
+            'fishsticks' => 'required|boolean',
             'gluten' => 'required|boolean',
             'lactose' => 'required|boolean',
             'allergies' => 'nullable|string|max:255',
@@ -419,6 +422,7 @@ class ParticipationController extends Controller
             'insurance' => 'required|string|max:255',
             'vaccination_info_confirmed' => 'required|boolean|accepted',
             'food' => ['required', Rule::in(array_keys(self::$Foods))],
+            'fishsticks' => 'required|boolean',
             'gluten' => 'required|boolean',
             'lactose' => 'required|boolean',
             'allergies' => 'nullable|string|max:255',
@@ -447,6 +451,7 @@ class ParticipationController extends Controller
             'insurance',
             'vaccination_info_confirmed',
             'food',
+            'fishsticks',
             'gluten',
             'lactose',
             'allergies',
